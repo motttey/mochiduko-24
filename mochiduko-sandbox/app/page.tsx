@@ -3,6 +3,7 @@
 import useSWR from 'swr'
 import styles from './page.module.css'
 import { ReactNode, useState } from 'react'
+import { Illust } from '@/types/api'
 
 const fetcher = () => fetch('/api/mochiduko').then(res => res.json())
 
@@ -13,10 +14,10 @@ export default function Home() {
   
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
-    const illusts = data?.illusts ?? [];
+    const illusts: Array<Illust> = data?.illusts ?? [];
 
     return <div className={styles.grid}>
-      {illusts.map((illust: any, index: number) => (
+      {illusts.map((illust: Illust, index: number) => (
         <a
           href={illust.url}
           className={styles.card}
