@@ -19,7 +19,7 @@ const IllustList: React.FC = () => {
   return <div className={styles.grid}>
     {illusts.map((illust: Illust, index: number) => (
       <a
-        href={illust.url}
+        href={fetchUrl(illust.id.toString())}
         className={styles.card}
         target="_blank"
         rel="noopener noreferrer"
@@ -29,14 +29,17 @@ const IllustList: React.FC = () => {
           {illust.title}
         </h2>
         <p>{illust.date}</p>
-        <Image
+        <div className="relative aspect-square">
+          <Image
             src={fetchUrl(illust.id.toString())}
             alt={illust.title}
             width={200}
             height={100}
+            style={{objectFit: "contain"}}
             loading='lazy'
             className="white--text align-end"
-         />
+          />
+         </div>
       </a>
     ))}
   </div>
