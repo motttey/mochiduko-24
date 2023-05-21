@@ -7,30 +7,40 @@ import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api'
 import { useState, useEffect, useMemo } from 'react';
 
-const fetcher = () => fetch('/api/mochiduko').then(res => res.json())
 const IllustList: React.FC = () => {
-  const { data, error } = useSWR('/api/user', fetcher)
-  const [illusts, setIllusts] = useState([] as  Array<Illust>)
+  const [isProcessing, setIsProcessing] = useState(true)
+  const fetcher = () => fetch('/api/mochiduko').then((res) => {
+    console.log(res);
+    setIsProcessing(false);
+    return res.json();
+  });
+  
+  const { data, error } = useSWR(
+    '/api/user',
+    fetcher,
+    {refreshInterval: (isProcessing) ? 5000 : 0}
+  );
+  const [illusts, setIllusts] = useState([] as  Array<Illust>);
   const router = useSearchParams();
   const query = router.get("title");
 
   useMemo(() => {
     const fetchedIllust: Array<Illust> = data?.illusts ?? [];
-    setIllusts(fetchedIllust)
-  }, [data?.illusts])
+    setIllusts(fetchedIllust);
+  }, [data?.illusts]);
 
   useEffect(() => {
     if (query) {
       console.log(query);
-      const filterdIllusts = illusts.filter((illust: Illust) => illust.title.includes(query))
-      setIllusts(filterdIllusts)
+      const filterdIllusts = illusts.filter((illust: Illust) => illust.title.includes(query));
+      setIllusts(filterdIllusts);
     }
   },[illusts, query]);
 
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
-  const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}`
+  const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}`;
 
   return <div className={styles.grid}>
     {illusts.map((illust: Illust, index: number) => (
@@ -58,7 +68,7 @@ const IllustList: React.FC = () => {
          </div>
       </a>
     ))}
-  </div>
+  </div>;
 }
 
 export default IllustList
