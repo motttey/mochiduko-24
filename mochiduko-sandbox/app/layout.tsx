@@ -54,10 +54,6 @@ export const metaTag: Array<MetaTag> = [
     content: metadata.og_url
   },
   {
-    name: "og:image",
-    content: metadata.og_image
-  },
-  {
     name: "twitter:card",
     content: metadata.twitter_card
   },
@@ -66,7 +62,7 @@ export const metaTag: Array<MetaTag> = [
     content: metadata.twitter_site
   },
   {
-    name: "og:image",
+    name: "twitter:image",
     content: metadata.og_image
   },
   {
@@ -92,7 +88,7 @@ export default function RootLayout({
         {metaTag.map((m, index) => {
           return (
             <meta
-              property={m.name}
+            property={m.name}
               content={m.content}
               key={index}
             />
