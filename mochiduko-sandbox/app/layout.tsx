@@ -21,11 +21,18 @@ export interface MetaTag {
 const title = 'モチヅ庫\'24';
 const description = '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.';
 const url = 'http://motttey.github.io/mochiduko-20';
+const imgUrl = 'https://motttey.github.io/mochiduko-20/drawer-bg.webp'
 export const metadata: any = {
   title,
   description,
-  keywords: '望月,望月田吾作,ドラえもん,Doraemon,Fujiko Fujio,藤子不二雄,藤子・F・不二雄,イラスト,ドラえもん イラスト',
+  icons: "/favicon.ico",
+  keywords: ["望月","望月田吾作","ドラえもん","Doraemon","Fujiko Fujio","藤子不二雄","藤子・F・不二雄","イラスト","ドラえもん イラスト"],
   author: 'Tagosaku Mochiduki',
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
   openGraph: {
     title,
     description,
@@ -33,6 +40,9 @@ export const metadata: any = {
     siteName: title,
     locale: 'ja_JP',
     type: 'website',
+    images: {
+      url: imgUrl
+    },
   },
   twitter: {
     card: 'summary_large_image',
@@ -40,6 +50,7 @@ export const metadata: any = {
     description,
     site: '@mt_tg',
     creator: '@mt_tg',
+    images: [imgUrl]
   },
   alternates: {
     canonical: url,
