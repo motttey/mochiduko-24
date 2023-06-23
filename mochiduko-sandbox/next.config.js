@@ -9,7 +9,7 @@ const nextConfig = {
   },
   images: {
     domains: ['embed.pixiv.net'],
-  },
+  }
 }
 
 module.exports = nextConfig

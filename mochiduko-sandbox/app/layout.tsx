@@ -2,8 +2,7 @@ import './globals.css';
 import { Inter, Noto_Sans_JP } from 'next/font/google';
 import Head from 'next/head';
 
-import Header from './api/mochiduko/Header';
-
+import Header from '../components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
