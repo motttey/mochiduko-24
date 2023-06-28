@@ -2,7 +2,7 @@
 import useSWR from 'swr'
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { Input } from 'semantic-ui-react'
+import { Grid, Input } from 'semantic-ui-react'
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api'
@@ -45,35 +45,40 @@ const IllustList: React.FC = () => {
 
   return <div>
     <div className="formContainer">
-      <Input placeholder='Search...' value={query} onChange={(e) => setQuery(e.target.value)}/>
+      <Input placeholder='Search...' value={query || ''} onChange={(e) => setQuery(e.target.value)}/>
     </div>
-    <div className={styles.grid}>
+    <Grid columns={4} className={styles.grid}>
       {illusts.map((illust: Illust, index: number) => (
-        <a
-          href={fetchUrl(illust.id.toString())}
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-          key={index}
+        <Grid.Column 
+          width={2}
+          key={index.toString() + '_' + illust.id}
         >
-          <h2>
-            {illust.title}
-          </h2>
-          <p>{illust.date}</p>
-          <div className="relative aspect-square">
-            <Image
-              src={fetchUrl(illust.id.toString())}
-              alt={illust.title}
-              width={200}
-              height={100}
-              style={{objectFit: "contain"}}
-              loading='lazy'
-              className="white--text align-end"
-            />
-          </div>
-        </a>
+          <a
+            href={fetchUrl(illust.id.toString())}
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={illust.id}
+          >
+            <h2>
+              {illust.title}
+            </h2>
+            <p>{illust.date}</p>
+            <div className="relative aspect-square">
+              <Image
+                src={fetchUrl(illust.id.toString())}
+                alt={illust.title}
+                width={200}
+                height={100}
+                style={{objectFit: "contain"}}
+                loading='lazy'
+                className="white--text align-end"
+              />
+            </div>
+          </a>
+        </Grid.Column>
       ))}
-    </div>
+    </Grid>
   </div>;
 }
 
