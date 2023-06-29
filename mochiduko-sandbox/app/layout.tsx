@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_JP } from 'next/font/google';
 import Head from 'next/head';
 
 import Header from '../components/Header';
+import 'semantic-ui-css/semantic.min.css'
 
 const inter = Inter({ subsets: ['latin'] });
 

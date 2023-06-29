@@ -44,13 +44,15 @@ const IllustList: React.FC = () => {
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}`;
 
   return <div>
-    <div className="formContainer">
-      <Input placeholder='Search...' value={query || ''} onChange={(e) => setQuery(e.target.value)}/>
-    </div>
-    <Grid columns={4} className={styles.grid}>
+    <Grid className="formContainer">
+      <Grid.Column textAlign="center">
+        <Input placeholder='Search...' value={query || ''} onChange={(e) => setQuery(e.target.value)}/>
+      </Grid.Column>
+    </Grid>
+    <Grid className="illustList">
       {illusts.map((illust: Illust, index: number) => (
         <Grid.Column 
-          width={2}
+          mobile={16} tablet={8} computer={4}
           key={index.toString() + '_' + illust.id}
         >
           <a
