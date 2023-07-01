@@ -6,12 +6,11 @@ import { Grid, Input } from 'semantic-ui-react'
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api'
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 const IllustList: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(true)
   const fetcher = () => fetch('/api/mochiduko').then((res) => {
-    console.log(res);
     setIsProcessing(false);
     return res.json();
   });
@@ -22,21 +21,27 @@ const IllustList: React.FC = () => {
     {refreshInterval: (isProcessing) ? 5000 : 0}
   );
   const [illusts, setIllusts] = useState([] as  Array<Illust>);
+  const [filterdIllusts, setFilteredIllusts] = useState([] as  Array<Illust>);
+
   const searchParams = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("title"));
+  const [query, setQuery] = useState(searchParams.get("title" || ''));
+  const illustsRef = useRef(illusts);
 
   useMemo(() => {
     const fetchedIllust: Array<Illust> = data?.illusts ?? [];
     setIllusts(fetchedIllust);
+    setFilteredIllusts(fetchedIllust);
   }, [data?.illusts]);
 
   useEffect(() => {
-    if (query) {
-      console.log(query);
-      const filterdIllusts = illusts.filter((illust: Illust) => illust.title.includes(query));
-      setIllusts(filterdIllusts);
-    }
-  },[illusts, query]);
+    illustsRef.current = illusts
+  }, [illusts]);
+
+  useEffect(() => {
+    if (!query) return;
+    const filterdIllusts = illustsRef.current.filter((illust: Illust) => illust.title.includes(query || ''));
+    setFilteredIllusts(filterdIllusts);
+  },[query, illustsRef]);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -50,7 +55,7 @@ const IllustList: React.FC = () => {
       </Grid.Column>
     </Grid>
     <Grid className="illustList">
-      {illusts.map((illust: Illust, index: number) => (
+      {filterdIllusts.map((illust: Illust, index: number) => (
         <Grid.Column 
           mobile={16} tablet={8} computer={4}
           key={index.toString() + '_' + illust.id}
