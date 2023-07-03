@@ -1,7 +1,7 @@
 'use client'
 import useSWR from 'swr'
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, Input } from 'semantic-ui-react'
 
 import styles from '@/app/page.module.css'
@@ -24,6 +24,9 @@ const IllustList: React.FC = () => {
   const [filterdIllusts, setFilteredIllusts] = useState([] as  Array<Illust>);
 
   const searchParams = useSearchParams();
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [query, setQuery] = useState(searchParams.get("title" || ''));
   const illustsRef = useRef(illusts);
 
@@ -38,10 +41,16 @@ const IllustList: React.FC = () => {
   }, [illusts]);
 
   useEffect(() => {
-    if (!query) return;
     const filterdIllusts = illustsRef.current.filter((illust: Illust) => illust.title.includes(query || ''));
     setFilteredIllusts(filterdIllusts);
-  },[query, illustsRef]);
+  }, [query, illustsRef]);
+
+
+  useEffect(() => {
+    const params = new URLSearchParams()
+    params.set('title', query || '')
+    router.push(pathname + '?' + params.toString())
+  }, [pathname, query, router]);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
