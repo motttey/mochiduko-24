@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import Header from '../components/Header';
 import 'semantic-ui-css/semantic.min.css'
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,12 +23,11 @@ const title = 'モチヅ庫\'24';
 const description = '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.';
 const url = 'http://motttey.github.io/mochiduko-20';
 const imgUrl = 'https://motttey.github.io/mochiduko-20/drawer-bg.webp'
-export const metadata: any = {
+export const metadata: Metadata  = {
   title,
   description,
   icons: "/favicon.ico",
   keywords: ["望月","望月田吾作","ドラえもん","Doraemon","Fujiko Fujio","藤子不二雄","藤子・F・不二雄","イラスト","ドラえもん イラスト"],
-  author: 'Tagosaku Mochiduki',
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -55,6 +55,7 @@ export const metadata: any = {
   alternates: {
     canonical: url,
   },
+  metadataBase: new URL(process.env.URL ?? 'http://localhost:3000'),
 };
 
 export default function RootLayout({
@@ -65,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <Head>
-        <title>{metadata.title}</title>
+        <title>{metadata.title as string}</title>
         <meta charSet="utf-8"/>
       </Head>
       <body className={`${NotoSansJP.className} ${inter.className}`}>
