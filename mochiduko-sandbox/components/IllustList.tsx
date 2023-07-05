@@ -1,11 +1,10 @@
 'use client'
 import useSWR from 'swr'
-import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input } from 'semantic-ui-react'
+import { Grid, Input, Image} from 'semantic-ui-react';
 
 import styles from '@/app/page.module.css'
-import { Illust } from '@/types/api'
+import { Illust } from '@/types/api';
 import { useState, useEffect, useMemo, useRef } from 'react';
 
 const IllustList: React.FC = () => {
@@ -55,7 +54,7 @@ const IllustList: React.FC = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}`;
+  const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
 
   return <div>
     <Grid className="formContainer">
@@ -82,13 +81,13 @@ const IllustList: React.FC = () => {
             <p>{illust.date}</p>
             <div className="relative aspect-square">
               <Image
+                centered
+                fluid
                 src={fetchUrl(illust.id.toString())}
                 alt={illust.title}
-                width={200}
-                height={100}
                 style={{objectFit: "contain"}}
                 loading='lazy'
-                className="white--text align-end"
+                className="illust_image"
               />
             </div>
           </a>
