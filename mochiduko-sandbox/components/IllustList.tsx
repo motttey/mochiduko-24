@@ -7,7 +7,7 @@ import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
 import { useState, useEffect, useMemo, useRef } from 'react';
 
-const IllustList: React.FC = () => {
+const IllustList: React.FC = (props: any) => {
   const [isProcessing, setIsProcessing] = useState(true)
   const fetcher = () => fetch('/api/mochiduko').then((res) => {
     setIsProcessing(false);
@@ -19,7 +19,7 @@ const IllustList: React.FC = () => {
     fetcher,
     {refreshInterval: (isProcessing) ? 5000 : 0}
   );
-  const [illusts, setIllusts] = useState([] as  Array<Illust>);
+  const [illusts, setIllusts] = useState(props.initialContentsList);
   const [filterdIllusts, setFilteredIllusts] = useState([] as  Array<Illust>);
 
   const searchParams = useSearchParams();
