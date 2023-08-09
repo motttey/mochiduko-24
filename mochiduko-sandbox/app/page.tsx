@@ -1,17 +1,19 @@
-import { Illust } from '@/types/api';
+// import { Illust } from '@/types/api';
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
 
-export default function Home({initialContentsList}: any) {
+export default async function Home() {
+  const res: string = await fetch('http://localhost:3000/api/mochiduko',
+      { next: { revalidate: 1 } }
+    )
+    .then((res) => res.json())
+    .then((_) => new Date().toString())
+
   return (
     <main className={styles.main}>
-      <IllustList initialContentsList={initialContentsList}></IllustList>
+      <p>{Math.random()}</p>
+      <p>{res}</p>
+      <IllustList></IllustList>
     </main>
   )
 }
-
-Home.getInitialProps = async (ctx: any) => {
-  const res: any = await fetch(`https://mochiduko-api.netlify.app/each_illusts.json`)
-  const data: Array<Illust> = await res.json()
-  return { initialContentsList: data };
-};
