@@ -2,16 +2,20 @@
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
 
-export default async function Page() {
+const getData = async () => {
   const res: any = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
-      { next: { revalidate: 60  } }
-    )
-    .then(async (res) => { 
-      return {
-        data: await res.json(),
-        timestamp: new Date().toString()
-      }
-    });
+    { next: { revalidate: 60  } }
+  )
+  .then((res) => res.json())
+
+  return {
+    data: res,
+    timestamp: new Date().toString()    
+  }
+}
+
+export default async function Page() {
+  const res: any = await getData()
 
   return (
     <main className={styles.main}>
