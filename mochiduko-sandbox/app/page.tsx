@@ -2,18 +2,21 @@
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
 
-export default async function Home() {
-  const res: string = await fetch('http://localhost:3000/api/mochiduko',
-      { next: { revalidate: 1 } }
+export default async function Page() {
+  const res: any = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
+      { next: { revalidate: 60  } }
     )
-    .then((res) => res.json())
-    .then((_) => new Date().toString())
+    .then(async (res) => { 
+      return {
+        data: await res.json(),
+        timestamp: new Date().toString()
+      }
+    });
 
   return (
     <main className={styles.main}>
-      <p>{Math.random()}</p>
-      <p>{res}</p>
-      <IllustList></IllustList>
+      <p>{res.timestamp}</p>
+      <IllustList initialContentsList={res.data}></IllustList>
     </main>
   )
 }
