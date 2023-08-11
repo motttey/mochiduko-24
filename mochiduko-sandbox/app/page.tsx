@@ -1,9 +1,9 @@
-// import { Illust } from '@/types/api';
+import { Illust } from '@/types/api'
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
 
 const getData = async () => {
-  const res: any = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
+  const res: Array<Illust> = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
     { next: { revalidate: 60  } }
   )
   .then((res) => res.json())
