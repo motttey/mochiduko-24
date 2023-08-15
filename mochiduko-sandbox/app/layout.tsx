@@ -67,7 +67,6 @@ export default function RootLayout({
       <body className={`${NotoSansJP.className} ${inter.className}`}>
         <Header></Header>
         {children}
-        <Header></Header>
       </body>
     </html>
   )
