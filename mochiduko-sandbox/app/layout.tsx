@@ -1,17 +1,16 @@
 import './globals.css';
-import { Inter, Noto_Sans_JP } from 'next/font/google';
-import Head from 'next/head';
+import { Inter, Noto_Sans_JP } from '@next/font/google';
 
 import Header from '../components/Header';
 import 'semantic-ui-css/semantic.min.css'
 import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
-
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
   subsets: ["latin"],
-  preload: true,
+  // https://github.com/vercel/next.js/pull/44594
+  preload: false,
 });
 
 export interface MetaTag {
@@ -65,10 +64,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <Head>
-        <title>{metadata.title as string}</title>
-        <meta charSet="utf-8"/>
-      </Head>
       <body className={`${NotoSansJP.className} ${inter.className}`}>
         <Header></Header>
         {children}
