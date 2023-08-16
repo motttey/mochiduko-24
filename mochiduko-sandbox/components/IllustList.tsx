@@ -80,7 +80,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
               {illust.title}
             </h2>
             <p>{illust.date}</p>
-            <div className="relative aspect-square">
+            <div className={`relative aspect-square ${styles.hex}`}>
               <Image
                 centered
                 fluid
