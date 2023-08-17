@@ -56,6 +56,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   if (!data) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
+  const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
   return <div>
     <Grid className="formContainer">
@@ -70,7 +71,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
           key={index.toString() + '_' + illust.id}
         >
           <a
-            href={fetchUrl(illust.id.toString())}
+            href={fetchPixivLink(illust.id.toString())}
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
@@ -80,16 +81,18 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
               {illust.title}
             </h2>
             <p>{illust.date}</p>
-            <div className={`relative aspect-square ${styles.hex}`}>
-              <Image
-                centered
-                fluid
-                src={fetchUrl(illust.id.toString())}
-                alt={illust.title}
-                style={{objectFit: "contain"}}
-                loading='lazy'
-                className="illust_image"
-              />
+            <div className={styles.hex}>
+              <div className="relative aspect-square">
+                <Image
+                  centered
+                  fluid
+                  src={fetchUrl(illust.id.toString())}
+                  alt={illust.title}
+                  style={{objectFit: "contain"}}
+                  loading='lazy'
+                  className="illust_image"
+                />
+              </div>
             </div>
           </a>
         </Grid.Column>
