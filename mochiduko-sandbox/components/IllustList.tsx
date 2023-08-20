@@ -65,7 +65,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     setFilteredIllusts(filterdIllusts);
   }, [query, illustsRef]);
     
-  useEffect(() => {
+  useMemo(() => {
     const groupedIllusts = chunkArray(filterdIllusts);
     setGroupedIllusts(groupedIllusts);
   }, [filterdIllusts]);
@@ -89,7 +89,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
       </Grid.Column>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
-      <div className={styles.hexRow} key={groupIdx}>
+      <div 
+        className={`${styles.hexRow} ${(groupIdx % 2 === 0) ? styles.hexRowEven : styles.hexRowOdd}`}
+        key={groupIdx}
+      >
         {group.map((illust, index) => (
           <div
             className={styles.hex}
@@ -116,7 +119,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                     alt={illust.title}
                     style={{objectFit: "contain"}}
                     loading='lazy'
-                    className="illust_image"
+                    className={styles.illustImage}
                   />
                 </div>
             </a>
