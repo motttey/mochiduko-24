@@ -237,3 +237,24 @@
   -webkit-clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
   clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
 }
+
+.hexGallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.hexRow {
+  display: grid;
+  gap: 5px;
+}
+
+.hexRow:nth-child(odd) {
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  margin-left: calc(100%/3 - 100%/4 + 10px*2);
+  margin-right: calc(100%/3 - 100%/4 + 10px*2);
+}
+
+.hexRow:nth-child(even) {
+  grid-template-columns: repeat(4, 1fr);
+}

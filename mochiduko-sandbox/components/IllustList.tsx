@@ -58,47 +58,123 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
   const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
+  const chunkArray = (array: Array<Illust>, chunk_size: number) => {
+    const results = [];
+    let count = 0;
+    
+    while (count < array.length) {
+      if (results.length % 2 === 0) {
+        // 偶数行: 4要素
+        results.push(array.slice(count, count + 4));
+        count += 4;
+      } else {
+        // 奇数行: 3要素
+        results.push(array.slice(count, count + 3));
+        count += 3;
+      }
+    }
+    
+    return results;
+  };
+  
+  const groupedIllusts = chunkArray(filterdIllusts, 4);
+  
   return <div>
     <Grid className="formContainer">
       <Grid.Column textAlign="center">
         <Input placeholder='Search...' value={query || ''} onChange={(e) => setQuery(e.target.value)}/>
       </Grid.Column>
     </Grid>
-    <Grid className="illustList">
-      {filterdIllusts.map((illust: Illust, index: number) => (
-        <Grid.Column 
-          mobile={16} tablet={8} computer={4}
-          key={index.toString() + '_' + illust.id}
-        >
-          <a
-            href={fetchPixivLink(illust.id.toString())}
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={illust.id}
-          >
-            <h2>
-              {illust.title}
-            </h2>
-            <p>{illust.date}</p>
-            <div className={styles.hex}>
-              <div className="relative aspect-square">
-                <Image
-                  centered
-                  fluid
-                  src={fetchUrl(illust.id.toString())}
-                  alt={illust.title}
-                  style={{objectFit: "contain"}}
-                  loading='lazy'
-                  className="illust_image"
-                />
-              </div>
+    {groupedIllusts.map((group, groupIdx) => (
+      <div className={styles.hexRow} key={groupIdx}>
+        {group.map((illust, index) => (
+          <div
+            className={styles.hex}
+            key={index.toString() + '_' + illust.id}
+            >
+            <a
+              href={fetchPixivLink(illust.id.toString())}
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={illust.id}
+            >
+              {/*
+                <h2>
+                  {illust.title}
+                </h2>
+                <p>{illust.date}</p>
+              */}
+                <div className="relative aspect-square">
+                  <Image
+                    centered
+                    fluid
+                    src={fetchUrl(illust.id.toString())}
+                    alt={illust.title}
+                    style={{objectFit: "contain"}}
+                    loading='lazy'
+                    className="illust_image"
+                  />
+                </div>
+            </a>
             </div>
-          </a>
-        </Grid.Column>
-      ))}
-    </Grid>
+        ))}
+      </div>
+    ))}
   </div>;
 }
 
 export default IllustList
+
+/*
+
+.hex:first-child {
+  grid-row-start: 1;
+  grid-column: 2 / span 2;
+}
+
+.hex:nth-child(2) {
+  grid-row-start: 1;
+  grid-column: 4 / span 2;
+}
+
+.hex:nth-child(3) {
+  grid-row-start: 1;
+  grid-column: 6 / span 2;
+}
+
+.hex:nth-child(4) {
+  grid-row-start: 2;
+  grid-column: 1 / span 2;
+}
+
+.hex:nth-child(5) {
+  grid-row-start: 2;
+  grid-column: 3 / span 2;
+}
+
+.hex:nth-child(6) {
+  grid-row-start: 2;
+  grid-column: 5 / span 2;
+}
+
+.hex:nth-child(7) {
+  grid-row-start: 2;
+  grid-column: 7 / span 2;
+}
+
+.hex:nth-child(8) {
+  grid-row-start: 3;
+  grid-column: 2 / span 2;
+}
+
+.hex:nth-child(9) {
+  grid-row-start: 3;
+  grid-column: 4 / span 2;
+}
+
+.hex:nth-child(10) {
+  grid-row-start: 3;
+  grid-column: 6 / span 2;
+}
+*/
