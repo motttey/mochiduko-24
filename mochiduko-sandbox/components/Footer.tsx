@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const SiteFooter: React.FC = () => {
-  const title = '© 2023 Tagosaku Mochiduki'
+  const title = `© ${new Date().getFullYear()} Tagosaku Mochiduki`
   return (
     <footer>
         <div className="max-w-screen-2xl px-2 md:px-4 mx-auto">
