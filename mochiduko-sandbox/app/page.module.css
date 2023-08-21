@@ -261,22 +261,17 @@
 
 }
 
-/*
-.hexRow:nth-child(odd) {
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  margin-left: calc(100%/3 - 100%/4 + 10px*2);
-  margin-right: calc(100%/3 - 100%/4 + 10px*2);
-}
-
-.hexRow:nth-child(even) {
-  grid-template-columns: repeat(4, 1fr);
-}
-*/
 .illustImage {
   background-color: dimgray;
 }
 
 .illustImage:hover{
   opacity: 0.5;
+}
+
+/* 横長の画像が上下中央に位置するように指定 */
+a.card > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
