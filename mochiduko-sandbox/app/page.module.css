@@ -258,7 +258,26 @@
 
 .hexRowEven {
   grid-template-columns: repeat(4, 1fr);
+}
 
+/* Mobile */
+@media (max-width: 700px) {
+  .hexRowOdd {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+  
+  .hexRowEven {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+
+  .hex {
+    -webkit-clip-path: polygon(50% 10%, 90% 25%, 90% 75%, 50% 90%, 10% 75%, 10% 25%);
+    clip-path: polygon(50% 10%, 90% 25%, 90% 75%, 50% 90%, 10% 75%, 10% 25%);
+  }  
 }
 
 .illustImage {
