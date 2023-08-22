@@ -121,6 +121,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                     loading='lazy'
                     className={styles.illustImage}
                   />
+                  <p>{illust.title}</p>
                 </div>
             </a>
             </div>

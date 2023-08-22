@@ -234,7 +234,7 @@
 .hex {
   display: flex;
   position: relative;
-  /*background-color: dimgray;*/
+  background-color: dimgray;
   -webkit-clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
   clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
 }
@@ -262,11 +262,12 @@
 }
 
 .illustImage {
-  background-color: dimgray;
+  background-color: #545454;
+  margin-top: 2.5%;
 }
 
 .illustImage:hover{
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 /* 横長の画像が上下中央に位置するように指定 */
@@ -274,4 +275,24 @@ a.card > div {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.hex p {
+  position: absolute;
+  /* 中央に配置 */
+  top: 50%;
+  left: 50%;
+  /* 要素の中心を基準にして配置 */
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 10;
+  font-weight: bold;
+}
+
+a.card:hover p {
+  display: block;
+}
+
+a.card p {
+  display: none;
 }
