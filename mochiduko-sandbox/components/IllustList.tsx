@@ -53,7 +53,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   useMemo(() => {
     const fetchedIllust: Array<Illust> = data?.illusts ?? [];
     setIllusts(fetchedIllust);
-    setFilteredIllusts(fetchedIllust);
   }, [data?.illusts]);
 
   useEffect(() => {
@@ -73,11 +72,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   useEffect(() => {
     const params = new URLSearchParams()
     params.set('title', query || '')
-    router.push(pathname + '?' + params.toString())
-  }, [pathname, query, router]);
+    // router.replace(pathname + '?' + params.toString())
+  }, [pathname, query]);
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data || data.length === 0) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
   const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
