@@ -1,5 +1,5 @@
 import './globals.css';
-import { Inter, Noto_Sans_JP } from '@next/font/google';
+import { Inter, Noto_Sans_JP } from 'next/font/google';
 
 import Header from '../components/Header';
 import 'semantic-ui-css/semantic.min.css'
