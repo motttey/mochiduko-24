@@ -48,7 +48,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const pathname = usePathname()
 
   const [query, setQuery] = useState(searchParams.get("title" || ''));
-  const illustsRef = useRef(illusts);
 
   useMemo(() => {
     const fetchedIllust: Array<Illust> = data?.illusts ?? [];
@@ -56,13 +55,12 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   }, [data?.illusts]);
 
   useEffect(() => {
-    illustsRef.current = illusts
-  }, [illusts]);
-
-  useEffect(() => {
-    const filterdIllusts = illustsRef.current.filter((illust: Illust) => illust.title.includes(query || ''));
+    const filterdIllusts = 
+      (query && query.length > 0) ? illusts.filter(
+          (illust: Illust) => illust.title.includes(query)
+        ) : illusts;
     setFilteredIllusts(filterdIllusts);
-  }, [query, illustsRef]);
+  }, [query, illusts]);
     
   useMemo(() => {
     const groupedIllusts = chunkArray(filterdIllusts);
@@ -70,10 +68,12 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   }, [filterdIllusts]);
 
   useEffect(() => {
-    const params = new URLSearchParams()
-    params.set('title', query || '')
-    // router.replace(pathname + '?' + params.toString())
-  }, [pathname, query]);
+    if (query) {
+      const params = new URLSearchParams()
+      params.set('title', query || '')
+      router.replace(pathname + '?' + params.toString())
+    }
+  }, [query, router, pathname]);
 
   if (error) return <div>failed to load</div>;
   if (!data || data.length === 0) return <div>loading...</div>;
@@ -84,7 +84,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   return <div>
     <Grid className="formContainer">
       <Grid.Column textAlign="center">
-        <Input placeholder='Search...' value={query || ''} onChange={(e) => setQuery(e.target.value)}/>
+        <Input 
+          placeholder='Search...'
+          value={query || ''}
+          onChange={(e) => setQuery(e.target.value)}/>
       </Grid.Column>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
