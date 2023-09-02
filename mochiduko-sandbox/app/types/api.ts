@@ -1,5 +1,6 @@
 declare module "@/types/api" {
     export interface Illust {
+        src: string | undefined;
         title: string,
         date: string,
         id: number,
