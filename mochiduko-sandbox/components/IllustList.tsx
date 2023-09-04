@@ -56,9 +56,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
 
   useEffect(() => {
     const filterdIllusts = 
-      (query && query.length > 0) ? illusts.filter(
+      ((query && query.length > 0) ? illusts.filter(
           (illust: Illust) => illust.title.includes(query)
-        ) : illusts;
+        ) : illusts)
+        .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
   }, [query, illusts]);
     
@@ -105,7 +106,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
               className={styles.card}
               target="_blank"
               rel="noopener noreferrer"
-              key={illust.id}
+              key={`${index}_${illust.id.toString()}`}
             >
               {/*
                 <h2>
