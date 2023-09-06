@@ -121,7 +121,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                     src={fetchUrl(illust.id.toString())}
                     alt={illust.title}
                     style={{objectFit: "contain"}}
-                    loading='lazy'
                     className={styles.illustImage}
                   />
                   <p>{illust.title}</p>
