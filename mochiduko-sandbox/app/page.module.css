@@ -325,10 +325,10 @@ a.card > div {
   font-weight: bold;
 }
 
-a.card:hover p {
+.hex:hover p {
   display: block;
 }
 
-a.card p {
+.hex p {
   display: none;
 }
