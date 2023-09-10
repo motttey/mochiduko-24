@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const repositoryName = process.env.REPOSITORY_NAME ? "/" + process.env.REPOSITORY_NAME : "";
+
 const nextConfig = {
   experimental: {
     appDir: true,
@@ -10,7 +12,9 @@ const nextConfig = {
   },
   images: {
     domains: ['embed.pixiv.net'],
-  }
+  },
+  assetPrefix: repositoryName,
+  basePath: repositoryName,
 }
 
 module.exports = nextConfig
