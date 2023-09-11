@@ -68,19 +68,20 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     setGroupedIllusts(groupedIllusts);
   }, [filterdIllusts]);
 
-  useEffect(() => {
-    if (query) {
-      const params = new URLSearchParams()
-      params.set('title', query || '')
-      router.replace(pathname + '?' + params.toString())
-    }
-  }, [query, router, pathname]);
-
   if (error) return <div>failed to load</div>;
   if (!data || data.length === 0) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
   const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
+
+  const handleChangeQuery = (value: string) => {
+    // 対象のパスに遷移
+    const params = new URLSearchParams()
+    params.set('title', value || '')
+    router.replace(pathname + '?' + params.toString());
+
+    setQuery(value);
+  }
 
   return <div>
     <Grid className="formContainer">
@@ -88,7 +89,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         <Input 
           placeholder='Search...'
           value={query || ''}
-          onChange={(e) => setQuery(e.target.value)}/>
+          onChange={(e) => handleChangeQuery(e.target.value)}/>
       </Grid.Column>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
