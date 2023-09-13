@@ -5,7 +5,7 @@ import { Grid, Input, Image} from 'semantic-ui-react';
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];
