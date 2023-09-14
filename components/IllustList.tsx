@@ -86,6 +86,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   return <div>
     <Grid className="formContainer">
       <Grid.Column textAlign="center">
+        <h2>My Illust List (from pixiv)</h2>
         <Input 
           placeholder='Search...'
           value={query || ''}
