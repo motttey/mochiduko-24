@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { Divider, Header, Image } from "semantic-ui-react";
+import { Header, Image } from "semantic-ui-react";
 import styles from '@/app/page.module.css'
 
 const SiteHeader: React.FC = () => {
