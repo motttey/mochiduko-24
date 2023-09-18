@@ -5,10 +5,14 @@ import IllustList from '@/components/IllustList'
 
 const getData = async () => {
   // 1時間ごとにprefetchする
-  const res: Array<Illust> = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
-    { next: { revalidate: 60 * 60 } }
-  )
-  .then((res) => res.json())
+  let res: Array<Illust> = new Array<Illust>();
+  
+  if (process.env.DEPLOY_MODE !== "SSR") { 
+    res = await fetch('https://mochiduko-api.netlify.app/each_illusts.json',
+      { next: { revalidate: 60 * 60 } }
+    )
+    .then((res) => res.json())
+  }
 
   return {
     data: res
@@ -16,11 +20,15 @@ const getData = async () => {
 }
 
 export default async function Page() {
-  const res: any = await getData()
-
+  let initialContentsList: Array<Illust> = new Array<Illust>();
+  
+  if (process.env.DEPLOY_MODE !== "SSR") { 
+    const res: any = await getData()
+    initialContentsList = res.data;
+  }
   return (
     <main className={styles.main}>
-      <IllustList initialContentsList={res.data}></IllustList>
+      <IllustList initialContentsList={initialContentsList}></IllustList>
     </main>
   )
 }
