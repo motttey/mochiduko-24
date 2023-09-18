@@ -2,6 +2,7 @@
 import { Illust } from '@/types/api'
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
+import { Suspense } from 'react'
 
 const getData = async () => {
   // 1時間ごとにprefetchする
@@ -18,6 +19,16 @@ const getData = async () => {
     data: res
   }
 }
+ 
+// This component passed as fallback to the Suspense boundary
+// will be rendered in place of the search bar in the initial HTML.
+// When the value is available during React hydration the fallback
+// will be replaced with the `<SearchBar>` component.
+
+// https://nextjs.org/docs/messages/deopted-into-client-rendering
+function SearchBarFallback() {
+  return <>placeholder</>
+}
 
 export default async function Page() {
   let initialContentsList: Array<Illust> = new Array<Illust>();
@@ -28,7 +39,9 @@ export default async function Page() {
   }
   return (
     <main className={styles.main}>
-      <IllustList initialContentsList={initialContentsList}></IllustList>
+      <Suspense fallback={<SearchBarFallback />}>
+        <IllustList initialContentsList={initialContentsList}></IllustList>
+      </Suspense>
     </main>
   )
 }
