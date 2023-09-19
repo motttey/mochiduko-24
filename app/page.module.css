@@ -257,7 +257,7 @@
 }
 
 /* Mobile */
-@media (max-width: 700px) {
+@media (max-width: 400px) {
   .hexRowOdd {
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: minmax(auto, 1fr);
@@ -271,11 +271,23 @@
     margin-left: -5%;
     margin-right: -5%;
   }
+}
 
-  .hex {
-    -webkit-clip-path: polygon(50% 10%, 90% 25%, 90% 75%, 50% 90%, 10% 75%, 10% 25%);
-    clip-path: polygon(50% 10%, 90% 25%, 90% 75%, 50% 90%, 10% 75%, 10% 25%);
-  }  
+/* Middle-width device */
+@media (max-width: 700px) {
+  .hexRowOdd {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  
+  .hexRowEven {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
 }
 
 /* 画像表示時のアニメーション設定 */
