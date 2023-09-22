@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-const repositoryName = process.env.REPOSITORY_NAME ? "/" + process.env.REPOSITORY_NAME : "";
+const isProd = process.env.NODE_ENV === 'production'
+const prefixPath = !isProd ? '/next13-app-sandbox' : ''
 
 const nextConfig = {
   output: 'export',
@@ -16,8 +17,8 @@ const nextConfig = {
   images: {
     domains: ['embed.pixiv.net'],
   },
-  assetPrefix: repositoryName,
-  basePath: repositoryName,
+  assetPrefix: prefixPath,
+  basePath: prefixPath,
 }
 
 module.exports = nextConfig
