@@ -26,15 +26,18 @@ const chunkArray = (array: Array<Illust>) => {
   return results;
 };
 
+const isProd = process.env.NODE_ENV === 'production'
+const prefixPath = !isProd ? '/next13-app-sandbox' : ''
+
 const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) => {
-  const [isProcessing, setIsProcessing] = useState(true)
-  const fetcher = () => fetch('/api/mochiduko').then((res) => {
+  const [isProcessing, setIsProcessing] = useState(false)
+  const fetcher = () => fetch(prefixPath + '/api/mochiduko').then((res) => {
     setIsProcessing(false);
     return res.json();
   });
   
   const { data, error } = useSWR(
-    '/api/user',
+    '/api/mochiduko',
     fetcher,
     {refreshInterval: (isProcessing) ? 5000 : 0}
   );
