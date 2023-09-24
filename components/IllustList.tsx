@@ -78,12 +78,14 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
   const handleChangeQuery = (value: string) => {
+    // パラメータをセット
+    setQuery(value);
+  }
+  const handleOnBlur = () => {
     // 対象のパスに遷移
     const params = new URLSearchParams()
-    params.set('title', value || '')
+    params.set('title', query || '')
     router.replace(pathname + '?' + params.toString());
-
-    setQuery(value);
   }
 
   return <div>
@@ -93,7 +95,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         <Input 
           placeholder='Search...'
           value={query || ''}
-          onChange={(e) => handleChangeQuery(e.target.value)}/>
+          onChange={(e) => handleChangeQuery(e.target.value)}
+          onBlur={() => handleOnBlur()}/>
       </Grid.Column>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
