@@ -39,13 +39,6 @@
   font-family: var(--font-mono);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  width: var(--max-width);
-  max-width: 100%;
-}
-
 /*
 .card {
   padding: 1rem 1.2rem;
@@ -132,18 +125,7 @@
   .content {
     padding: 4rem;
   }
-
-  .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
-  }
-
-  .card h2 {
-    margin-bottom: 0.5rem;
-  }
-
+  
   .center {
     padding: 8rem 0 6rem;
   }
@@ -242,7 +224,8 @@
 
 .hexRow {
   display: grid;
-  gap: 5px;
+  row-gap: -20px;
+  column-gap: 0px;
 }
 
 .hexRowOdd {
