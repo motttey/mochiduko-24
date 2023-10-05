@@ -5,7 +5,6 @@ const prefixPath = isProd ? '/next13-app-sandbox' : ''
 const nextConfig = {
   output: 'export',
   experimental: {
-    appDir: true,
     // serverActions: true,
   },
   /*
