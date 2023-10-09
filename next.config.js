@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production'
-const prefixPath = isProd ? '/next13-app-sandbox' : ''
+const prefixPath = isProd ? '/mochiduko-24' : ''
 
 const nextConfig = {
   output: 'export',
