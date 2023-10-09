@@ -128,7 +128,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                     fluid
                     src={fetchUrl(illust.id.toString())}
                     alt={illust.title}
-                    style={{objectFit: "contain"}}
+                    style={{objectFit: "cover"}}
                     className={styles.illustImage}
                   />
                   <p>{illust.title}</p>

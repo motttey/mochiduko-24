@@ -212,7 +212,7 @@
 .hex {
   display: flex;
   position: relative;
-  background-color: dimgray;
+  /* background-color: dimgray; */
   -webkit-clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
   clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
 }
@@ -286,7 +286,7 @@
 }
 
 .illustImage {
-  background-color: #545454;
+  /* background-color: #545454; */
   margin-top: 2.5%;
   opacity: 1;
   transform: translateY(0);
