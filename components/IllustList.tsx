@@ -1,11 +1,12 @@
 'use client'
 import useSWR from 'swr'
+import { useState, useEffect, useMemo } from 'react';
+
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Image} from 'semantic-ui-react';
+import { Grid, Input, Image, Message } from 'semantic-ui-react';
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
-import { useState, useEffect, useMemo } from 'react';
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];
@@ -71,7 +72,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     setGroupedIllusts(groupedIllusts);
   }, [filterdIllusts]);
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <Message negative>failed to load</Message>;
   if (!data || data.length === 0) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
