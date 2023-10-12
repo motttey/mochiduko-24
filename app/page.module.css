@@ -239,6 +239,11 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.hexRow:not(:first-child) {
+  /* 一番目の要素以外はマージンをつける */
+  margin-top: -5%;;
+}
+
 /* Middle-width device */
 @media (max-width: 800px) {
   .hexRowOdd {
@@ -253,6 +258,12 @@
     grid-auto-rows: 1fr;
     margin-left: 0%;
     margin-right: 0%;
+    /**/
+  }
+
+  .hexRowEven:not(:first-child) {
+    /* 一番目の要素以外はマージンをつける */
+    margin-top: -5%;;
   }
 }
 
@@ -270,6 +281,10 @@
     grid-auto-rows: minmax(auto, 1fr);
     margin-left: -5%;
     margin-right: -5%;
+  }
+
+  .hexRow {
+    margin-top: 0px;
   }
 }
 

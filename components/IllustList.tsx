@@ -102,7 +102,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
       <div 
-        className={`${styles.hexRow} ${(groupIdx % 2 === 0) ? styles.hexRowEven : styles.hexRowOdd}`}
+        className={
+          `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
+          styles.hexRowEven : 
+          styles.hexRowOdd}`
+        }
         key={groupIdx}
       >
         {group.map((illust, index) => (
