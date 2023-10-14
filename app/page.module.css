@@ -226,6 +226,8 @@
   display: grid;
   row-gap: -20px;
   column-gap: 0px;
+  /* 一番下の要素以外はマージンをつける */
+  margin-bottom: -5%;;
 }
 
 .hexRowOdd {
@@ -239,9 +241,9 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.hexRow:not(:first-child) {
+.hexRow:last-child {
   /* 一番目の要素以外はマージンをつける */
-  margin-top: -5%;;
+  margin-top: 0%;;
 }
 
 /* Middle-width device */
@@ -258,12 +260,11 @@
     grid-auto-rows: 1fr;
     margin-left: 0%;
     margin-right: 0%;
-    /**/
   }
 
-  .hexRowEven:not(:first-child) {
+  .hexRowEven {
     /* 一番目の要素以外はマージンをつける */
-    margin-top: -5%;;
+    margin-bottom: -5%;;
   }
 }
 
