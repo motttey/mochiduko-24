@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Image, Message } from 'semantic-ui-react';
+import { Grid, Input, Label, Image, Message } from 'semantic-ui-react';
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
@@ -93,11 +93,19 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     <Grid className="formContainer">
       <Grid.Column textAlign="center">
         <h2>My Illust List (from pixiv)</h2>
+        <div className='illustFilterTag' style={{
+          marginBottom: "5px"
+        }}>
+          <Label as='span' color='teal' tag>
+            {query}
+          </Label>
+        </div>
         <Input 
           placeholder='Search...'
           value={query || ''}
           onChange={(e) => handleChangeQuery(e.target.value)}
-          onBlur={() => handleOnBlur()}/>
+          onBlur={() => handleOnBlur()}
+        />
       </Grid.Column>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
