@@ -52,6 +52,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const pathname = usePathname()
 
   const [query, setQuery] = useState(searchParams.get("title" || ''));
+  const [queryList, setQueryList] = useState([]);
 
   useMemo(() => {
     const fetchedIllust: Array<Illust> = data?.illusts ?? [];
@@ -96,9 +97,13 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         <div className='illustFilterTag' style={{
           marginBottom: "5px"
         }}>
-          <Label as='span' color='teal' tag>
-            {query}
-          </Label>
+          {
+            /*
+              {query ? <Label as='span' color='teal' tag>
+                {query}
+              </Label>: ''}
+             */
+          }
         </div>
         <Input 
           placeholder='Search...'
