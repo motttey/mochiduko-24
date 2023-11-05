@@ -3,6 +3,7 @@ import { Illust } from '@/types/api'
 import styles from './page.module.css'
 import IllustList from '@/components/IllustList'
 import { Suspense } from 'react'
+import Profile from '@/components/Profile'
 
 const getData = async () => {
   // 1時間ごとにprefetchする
@@ -39,6 +40,7 @@ export default async function Page() {
   }
   return (
     <main className={styles.main}>
+      <Profile></Profile>
       <Suspense fallback={<SearchBarFallback />}>
         <IllustList initialContentsList={initialContentsList}></IllustList>
       </Suspense>
