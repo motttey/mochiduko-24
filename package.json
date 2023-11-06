@@ -21,8 +21,5 @@
     "semantic-ui-react": "^3.0.0-beta.0",
     "swr": "^2.1.5",
     "typescript": "^5.0.4"
-  },
-  "devDependencies": {
-    "serve": "^14.2.1"
   }
 }
