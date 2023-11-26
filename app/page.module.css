@@ -184,9 +184,9 @@
 .hex {
   display: flex;
   position: relative;
-  /* background-color: dimgray; */
   -webkit-clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
   clip-path: polygon(50% 5%, 95% 25%, 95% 75%, 50% 95%, 5% 75%, 5% 25%);
+  max-width: 300px;
 }
 
 .hexGallery {
