@@ -1,9 +1,10 @@
-// server component
-import { Illust } from '@/types/api'
-import styles from './page.module.css'
-import IllustList from '@/components/IllustList'
 import { Suspense } from 'react'
+
+import { Illust } from '@/types/api'
+import IllustList from '@/components/IllustList'
 import Profile from '@/components/Profile'
+import styles from './page.module.css'
+import { Providers } from './providers'
 
 const getData = async () => {
   // 1時間ごとにprefetchする
@@ -40,10 +41,12 @@ export default async function Page() {
   }
   return (
     <main className={styles.main}>
-      <Profile></Profile>
-      <Suspense fallback={<SearchBarFallback />}>
-        <IllustList initialContentsList={initialContentsList}></IllustList>
-      </Suspense>
+      <Providers>
+        <Profile></Profile>
+        <Suspense fallback={<SearchBarFallback />}>
+          <IllustList initialContentsList={initialContentsList}></IllustList>
+        </Suspense>
+      </Providers>
     </main>
   )
 }
