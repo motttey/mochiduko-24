@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Label, Image, Message } from 'semantic-ui-react';
+import { Grid, Input, Image, Alert } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
@@ -73,7 +73,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     setGroupedIllusts(groupedIllusts);
   }, [filterdIllusts]);
 
-  if (error) return <Message negative>failed to load</Message>;
+  if (error) return <Alert variant="light" color="red">failed to load</Alert>;
   if (!data || data.length === 0) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
@@ -92,7 +92,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
 
   return <div>
     <Grid className="formContainer">
-      <Grid.Column textAlign="center">
+      <Grid.Col>
         <h2>My Illust List (from pixiv)</h2>
         <div className='illustFilterTag' style={{
           marginBottom: "5px"
@@ -111,7 +111,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
           onChange={(e) => handleChangeQuery(e.target.value)}
           onBlur={() => handleOnBlur()}
         />
-      </Grid.Column>
+      </Grid.Col>
     </Grid>
     {groupedIllusts.map((group, groupIdx) => (
       <div 
@@ -142,8 +142,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
               */}
                 <div className="relative aspect-square">
                   <Image
-                    centered
-                    fluid
                     src={fetchUrl(illust.id.toString())}
                     alt={illust.title}
                     style={{objectFit: "cover"}}

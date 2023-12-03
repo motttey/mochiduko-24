@@ -1,29 +1,26 @@
 'use client'
-import { Grid, Card } from 'semantic-ui-react';
+import { Text, Image, Card, Grid } from '@mantine/core';
 
 const Profile: React.FC<any> = (_: any) => {
 
   return (
-    <div>
-        <Grid.Row className="formContainer">
-            <Grid.Column textAlign="center">
-                <Card>
-                    <Card.Content>
-                    <Card.Header>Tagosaku Mochiduki</Card.Header>
-                    <Card.Meta>
-                        {/* <span className='date'>Joined in 2015</span> */}
-                    </Card.Meta>
-                    <Card.Description>
-                        Hyper Doraemon Creator
-                    </Card.Description>
-                    </Card.Content>
-                </Card>
-            </Grid.Column>
-            <Grid.Column textAlign="center">
-                {/* 画像 */}
-            </Grid.Column>
-        </Grid.Row>
-    </div>
+    <Grid className="formContainer">
+        <Grid.Col>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card.Section>
+                    <Image
+                        src='https://motttey.github.io/doraemon-namecard.webp'
+                        w={160}
+                        alt="No way!"
+                    />
+                    <Text fw={500}>Tagosaku Mochiduki</Text>
+                </Card.Section>
+                <Text fw={500} size="lg" mt="md">
+                    Hyper Doraemon Creator
+                </Text>
+            </Card>
+        </Grid.Col>
+    </Grid>
   )
 }
 

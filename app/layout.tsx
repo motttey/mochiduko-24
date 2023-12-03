@@ -1,10 +1,11 @@
 import './globals.css';
 import { Inter, Noto_Sans_JP } from 'next/font/google';
 
-import Header from '../components/Header';
-import 'semantic-ui-css/semantic.min.css'
 import { Metadata } from 'next';
+import Header from '../components/Header';
 import Footer from '@/components/Footer';
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
 const inter = Inter({ subsets: ['latin'] });
 const NotoSansJP = Noto_Sans_JP({
@@ -66,9 +67,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${NotoSansJP.className} ${inter.className}`}>
-        <Header></Header>
-        {children}
-        <Footer></Footer>
+        <MantineProvider>
+          <Header></Header>
+          {children}
+          <Footer></Footer>
+        </MantineProvider>
       </body>
     </html>
   )

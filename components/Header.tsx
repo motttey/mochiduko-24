@@ -1,22 +1,23 @@
 "use client"
-import Link from "next/link";
-import { Header, Image } from "semantic-ui-react";
 import styles from '@/app/page.module.css'
+import { Anchor, Container, Group, Image } from '@mantine/core';
 
 const SiteHeader: React.FC = () => {
   const title = 'Mochiduko 2024'
   return (
     <header>
-      <Header as='h1' dividing>
-        <Image 
-          spaced='right'
-          className={styles.hex}
-          src='https://motttey.github.io/doraemon-namecard.webp'
-        />  
-        <Link href="/" className="header-link" aria-label="logo">
-          {title}
-        </Link>
-      </Header>
+      <Container size="md" className={styles.header}>
+        <Group justify="space-between" h="100%" className={styles.inner}>
+          <Image 
+              className={styles.hex}
+              h={64}
+              src='https://motttey.github.io/doraemon-namecard.webp'
+            />
+          <Anchor<'a'> href="/" className="header-link" aria-label="logo">
+            {title}
+          </Anchor>
+        </Group>
+      </Container>
     </header>
   )
 };
