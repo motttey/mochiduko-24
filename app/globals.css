@@ -115,5 +115,6 @@ header {
 }
 
 footer {
+  position: absolute;
   text-align: right;
 }

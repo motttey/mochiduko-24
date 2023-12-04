@@ -1,26 +1,37 @@
 'use client'
-import { Text, Image, Card, Grid } from '@mantine/core';
+import { Image, Card, Grid, Blockquote } from '@mantine/core';
 
 const Profile: React.FC<any> = (_: any) => {
-
   return (
-    <Grid className="formContainer">
-        <Grid.Col>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section>
-                    <Image
-                        src='https://motttey.github.io/doraemon-namecard.webp'
-                        w={160}
-                        alt="No way!"
-                    />
-                    <Text fw={500}>Tagosaku Mochiduki</Text>
-                </Card.Section>
-                <Text fw={500} size="lg" mt="md">
-                    Hyper Doraemon Creator
-                </Text>
-            </Card>
-        </Grid.Col>
-    </Grid>
+    <div style={{width: "100%"}}>
+        <Grid my="lg" >
+            <Grid.Col>
+                <h2>Profile</h2>
+            </Grid.Col>
+        </Grid>
+        <Grid my="lg" >
+            <Grid.Col span={6}>
+                <Card shadow="sm" padding="md" radius="20">
+                    <Card.Section>
+                        <Image
+                            src='https://motttey.github.io/doraemon-namecard.webp'
+                            height={360}
+                            alt="Tagosaku Mochiduki Profile"
+                        />
+                    </Card.Section>
+                </Card>
+            </Grid.Col>
+            <Grid.Col span={6}>
+                <Card shadow="sm" padding="md" radius="20">
+                    <Card.Section>
+                        <Blockquote cite="Tagosaku Mochiduki">
+                            He is a Hyper Doraemon Creator
+                        </Blockquote>
+                    </Card.Section>
+                </Card>
+            </Grid.Col>
+        </Grid>
+    </div>
   )
 }
 

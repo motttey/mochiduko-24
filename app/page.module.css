@@ -3,7 +3,7 @@
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  padding: 6rem;
+  padding: 3rem 6rem;
   min-height: 100vh;
 }
 
@@ -303,7 +303,7 @@ a.card > div {
   transform: translate(-50%, -50%);
   font-weight: bold;
   font-size: 1em;
-  color: white;
+  color: dimgray;
   /* 手前に配置 */
   z-index: 10;
 }
@@ -318,7 +318,6 @@ a.card > div {
 
 .header {
   height: rem(84px);
-  margin-bottom: rem(120px);
   background-color: var(--mantine-color-body);
   border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
