@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { Divider } from "@nextui-org/react";
+import { Divider } from '@mantine/core';
 
 const SiteFooter: React.FC = () => {
   const title = `© ${new Date().getFullYear()} Tagosaku Mochiduki`
