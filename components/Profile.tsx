@@ -3,7 +3,7 @@ import { Image, Card, Grid, Blockquote } from '@mantine/core';
 
 const Profile: React.FC<any> = (_: any) => {
   return (
-    <div style={{width: "100%"}}>
+    <div style={{maxWidth: "80%"}}>
         <Grid my="lg" >
             <Grid.Col>
                 <h2>Profile</h2>

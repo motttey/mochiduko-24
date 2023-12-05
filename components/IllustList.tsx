@@ -73,7 +73,12 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     setGroupedIllusts(groupedIllusts);
   }, [filterdIllusts]);
 
-  if (error) return <Alert variant="light" color="red">failed to load</Alert>;
+  if (error) return (
+    <Alert variant="light" color="red" title="Failed to load">
+      failed to load
+    </Alert>
+  );
+
   if (!data || data.length === 0) return <div>loading...</div>;
 
   const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
@@ -90,71 +95,73 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     router.replace(pathname + '?' + params.toString());
   }
 
-  return <div>
-    <Grid className="formContainer">
-      <Grid.Col>
-        <h2>My Illust List (from pixiv)</h2>
-        <div className='illustFilterTag' style={{
-          marginBottom: "5px"
-        }}>
-          {
-            /*
-              {query ? <Label as='span' color='teal' tag>
-                {query}
-              </Label>: ''}
-             */
+  return (
+    <div style={{maxWidth: "100%"}}>
+      <Grid className="formContainer">
+        <Grid.Col>
+          <h2>My Illust List (from pixiv)</h2>
+          <div className='illustFilterTag' style={{
+            marginBottom: "5px"
+          }}>
+            {
+              /*
+                {query ? <Label as='span' color='teal' tag>
+                  {query}
+                </Label>: ''}
+              */
+            }
+          </div>
+          <Input 
+            placeholder='Search...'
+            value={query || ''}
+            onChange={(e) => handleChangeQuery(e.target.value)}
+            onBlur={() => handleOnBlur()}
+          />
+        </Grid.Col>
+      </Grid>
+      {groupedIllusts.map((group, groupIdx) => (
+        <div 
+          className={
+            `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
+            styles.hexRowEven : 
+            styles.hexRowOdd}`
           }
+          key={groupIdx}
+        >
+          {group.map((illust, index) => (
+            <div
+              className={styles.hex}
+              key={index.toString() + '_' + illust.id}
+              >
+              <a
+                href={fetchPixivLink(illust.id.toString())}
+                className={styles.card}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={`${index}_${illust.id.toString()}`}
+              >
+                {/*
+                  <h2>
+                    {illust.title}
+                  </h2>
+                  <p>{illust.date}</p>
+                */}
+                  <div className="relative aspect-square">
+                    <Image
+                      src={fetchUrl(illust.id.toString())}
+                      alt={illust.title}
+                      style={{objectFit: "cover"}}
+                      className={styles.illustImage}
+                    />
+                    <p>{illust.title}</p>
+                  </div>
+              </a>
+              </div>
+          ))}
         </div>
-        <Input 
-          placeholder='Search...'
-          value={query || ''}
-          onChange={(e) => handleChangeQuery(e.target.value)}
-          onBlur={() => handleOnBlur()}
-        />
-      </Grid.Col>
-    </Grid>
-    {groupedIllusts.map((group, groupIdx) => (
-      <div 
-        className={
-          `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
-          styles.hexRowEven : 
-          styles.hexRowOdd}`
-        }
-        key={groupIdx}
-      >
-        {group.map((illust, index) => (
-          <div
-            className={styles.hex}
-            key={index.toString() + '_' + illust.id}
-            >
-            <a
-              href={fetchPixivLink(illust.id.toString())}
-              className={styles.card}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={`${index}_${illust.id.toString()}`}
-            >
-              {/*
-                <h2>
-                  {illust.title}
-                </h2>
-                <p>{illust.date}</p>
-              */}
-                <div className="relative aspect-square">
-                  <Image
-                    src={fetchUrl(illust.id.toString())}
-                    alt={illust.title}
-                    style={{objectFit: "cover"}}
-                    className={styles.illustImage}
-                  />
-                  <p>{illust.title}</p>
-                </div>
-            </a>
-            </div>
-        ))}
-      </div>
-    ))}
-  </div>;
+      ))}
+    </div>
+  );
 }
 
 export default IllustList
