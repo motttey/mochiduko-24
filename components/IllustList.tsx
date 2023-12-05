@@ -31,19 +31,16 @@ const isProd = process.env.NODE_ENV === 'production'
 const prefixPath = isProd ? '/mochiduko-24' : ''
 
 const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) => {
-  const [isProcessing, setIsProcessing] = useState(false)
-  const fetcher = () =>  fetch(prefixPath + '/api/mochiduko').then((res) => {
-      setIsProcessing(false);
+  const fetcher = () => fetch(prefixPath + '/api/mochiduko').then((res) => {
       return res.json();
-    });
+  });
   
-  const { data, error } = useSWR(
+  const { data, error, isValidating } = useSWR(
     '/api/mochiduko',
     fetcher,
-    {refreshInterval: (isProcessing) ? 5000 : 0}
+    {refreshInterval: 0}
   );
 
-  const [illusts, setIllusts] = useState(props.initialContentsList);
   const [filterdIllusts, setFilteredIllusts] = useState([] as  Array<Illust>);
   const [groupedIllusts, setGroupedIllusts] = useState([] as Array<Array<Illust>>);
 
@@ -54,19 +51,17 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const [query, setQuery] = useState(searchParams.get("title" || ''));
   const [queryList, setQueryList] = useState([]);
 
-  useMemo(() => {
-    const fetchedIllust: Array<Illust> = data?.illusts ?? [];
-    setIllusts(fetchedIllust);
-  }, [data?.illusts]);
+  const fetchedIllust: Array<Illust> = (props.initialContentsList && !isValidating)
+     ? (data?.illusts) : props.initialContentsList || []
 
   useEffect(() => {
     const filterdIllusts = 
-      ((query && query.length > 0) ? illusts.filter(
+      ((query && query.length > 0) ? fetchedIllust.filter(
           (illust: Illust) => illust.title.includes(query)
-        ) : illusts)
+        ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
-  }, [query, illusts]);
+  }, [query, fetchedIllust]);
     
   useMemo(() => {
     const groupedIllusts = chunkArray(filterdIllusts);
@@ -152,6 +147,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                       alt={illust.title}
                       style={{objectFit: "cover"}}
                       className={styles.illustImage}
+                      loading="lazy"
+                      fallbackSrc="https://placehold.co/600x400?text=Loading..."
                     />
                     <p>{illust.title}</p>
                   </div>

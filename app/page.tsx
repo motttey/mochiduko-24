@@ -38,6 +38,7 @@ export default async function Page() {
     const res: any = await getData()
     initialContentsList = res.data;
   }
+
   return (
     <main className={styles.main}>
       <Profile></Profile>
