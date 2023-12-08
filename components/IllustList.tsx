@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Image, Alert } from '@mantine/core';
+import { Grid, Input, Image, Alert, TagsInput } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 import { Illust } from '@/types/api';
@@ -30,6 +30,9 @@ const chunkArray = (array: Array<Illust>) => {
 const isProd = process.env.NODE_ENV === 'production'
 const prefixPath = isProd ? '/mochiduko-24' : ''
 
+const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
+const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
+
 const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) => {
   const fetcher = () => fetch(prefixPath + '/api/mochiduko').then((res) => {
       return res.json();
@@ -49,19 +52,19 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const pathname = usePathname()
 
   const [query, setQuery] = useState(searchParams.get("title" || ''));
-  const [queryList, setQueryList] = useState([]);
+  const [queryList, setQueryList] = useState(Array<string>);
 
   const fetchedIllust: Array<Illust> = (props.initialContentsList && !isValidating)
      ? (data?.illusts) : props.initialContentsList || []
 
   useEffect(() => {
     const filterdIllusts = 
-      ((query && query.length > 0) ? fetchedIllust.filter(
-          (illust: Illust) => illust.title.includes(query)
+      ((queryList.length > 0) ? fetchedIllust.filter(
+          (illust: Illust) => queryList.some((query) => illust.title.includes(query))
         ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
-  }, [query, fetchedIllust]);
+  }, [queryList, fetchedIllust]);
     
   useMemo(() => {
     const groupedIllusts = chunkArray(filterdIllusts);
@@ -74,10 +77,9 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     </Alert>
   );
 
-  if (!data || data.length === 0) return <div>loading...</div>;
-
-  const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
-  const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
+  if (!fetchedIllust || fetchedIllust.length === 0) return (
+    <div>loading...</div>
+  );
 
   const handleChangeQuery = (value: string) => {
     // パラメータをセット
@@ -91,7 +93,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   }
 
   return (
-    <div style={{maxWidth: "100%"}}>
+    <div style={{
+      maxWidth: "100%",
+      minWidth: "80%"
+    }}>
       <Grid className="formContainer">
         <Grid.Col>
           <h2>My Illust List (from pixiv)</h2>
@@ -106,12 +111,19 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
               */
             }
           </div>
+          {/*
           <Input 
             placeholder='Search...'
             value={query || ''}
             onChange={(e) => handleChangeQuery(e.target.value)}
             onBlur={() => handleOnBlur()}
-          />
+          >
+            {query ? <Label as='span' color='teal' tag>
+              {query}
+            </Label>: ''}
+          </Input>
+          */}
+          <TagsInput data={[]} value={queryList} onChange={setQueryList} />
         </Grid.Col>
       </Grid>
       {groupedIllusts.map((group, groupIdx) => (
