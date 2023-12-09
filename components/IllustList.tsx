@@ -134,6 +134,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
             styles.hexRowEven : 
             styles.hexRowOdd}`
           }
+          style={{
+            visibility: (isValidating) ? 'hidden' : 'visible',
+            overflow: "hidden"
+          }}
           key={groupIdx}
         >
           {group.map((illust, index) => (
@@ -161,6 +165,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
                       style={{objectFit: "cover"}}
                       className={styles.illustImage}
                       loading="lazy"
+                      placeholder="blur"
                       fallbackSrc="https://placehold.co/600x400?text=Loading..."
                     />
                     <p>{illust.title}</p>
