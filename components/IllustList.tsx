@@ -51,8 +51,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const router = useRouter()
   const pathname = usePathname()
 
-  const [query, setQuery] = useState(searchParams.get("title" || ''));
-  const [queryList, setQueryList] = useState(Array<string>);
+  const searchParamsQueryList: Array<string> = searchParams.get("query" || '')?.split(',') || []
+  const [queryList, setQueryList] = useState(searchParamsQueryList);
 
   const fetchedIllust: Array<Illust> = (props.initialContentsList && !isValidating)
      ? (data?.illusts) : props.initialContentsList || []
@@ -64,6 +64,12 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
+
+    if (queryList.length > 0) {
+      const params = new URLSearchParams()
+      params.set('query', queryList.join(','))
+      router.replace(pathname + '?' + params.toString());
+    }
   }, [queryList, fetchedIllust]);
     
   useMemo(() => {
@@ -80,17 +86,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   if (!fetchedIllust || fetchedIllust.length === 0) return (
     <div>loading...</div>
   );
-
-  const handleChangeQuery = (value: string) => {
-    // パラメータをセット
-    setQuery(value);
-  }
-  const handleOnBlur = () => {
-    // 対象のパスに遷移
-    const params = new URLSearchParams()
-    params.set('title', query || '')
-    router.replace(pathname + '?' + params.toString());
-  }
 
   return (
     <div style={{
