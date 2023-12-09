@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, Input, Image, Alert, TagsInput } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
-import { Illust } from '@/types/api';
+import { Illust, Tag } from '@/types/api';
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];
@@ -60,7 +60,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   useEffect(() => {
     const filterdIllusts = 
       ((queryList.length > 0) ? fetchedIllust.filter(
-          (illust: Illust) => queryList.some((query) => illust.title.includes(query))
+          (illust: Illust) => 
+            queryList.some(
+              (query) => illust.title.includes(query) 
+                || illust.tags.some((tag: Tag) => tag.name === query)
+            )
         ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
@@ -69,6 +73,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
       const params = new URLSearchParams()
       params.set('query', queryList.join(','))
       router.replace(pathname + '?' + params.toString());
+    } else {
+      router.replace(pathname);
     }
   }, [queryList, fetchedIllust]);
     
