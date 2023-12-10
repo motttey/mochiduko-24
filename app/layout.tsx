@@ -1,7 +1,7 @@
 import './globals.css';
 import { Inter, Noto_Sans_JP } from 'next/font/google';
 
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import Header from '../components/Header';
 import Footer from '@/components/Footer';
 import '@mantine/core/styles.css';
@@ -29,11 +29,6 @@ export const metadata: Metadata  = {
   description,
   icons: "/favicon.ico",
   keywords: ["望月","望月田吾作","ドラえもん","Doraemon","Fujiko Fujio","藤子不二雄","藤子・F・不二雄","イラスト","ドラえもん イラスト"],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
   openGraph: {
     title,
     description,
@@ -57,6 +52,12 @@ export const metadata: Metadata  = {
     canonical: url,
   },
   metadataBase: new URL(process.env.URL ?? 'http://localhost:3000'),
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
