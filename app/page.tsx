@@ -31,6 +31,13 @@ function SearchBarFallback() {
   return <>placeholder</>
 }
 
+import dynamic from 'next/dynamic';
+
+const DynamicComponent = dynamic(
+  () => import('@/components/Canvas'), // コンポーネントのパスを指定
+  { ssr: false } // サーバーサイドレンダリングを無効にする
+);
+
 export default async function Page() {
   let initialContentsList: Array<Illust> = new Array<Illust>();
   
@@ -40,11 +47,14 @@ export default async function Page() {
   }
 
   return (
-    <main className={styles.main}>
-      <Profile></Profile>
-      <Suspense fallback={<SearchBarFallback />}>
-        <IllustList initialContentsList={initialContentsList}></IllustList>
-      </Suspense>
-    </main>
+    <>
+      <main className={styles.main}>
+        <Profile></Profile>
+        <Suspense fallback={<SearchBarFallback />}>
+          <IllustList initialContentsList={initialContentsList}></IllustList>
+        </Suspense>
+      </main>
+      <DynamicComponent></DynamicComponent>
+    </>
   )
 }
