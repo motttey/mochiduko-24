@@ -28,13 +28,13 @@ const chunkArray = (array: Array<Illust>) => {
 };
 
 const isProd = process.env.NODE_ENV === 'production'
-// const prefixPath = isProd ? '/mochiduko-24' : ''
+const prefixPath = isProd ? '/mochiduko-24' : ''
 
 const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
 const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
 const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) => {
-  const fetcher = () => fetch('/api/mochiduko').then((res) => {
+  const fetcher = () => fetch(prefixPath + '/api/mochiduko').then((res) => {
       return res.json();
   });
   
@@ -69,7 +69,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
 
-    if (queryList && queryList.length > 0) {
+    if (queryList.length > 0) {
       const params = new URLSearchParams()
       params.set('query', queryList.join(','))
       router.replace(pathname + '?' + params.toString());
