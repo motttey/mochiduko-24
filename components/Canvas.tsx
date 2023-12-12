@@ -9,6 +9,11 @@ const Canvas: React.FC = () => {
         if (canvas) {
             webGLFluidEnhanced.simulation(canvas?.current, {
                 SIM_RESOLUTION: 256,
+                HOVER: false,
+                BLOOM: false,
+                INITIAL: true,
+                BACK_COLOR: '#FFFFFF',
+                TRANSPARENT: false,
                 DENSITY_DISSIPATION: 0.8,
                 PRESSURE_ITERATIONS: 30,
                 COLOR_PALETTE: ['#61dafb', '#a8dadc', '#457b9d', '#1d3557', '#f1faee'],
@@ -23,7 +28,8 @@ const Canvas: React.FC = () => {
             top: 0,
             left: 0,
             position: 'fixed',
-            zIndex: -1
+            zIndex: -1,
+            pointerEvents: 'auto'
         }}>
             <canvas ref={canvas} style={{
                 width: '100%',
