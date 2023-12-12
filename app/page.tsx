@@ -54,9 +54,7 @@ export default async function Page() {
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
       </main>
-    {/*
       <DynamicComponent></DynamicComponent>
-    */}
     </>
   )
 }
