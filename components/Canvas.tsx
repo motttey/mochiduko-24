@@ -23,8 +23,8 @@ const Canvas: React.FC = () => {
 
     return (
         <div className="canvas" style={{
-            width: '100%',
-            height: '100%',
+            width: '100vw',
+            height: '100vh',
             top: 0,
             left: 0,
             position: 'fixed',
@@ -32,8 +32,8 @@ const Canvas: React.FC = () => {
             pointerEvents: 'auto'
         }}>
             <canvas ref={canvas} style={{
-                width: '100%',
-                height: '100%',
+                width: 'inherit',
+                height: 'inherit',
                 opacity: '20%'
             }}></canvas> 
         </div>

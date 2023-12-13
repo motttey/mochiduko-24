@@ -69,7 +69,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
 
-    /*
     if (queryList.length > 0) {
       const params = new URLSearchParams()
       params.set('query', queryList.join(','))
@@ -77,7 +76,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     } else {
       router.replace(pathname);
     }
-    */
   }, [queryList, fetchedIllust]);
     
   useMemo(() => {
@@ -97,8 +95,9 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
 
   return (
     <div style={{
-      maxWidth: "100%",
-      minWidth: "80%"
+      maxWidth: "100vw",
+      minWidth: "80vw",
+      height: "100vh"
     }}>
       <Grid className="formContainer">
         <Grid.Col>
