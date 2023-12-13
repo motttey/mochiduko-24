@@ -68,7 +68,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
         ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
-
+    /*
     if (queryList.length > 0) {
       const params = new URLSearchParams()
       params.set('query', queryList.join(','))
@@ -76,6 +76,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     } else {
       router.replace(pathname);
     }
+    */
   }, [queryList, fetchedIllust]);
     
   useMemo(() => {
