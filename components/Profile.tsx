@@ -3,13 +3,16 @@ import { Image, Card, Grid, Blockquote } from '@mantine/core';
 
 const Profile: React.FC<any> = (_: any) => {
   return (
-    <div style={{maxWidth: "80%"}}>
-        <Grid my="lg" >
+    <div style={{
+        maxWidth: "100vw",
+        minWidth: "80vw"
+    }}>
+        <Grid my="base" >
             <Grid.Col>
                 <h2>Profile</h2>
             </Grid.Col>
         </Grid>
-        <Grid my="lg" >
+        <Grid my="base" >
             <Grid.Col span={6}>
                 <Card shadow="sm" padding="md" radius="20">
                     <Card.Section>

@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Image, Alert, TagsInput } from '@mantine/core';
+import { Grid, Input, Image, Alert, TagsInput, Divider, Box } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 import { Illust, Tag } from '@/types/api';
@@ -102,18 +102,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     }}>
       <Grid className="formContainer">
         <Grid.Col>
+          <Divider my="md"/>
           <h2>My Illust List (from pixiv)</h2>
-          <div className='illustFilterTag' style={{
-            marginBottom: "5px"
-          }}>
-            {
-              /*
-                {query ? <Label as='span' color='teal' tag>
-                  {query}
-                </Label>: ''}
-              */
-            }
-          </div>
           {/*
           <Input 
             placeholder='Search...'
@@ -126,7 +116,21 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
             </Label>: ''}
           </Input>
           */}
-          <TagsInput data={[]} value={queryList} onChange={setQueryList} />
+          <TagsInput 
+            my={5} 
+            data={[]}
+            value={queryList}
+            placeholder='Please input keywords'
+            onChange={setQueryList}
+          />
+          <Divider 
+            my="md"
+            label={
+              <>
+                <Box ml={5}>Search results</Box>
+              </>
+            }
+          />
         </Grid.Col>
       </Grid>
       {groupedIllusts.map((group, groupIdx) => (
