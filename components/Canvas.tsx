@@ -31,11 +31,16 @@ const Canvas: React.FC = () => {
             zIndex: -1,
             pointerEvents: 'auto'
         }}>
-            <canvas ref={canvas} style={{
-                width: 'inherit',
-                height: 'inherit',
-                opacity: '20%'
-            }}></canvas> 
+            <canvas
+                id="fluidCanvas"
+                ref={canvas} 
+                style={{
+                    width: 'inherit',
+                    height: 'inherit',
+                    opacity: '20%'
+                }
+            }>
+                </canvas> 
         </div>
     )
 };

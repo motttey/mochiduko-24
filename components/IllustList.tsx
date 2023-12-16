@@ -94,11 +94,25 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     <div>loading...</div>
   );
 
+  const handleClick = (e: any) => {
+    const canvas = document.getElementById('fluidCanvas');
+    if (canvas) {
+      // 新しいイベントを作成し、Canvasに発火させる
+      const event = new MouseEvent('mouseover', {
+          bubbles: true,
+          cancelable: true,
+          clientX: e.clientX,
+          clientY: e.clientY
+      });
+      canvas.dispatchEvent(event);
+    }
+  };
+
   return (
-    <div style={{
+    <div onMouseOver={handleClick} style={{
       maxWidth: "100vw",
       minWidth: "80vw",
-      height: "100vh"
+      maxHeight: "100vh"
     }}>
       <Grid className="formContainer">
         <Grid.Col>
