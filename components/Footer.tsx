@@ -1,17 +1,19 @@
 "use client"
 import Link from "next/link";
-import { Divider } from '@mantine/core';
+import { Container, Divider } from '@mantine/core';
 
 const SiteFooter: React.FC = () => {
   const title = `© ${new Date().getFullYear()} Tagosaku Mochiduki`
   return (
-    <footer>
+    <footer style={{
+      minWidth: "100vw"
+    }}>
+      <Container size="md">
         <Divider className="my-4"></Divider>
-        <div className="max-w-screen-2xl px-2 md:px-4 mx-auto">
-            <Link href="/" className="footer-link" aria-label="logo">
-            {title}
-            </Link>
-        </div >
+        <Link href="/" className="footer-link" aria-label="logo">
+        {title}
+        </Link>
+      </Container>
     </footer>
   )
 };

@@ -114,7 +114,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
       minWidth: "80vw",
       maxHeight: "100vh"
     }}>
-      <Grid className="formContainer">
+      <Grid className="illustContainer" my="lg">
         <Grid.Col>
           <Divider my="md"/>
           <h2>My Illust List (from pixiv)</h2>
