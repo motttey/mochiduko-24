@@ -191,11 +191,6 @@
   max-width: 300px;
 }
 
-.hexGallery {
-  display: flex;
-  flex-direction: column;
-}
-
 .hexRow {
   display: grid;
   row-gap: -20px;
@@ -316,6 +311,54 @@ a.card > div {
 
 .hex p {
   display: none;
+}
+
+.diamond {
+  display: flex;
+  position: relative;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  width: "100%";
+  height: "100%";
+  max-width: 250px;
+}
+
+.diamond p {
+  position: absolute;
+  pointer-events: none;
+  /* 中央に配置 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 1em;
+  color: white;
+  /* 手前に配置 */
+  z-index: 10;
+}
+
+.diamondRow {
+  display: grid;
+  row-gap: -20px;
+  column-gap: 0px;
+  /* 一番下の要素以外はマージンをつける */
+  margin-bottom: -5%;;
+}
+
+.diamondRow:last-child {
+  /* 一番目の要素以外はマージンをつける */
+  margin-bottom: 0%;;
+}
+
+.diamondRowOdd {
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  margin-left: calc(100%/3 - 100%/4 + 10px*2);
+  margin-right: calc(100%/3 - 100%/4 + 10px*2);
+}
+
+.diamondRowEven {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .header {

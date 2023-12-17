@@ -1,6 +1,8 @@
 'use client'
 import { Image, Grid, Divider } from '@mantine/core';
 
+import styles from '@/app/page.module.css'
+
 const PIXIV_API_URL: string = 'http://embed.pixiv.net/decorate.php';
 const myLinks: Array<any> =  [
     { 
@@ -65,7 +67,27 @@ const myLinks: Array<any> =  [
     }        
 ];
 
+const chunkArray = (array: Array<any>) => {
+    const results = [];
+    let count = 0;
+    
+    while (count < array.length) {
+      if (results.length % 2 === 0) {
+        // 偶数行: 4要素
+        results.push(array.slice(count, count + 4));
+        count += 4;
+      } else {
+        // 奇数行: 3要素
+        results.push(array.slice(count, count + 3));
+        count += 3;
+      }
+    }
+    
+    return results;
+};  
+
 const EgoLink: React.FC<any> = (_: any) => {
+    const groupedLinks = chunkArray(myLinks);
   return (
     <div style={{
         maxWidth: "100vw",
@@ -76,31 +98,36 @@ const EgoLink: React.FC<any> = (_: any) => {
                 <h2>Links</h2>
             </Grid.Col>
         </Grid>
-        <Grid my="10">
-            {myLinks.map((link, index) => (
-                <Grid.Col 
-                    span={4}
+        {groupedLinks.map((group, groupIdx) => (
+            <div
+                className={
+                    `${styles.diamondRow} ${(groupIdx % 2 === 0) ? 
+                    styles.diamondRowEven : 
+                    styles.diamondRowOdd}`
+                }
+                key={groupIdx}
+            >
+            {group.map((link, index) => (
+                <a
+                    href={link.url}
+                    className={styles.diamond}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key={`${index}_${link.title.toString()}`}
                 >
-                    <a
-                        href={link.url}
-                        className="myLink"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                      <div className="relative aspect-square">
-                            <Image
-                                src={link.src}
-                                height={200}
-                                fit="cover"
-                                alt={link.title}
-                            />
-                            <p>{link.title}</p>
-                        </div>
-                    </a>
-                </Grid.Col>
+                    <div className="relative aspect-square">
+                        <Image
+                            src={link.src}
+                            height={200}
+                            fit="cover"
+                            alt={link.title}
+                        />
+                        <p>{link.title}</p>
+                    </div>
+                </a>
             ))}
-        </Grid>
+            </div>
+        ))}
     </div>
   )
 }
