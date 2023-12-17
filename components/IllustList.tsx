@@ -85,7 +85,14 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   }, [filterdIllusts]);
 
   if (error) return (
-    <Alert variant="light" color="red" title="Failed to load">
+    <Alert 
+      variant="light"
+      color="red"
+      title="Failed to load"
+      style={{
+        minWidth: "80vw"
+      }}
+    >
       failed to load
     </Alert>
   );
