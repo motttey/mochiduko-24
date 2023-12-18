@@ -108,23 +108,28 @@ const EgoLink: React.FC<any> = (_: any) => {
                 key={groupIdx}
             >
             {group.map((link, index) => (
-                <a
-                    href={link.url}
+                <div
                     className={styles.diamond}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={`${index}_${link.title.toString()}`}
+                    key={index.toString() + '_' + link.title}
                 >
-                    <div className="relative aspect-square">
-                        <Image
-                            src={link.src}
-                            height={200}
-                            fit="cover"
-                            alt={link.title}
-                        />
-                        <p>{link.title}</p>
-                    </div>
-                </a>
+                    <a
+                        href={link.url}
+                        className={"linkHref"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div className="relative aspect-square">
+                            <Image
+                                src={link.src}
+                                className={styles.linkImage}
+                                height={240}
+                                fit="cover"
+                                alt={link.title}
+                            />
+                            <p>{link.title}</p>
+                        </div>
+                    </a>
+                </div>
             ))}
             </div>
         ))}

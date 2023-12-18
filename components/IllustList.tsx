@@ -119,7 +119,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     <div onMouseOver={handleClick} style={{
       maxWidth: "100vw",
       minWidth: "80vw",
-      maxHeight: "100vh"
+      maxHeight: "100vh",
+      overflow: "hidden"
     }}>
       <Grid className="illustContainer" my="lg">
         <Grid.Col>
