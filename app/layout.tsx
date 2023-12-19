@@ -18,7 +18,7 @@ const NotoSansJP = Noto_Sans_JP({
 export interface MetaTag {
   name: string,
   content: string
-};
+}
 
 const title = 'モチヅ庫\'24';
 const description = '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.';
@@ -76,4 +76,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-};
+}
