@@ -11,6 +11,7 @@ const SiteHeader: React.FC = () => {
           <Image 
               className={styles.hex}
               h={64}
+              alt="header image of doraemon"
               src='https://motttey.github.io/doraemon-namecard.webp'
             />
           <Anchor<'a'> href="/" className="header-link" aria-label="logo">

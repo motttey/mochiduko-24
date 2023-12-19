@@ -54,8 +54,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const searchParamsQueryList: Array<string> = searchParams.get("query" || '')?.split(',') || []
   const [queryList, setQueryList] = useState(searchParamsQueryList);
 
-  const fetchedIllust: Array<Illust> = (props.initialContentsList && !isValidating)
-     ? (data?.illusts) : props.initialContentsList || []
+  const fetchedIllust: Array<Illust> = useMemo(() => 
+      (props.initialContentsList && !isValidating)
+        ? (data?.illusts) : props.initialContentsList || [],
+      [data?.illusts, isValidating, props.initialContentsList]
+    )
 
   useEffect(() => {
     const filterdIllusts = 
