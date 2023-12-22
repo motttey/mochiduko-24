@@ -2,8 +2,8 @@
 import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Grid, Input, Image, Alert, TagsInput, Divider, Box } from '@mantine/core';
+import { useSearchParams } from 'next/navigation';
+import { Grid, Image, Alert, TagsInput, Divider, Box } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 import { Illust, Tag } from '@/types/api';
@@ -33,7 +33,9 @@ const prefixPath = isProd ? '/mochiduko-24' : ''
 const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
 const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
-const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) => {
+const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
+  props: {initialContentsList: Array<Illust>}
+) => {
   const fetcher = () => fetch(prefixPath + '/api/mochiduko').then((res) => {
       return res.json();
   });
@@ -48,8 +50,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
   const [groupedIllusts, setGroupedIllusts] = useState([] as Array<Array<Illust>>);
 
   const searchParams = useSearchParams();
+  /*
   const router = useRouter()
   const pathname = usePathname()
+  */
 
   const searchParamsQueryList: Array<string> = searchParams.get("query" || '')?.split(',') || []
   const [queryList, setQueryList] = useState(searchParamsQueryList);
@@ -104,7 +108,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (props: any) 
     <div>loading...</div>
   );
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: { clientX: number; clientY: number; }) => {
     const canvas = document.getElementById('fluidCanvas');
     if (canvas) {
       // 新しいイベントを作成し、Canvasに発火させる

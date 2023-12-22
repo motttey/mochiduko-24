@@ -5,6 +5,10 @@ import IllustList from '@/components/IllustList'
 import Profile from '@/components/Profile'
 import styles from './page.module.css'
 
+interface PrefetchResponse {
+  data: Array<Illust>
+}
+
 const getData = async () => {
   // 1時間ごとにprefetchする
   let res: Array<Illust> = new Array<Illust>();
@@ -43,7 +47,7 @@ export default async function Page() {
   let initialContentsList: Array<Illust> = new Array<Illust>();
   
   if (process.env.DEPLOY_MODE === "SSR") { 
-    const res: any = await getData()
+    const res: PrefetchResponse = await getData()
     initialContentsList = res.data;
   }
 

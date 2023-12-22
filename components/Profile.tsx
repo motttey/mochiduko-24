@@ -1,7 +1,7 @@
 'use client'
 import { Image, Card, Grid, Blockquote, Text } from '@mantine/core';
 
-const Profile: React.FC<any> = (_: any) => {
+const Profile: React.FC = () => {
   return (
     <div style={{
         maxWidth: "100vw",

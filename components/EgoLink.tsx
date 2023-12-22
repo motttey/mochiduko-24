@@ -1,10 +1,17 @@
 'use client'
-import { Image, Grid, Divider } from '@mantine/core';
+import { Image, Grid } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 
+interface MyLink {
+    title: string;
+    src: string;
+    url: string;
+    flex?: number;
+}
+
 const PIXIV_API_URL: string = 'http://embed.pixiv.net/decorate.php';
-const myLinks: Array<any> =  [
+const myLinks: Array<MyLink> =  [
     { 
         title: 'pixiv',
         src: PIXIV_API_URL + '?illust_id=56266129',
@@ -67,7 +74,7 @@ const myLinks: Array<any> =  [
     }        
 ];
 
-const chunkArray = (array: Array<any>) => {
+const chunkArray = (array: Array<MyLink>) => {
     const results = [];
     let count = 0;
     
@@ -86,7 +93,7 @@ const chunkArray = (array: Array<any>) => {
     return results;
 };  
 
-const EgoLink: React.FC<any> = (_: any) => {
+const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
     <div style={{

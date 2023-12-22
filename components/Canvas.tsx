@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 import webGLFluidEnhanced from 'webgl-fluid-enhanced';
 
 const Canvas: React.FC = () => {
-    const canvas: any  = useRef(null)
+    const canvas = useRef<HTMLCanvasElement>(null)
     useEffect(() => {
-        if (canvas) {
-            webGLFluidEnhanced.simulation(canvas?.current, {
+        if (canvas.current) {
+            webGLFluidEnhanced.simulation(canvas.current, {
                 SIM_RESOLUTION: 256,
                 HOVER: false,
                 BLOOM: false,
