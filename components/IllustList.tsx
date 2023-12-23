@@ -110,6 +110,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
 
   const handleClick = (e: { clientX: number; clientY: number; }) => {
     const canvas = document.getElementById('fluidCanvas');
+    console.log(canvas);
     if (canvas) {
       // 新しいイベントを作成し、Canvasに発火させる
       const event = new MouseEvent('mouseover', {
