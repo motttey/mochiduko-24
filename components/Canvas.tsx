@@ -45,7 +45,9 @@ const Canvas: React.FC = () => {
     }, []);
 
     return (
-        <div className="canvas">
+        <div className="canvas" style={{
+            backgroundColor: "white"
+        }}>
             <canvas
                 id="fluidCanvas"
                 ref={canvas} 
@@ -55,7 +57,7 @@ const Canvas: React.FC = () => {
                     height: '100vh',
                     top: 0,
                     left: 0,
-                    opacity: '20%',
+                    opacity: '100%',
                     zIndex: -1,
                 }
             }>

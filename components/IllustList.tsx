@@ -123,8 +123,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
   return (
     <div onClick={handleClick} style={{
       maxWidth: "100vw",
-      minWidth: "80vw",
-      maxHeight: "100vh"
+      minWidth: "80vw"
     }}>
       <Grid className="illustContainer" my="lg">
         <Grid.Col>
