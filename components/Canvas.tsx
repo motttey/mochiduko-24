@@ -7,7 +7,6 @@ const Canvas: React.FC = () => {
     const canvas = useRef<HTMLCanvasElement>(null)
 
     const handleClick = () => {
-        console.log("clicked");
         webGLFluidEnhanced.splats();
     } 
 
@@ -19,27 +18,33 @@ const Canvas: React.FC = () => {
                 HOVER: false,
                 BLOOM: false,
                 INITIAL: true,
+                COLORFUL: false,
+                DENSITY_DISSIPATION: 1.9,
+                VELOCITY_DISSIPATION: 2.0,
+                CURL: 10,
                 BACK_COLOR: '#FFFFFF',
                 TRANSPARENT: false,
-                DENSITY_DISSIPATION: 0.8,
                 PRESSURE_ITERATIONS: 30,
+                SPLAT_RADIUS: 0.5,
+                SPLAT_FORCE: 5000,
                 COLOR_PALETTE: ['#61dafb', '#a8dadc', '#457b9d', '#1d3557', '#f1faee'],
                 SUNRAYS: false
             });
-
             canvas.current.addEventListener('click', handleClick, { passive: true });
         }
 
+        /*
         const interval = setInterval(() => {
             if (canvas.current) {
                 webGLFluidEnhanced.splats(); // splats 関数を呼び出し
             }
         }, 5000);
-
+        */
+    
         return () => {
             if (canvas.current) {
                 canvas.current.removeEventListener('click', handleClick);
-                clearInterval(interval);
+                // clearInterval(interval);
             }
         };
     }, []);
