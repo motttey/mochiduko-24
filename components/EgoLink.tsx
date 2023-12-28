@@ -105,41 +105,47 @@ const EgoLink: React.FC = () => {
                 <h2>Links</h2>
             </Grid.Col>
         </Grid>
-        {groupedLinks.map((group, groupIdx) => (
-            <div
-                className={
-                    `${styles.diamondRow} ${(groupIdx % 2 === 0) ? 
-                    styles.diamondRowEven : 
-                    styles.diamondRowOdd}`
-                }
-                key={groupIdx}
-            >
-            {group.map((link, index) => (
+        <div className='diamondContainer' style={{ 
+            maxWidth: "1200px",
+            margin: "0 auto"
+         }}>
+            {groupedLinks.map((group, groupIdx) => (
                 <div
-                    className={styles.diamond}
-                    key={index.toString() + '_' + link.title}
+                    className={
+                        `${styles.diamondRow} ${(groupIdx % 2 === 0) ? 
+                        styles.diamondRowEven : 
+                        styles.diamondRowOdd}`
+                    }
+                    key={groupIdx}
                 >
-                    <a
-                        href={link.url}
-                        className={"linkHref"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                {group.map((link, index) => (
+                    <div
+                        className={styles.diamond}
+                        key={index.toString() + '_' + link.title}
                     >
-                        <div className="relative aspect-square">
-                            <Image
-                                src={link.src}
-                                className={styles.linkImage}
-                                height={240}
-                                fit="cover"
-                                alt={link.title}
-                            />
-                            <p>{link.title}</p>
-                        </div>
-                    </a>
+                        <a
+                            href={link.url}
+                            className={"linkHref"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div className="relative aspect-square">
+                                <Image
+                                    src={link.src}
+                                    className={styles.linkImage}
+                                    width={300}
+                                    height={300}
+                                    fit="cover"
+                                    alt={link.title}
+                                />
+                                <p>{link.title}</p>
+                            </div>
+                        </a>
+                    </div>
+                ))}
                 </div>
             ))}
-            </div>
-        ))}
+        </div>
     </div>
   )
 }

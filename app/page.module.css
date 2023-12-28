@@ -215,61 +215,6 @@
   margin-top: 0%;;
 }
 
-/* Middle-width device */
-@media (max-width: 800px) {
-  .hexRowOdd {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    margin-left: 0%;
-    margin-right: 0%;
-  }
-  
-  .hexRowEven {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
-    margin-left: 0%;
-    margin-right: 0%;
-  }
-
-  .hexRowEven {
-    /* 一番目の要素以外はマージンをつける */
-    margin-bottom: -5%;;
-  }
-}
-
-/* Mobile */
-@media (max-width: 500px) {
-  .hexRowOdd {
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(auto, 1fr);
-    margin-left: -5%;
-    margin-right: -5%;
-  }
-  
-  .hexRowEven {
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(auto, 1fr);
-    margin-left: -5%;
-    margin-right: -5%;
-  }
-
-  .hexRow {
-    margin-top: 0px;
-  }
-}
-
-/* 画像表示時のアニメーション設定 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .illustImage {
   /* background-color: #545454; */
   margin-top: 2.5%;
@@ -291,20 +236,6 @@ a.card > div {
   transform: translateY(-50%);
 }
 
-.hex p {
-  position: absolute;
-  pointer-events: none;
-  /* 中央に配置 */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  font-size: 1em;
-  color: dimgray;
-  /* 手前に配置 */
-  z-index: 10;
-}
-
 .hex:hover p {
   display: block;
 }
@@ -320,7 +251,7 @@ a.card > div {
   -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
   width: 100%;
   height: 100%;
-  max-width: 250px;
+  max-width: 400px;
   opacity: 1.0;
 }
 
@@ -337,7 +268,7 @@ a.card > div {
   transition: opacity 0.5s, transform 0.5s;
 }
 
-.diamond p {
+.diamond p, .hex.p {
   position: absolute;
   pointer-events: none;
   /* 中央に配置 */
@@ -358,7 +289,7 @@ a.card > div {
 
 .diamondRow {
   display: grid;
-  margin-bottom: calc(-12.5%/2);
+  margin-bottom: calc(-100px);
 }
 
 .linkImage {
@@ -394,4 +325,77 @@ a.card > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Middle-width device */
+@media (max-width: 800px) {
+  .hexRowOdd {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  
+  .hexRowEven {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .hexRowOdd {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(auto, 1fr);
+    margin-left: -5%;
+    margin-right: -5%;
+  }
+  
+  .hexRowEven {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(auto, 1fr);
+    margin-left: -5%;
+    margin-right: -5%;
+  }
+
+  .hexRow {
+    margin-top: 0px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+  .diamondRowOdd {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(auto, 1fr);
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .diamondRowEven {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(auto, 1fr);
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .diamondRow {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+/* 画像表示時のアニメーション設定 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

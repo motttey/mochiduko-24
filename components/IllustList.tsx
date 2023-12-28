@@ -158,54 +158,59 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           />
         </Grid.Col>
       </Grid>
-      {groupedIllusts.map((group, groupIdx) => (
-        <div 
-          className={
-            `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
-            styles.hexRowEven : 
-            styles.hexRowOdd}`
-          }
-          style={{
-            visibility: (isValidating) ? 'hidden' : 'visible',
-            overflow: "hidden"
-          }}
-          key={groupIdx}
-        >
-          {group.map((illust, index) => (
-            <div
-              className={styles.hex}
-              key={index.toString() + '_' + illust.id}
-              >
-              <a
-                href={fetchPixivLink(illust.id.toString())}
-                className={styles.card}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={`${index}_${illust.id.toString()}`}
-              >
-                {/*
-                  <h2>
-                    {illust.title}
-                  </h2>
-                  <p>{illust.date}</p>
-                */}
-                  <div className="relative aspect-square">
-                    <Image
-                      src={fetchUrl(illust.id.toString())}
-                      alt={illust.title}
-                      style={{objectFit: "cover"}}
-                      className={styles.illustImage}
-                      loading="lazy"
-                      placeholder="blur"
-                      fallbackSrc="https://placehold.co/600x400?text=Loading..."
-                    />
-                    <p>{illust.title}</p>
-                  </div>
-              </a>
-              </div>
-          ))}
-        </div>
-      ))}
+      <div className='hexContainer' style={{ 
+            maxWidth: "1200px",
+            margin: "0 auto"
+      }}>
+        {groupedIllusts.map((group, groupIdx) => (
+          <div 
+            className={
+              `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
+              styles.hexRowEven : 
+              styles.hexRowOdd}`
+            }
+            style={{
+              visibility: (isValidating) ? 'hidden' : 'visible',
+              overflow: "hidden"
+            }}
+            key={groupIdx}
+          >
+            {group.map((illust, index) => (
+              <div
+                className={styles.hex}
+                key={index.toString() + '_' + illust.id}
+                >
+                <a
+                  href={fetchPixivLink(illust.id.toString())}
+                  className={styles.card}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={`${index}_${illust.id.toString()}`}
+                >
+                  {/*
+                    <h2>
+                      {illust.title}
+                    </h2>
+                    <p>{illust.date}</p>
+                  */}
+                    <div className="relative aspect-square">
+                      <Image
+                        src={fetchUrl(illust.id.toString())}
+                        alt={illust.title}
+                        style={{objectFit: "cover"}}
+                        className={styles.illustImage}
+                        loading="lazy"
+                        placeholder="blur"
+                        fallbackSrc="https://placehold.co/600x400?text=Loading..."
+                      />
+                      <p>{illust.title}</p>
+                    </div>
+                </a>
+                </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

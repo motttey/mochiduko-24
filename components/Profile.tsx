@@ -4,14 +4,15 @@ import { Image, Card, Grid, Blockquote, Text } from '@mantine/core';
 const Profile: React.FC = () => {
   return (
     <div style={{
-        maxWidth: "100vw",
-        minWidth: "80vw",
+        maxWidth: "1200px",
         pointerEvents: "none"
     }}>
         <Grid my="5" >
+            {/*
             <Grid.Col>
                 <h2>Profile</h2>
             </Grid.Col>
+             */}
         </Grid>
         <Grid my="10">
             <Grid.Col span={6}>
