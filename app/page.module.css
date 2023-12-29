@@ -327,6 +327,31 @@ a.card > div {
   justify-content: space-between;
 }
 
+.egoLinkContainer {
+  max-width: "100vw";
+  min-width: "80vw";
+}
+
+.profileContainer{
+  max-width: 1200px;
+  pointer-events: none;;
+}
+
+.illustContainer {
+  max-width: "100vw";
+  min-width: "80vw";
+}
+
+.diamondContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hexContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* Middle-width device */
 @media (max-width: 800px) {
   .hexRowOdd {
@@ -385,6 +410,16 @@ a.card > div {
   .diamondRow {
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+
+  .profileContainer{
+    max-width: 100%;
+    pointer-events: none;;
+  }
+
+  .hexContainer {
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
 

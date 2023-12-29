@@ -96,19 +96,13 @@ const chunkArray = (array: Array<MyLink>) => {
 const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
-    <div style={{
-        maxWidth: "100vw",
-        minWidth: "80vw",
-    }}>
+    <div className="egoLinkContainer">
         <Grid my="5" >
             <Grid.Col>
                 <h2>Links</h2>
             </Grid.Col>
         </Grid>
-        <div className='diamondContainer' style={{ 
-            maxWidth: "1200px",
-            margin: "0 auto"
-         }}>
+        <div className='diamondContainer'>
             {groupedLinks.map((group, groupIdx) => (
                 <div
                     className={

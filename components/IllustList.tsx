@@ -121,11 +121,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
   };
 
   return (
-    <div onClick={handleClick} style={{
-      maxWidth: "100vw",
-      minWidth: "80vw"
-    }}>
-      <Grid className="illustContainer" my="lg">
+    <div 
+      className="illustContainer"
+      onClick={handleClick}
+    >
+      <Grid my="lg">
         <Grid.Col>
           <Divider my="md"/>
           <h2>My Illust List (from pixiv)</h2>
@@ -158,10 +158,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           />
         </Grid.Col>
       </Grid>
-      <div className='hexContainer' style={{ 
-            maxWidth: "1200px",
-            margin: "0 auto"
-      }}>
+      <div className='hexContainer'>
         {groupedIllusts.map((group, groupIdx) => (
           <div 
             className={
