@@ -328,7 +328,7 @@ a.card > div {
 }
 
 .egoLinkContainer {
-  max-width: "100vw";
+  max-width: 1200px;
   min-width: "80vw";
 }
 

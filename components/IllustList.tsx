@@ -122,13 +122,19 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
 
   return (
     <div 
-      className="illustContainer"
+      className={styles.illustContainer}
       onClick={handleClick}
     >
       <Grid my="lg">
         <Grid.Col>
-          <Divider my="md"/>
-          <h2>My Illust List (from pixiv)</h2>
+          <Divider 
+              my="md"
+              label={
+                  <>
+                      <Box ml={5}><h2>望月田吾作のイラスト</h2></Box>
+                  </>
+              }
+          />
           {/*
           <Input 
             placeholder='Search...'
@@ -158,7 +164,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           />
         </Grid.Col>
       </Grid>
-      <div className='hexContainer'>
+      <div className={styles.hexContainer}>
         {groupedIllusts.map((group, groupIdx) => (
           <div 
             className={

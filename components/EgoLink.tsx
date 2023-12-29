@@ -1,5 +1,5 @@
 'use client'
-import { Image, Grid } from '@mantine/core';
+import { Image, Grid, Divider, Box } from '@mantine/core';
 
 import styles from '@/app/page.module.css'
 
@@ -96,50 +96,57 @@ const chunkArray = (array: Array<MyLink>) => {
 const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
-    <div className="egoLinkContainer">
-        <Grid my="5" >
+    <div className={styles.egoLinkContainer}>
+        <Grid my="lg">
             <Grid.Col>
-                <h2>Links</h2>
-            </Grid.Col>
-        </Grid>
-        <div className='diamondContainer'>
-            {groupedLinks.map((group, groupIdx) => (
-                <div
-                    className={
-                        `${styles.diamondRow} ${(groupIdx % 2 === 0) ? 
-                        styles.diamondRowEven : 
-                        styles.diamondRowOdd}`
+                <Divider 
+                    my="md"
+                    label={
+                        <>
+                            <Box ml={5}><h2>望月田吾作のリンク</h2></Box>
+                        </>
                     }
-                    key={groupIdx}
-                >
-                {group.map((link, index) => (
+                />
+            </Grid.Col>
+            <div className={styles.diamondContainer}>
+                {groupedLinks.map((group, groupIdx) => (
                     <div
-                        className={styles.diamond}
-                        key={index.toString() + '_' + link.title}
+                        className={
+                            `${styles.diamondRow} ${(groupIdx % 2 === 0) ? 
+                            styles.diamondRowEven : 
+                            styles.diamondRowOdd}`
+                        }
+                        key={groupIdx}
                     >
-                        <a
-                            href={link.url}
-                            className={"linkHref"}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                    {group.map((link, index) => (
+                        <div
+                            className={styles.diamond}
+                            key={index.toString() + '_' + link.title}
                         >
-                            <div className="relative aspect-square">
-                                <Image
-                                    src={link.src}
-                                    className={styles.linkImage}
-                                    width={300}
-                                    height={300}
-                                    fit="cover"
-                                    alt={link.title}
-                                />
-                                <p>{link.title}</p>
-                            </div>
-                        </a>
+                            <a
+                                href={link.url}
+                                className={"linkHref"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <div className="relative aspect-square">
+                                    <Image
+                                        src={link.src}
+                                        className={styles.linkImage}
+                                        width={300}
+                                        height={300}
+                                        fit="cover"
+                                        alt={link.title}
+                                    />
+                                    <p>{link.title}</p>
+                                </div>
+                            </a>
+                        </div>
+                    ))}
                     </div>
                 ))}
-                </div>
-            ))}
-        </div>
+            </div>
+        </Grid>
     </div>
   )
 }

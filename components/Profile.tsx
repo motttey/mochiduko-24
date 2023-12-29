@@ -1,15 +1,21 @@
 'use client'
-import { Image, Card, Grid, Blockquote, Text } from '@mantine/core';
+import { Image, Card, Grid, Blockquote, Text, Box, Divider } from '@mantine/core';
+import styles from '@/app/page.module.css'
 
 const Profile: React.FC = () => {
   return (
-    <div className="profileContainer">
+    <div className={styles.profileContainer}>
         <Grid my="5" >
-            {/*
             <Grid.Col>
-                <h2>Profile</h2>
+                <Divider 
+                    my="md"
+                    label={
+                        <>
+                            <Box ml={5}><h2>望月田吾作について</h2></Box>
+                        </>
+                    }
+                />
             </Grid.Col>
-             */}
         </Grid>
         <Grid my="10">
             <Grid.Col span={6}>
