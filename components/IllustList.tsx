@@ -1,11 +1,12 @@
 'use client'
-import useSWR from 'swr'
+import useSWR from 'swr';
 import { useState, useEffect, useMemo } from 'react';
+import { Virtuoso } from 'react-virtuoso';
 
 import { useSearchParams } from 'next/navigation';
 import { Grid, Image, Alert, TagsInput, Divider, Box } from '@mantine/core';
 
-import styles from '@/app/page.module.css'
+import styles from '@/app/page.module.css';
 import { Illust, Tag } from '@/types/api';
 
 const chunkArray = (array: Array<Illust>) => {
@@ -165,6 +166,66 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
         </Grid.Col>
       </Grid>
       <div className={styles.hexContainer}>
+        <Virtuoso
+          style={{
+            width: "80vh",
+            minHeight: "100vh"
+          }}
+          data={groupedIllusts}
+          endReached={undefined}
+          overscan={200}
+          itemContent={(groupIdx, group) => {
+            return (
+              <div 
+                className={
+                  `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
+                  styles.hexRowEven : 
+                  styles.hexRowOdd}`
+                }
+                style={{
+                  visibility: (isValidating) ? 'hidden' : 'visible',
+                  overflow: "hidden"
+                }}
+                key={groupIdx}
+              >
+                {group.map((illust, index) => (
+                  <div
+                    className={styles.hex}
+                    key={index.toString() + '_' + illust.id}
+                    >
+                    <a
+                      href={fetchPixivLink(illust.id.toString())}
+                      className={styles.card}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={`${index}_${illust.id.toString()}`}
+                    >
+                      {/*
+                        <h2>
+                          {illust.title}
+                        </h2>
+                        <p>{illust.date}</p>
+                      */}
+                        <div className="relative aspect-square">
+                          <Image
+                            src={fetchUrl(illust.id.toString())}
+                            alt={illust.title}
+                            style={{objectFit: "cover"}}
+                            className={styles.illustImage}
+                            loading="lazy"
+                            placeholder="blur"
+                            fallbackSrc="https://placehold.co/600x400?text=Loading..."
+                          />
+                          <p>{illust.title}</p>
+                        </div>
+                    </a>
+                    </div>
+                ))}
+              </div>
+            )
+          }}
+        />
+        {/*
         {groupedIllusts.map((group, groupIdx) => (
           <div 
             className={
@@ -190,12 +251,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                   rel="noopener noreferrer"
                   key={`${index}_${illust.id.toString()}`}
                 >
-                  {/*
-                    <h2>
-                      {illust.title}
-                    </h2>
-                    <p>{illust.date}</p>
-                  */}
+
                     <div className="relative aspect-square">
                       <Image
                         src={fetchUrl(illust.id.toString())}
@@ -213,7 +269,8 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
             ))}
           </div>
         ))}
-      </div>
+          */}
+    </div>
     </div>
   );
 }
