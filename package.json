@@ -16,7 +16,6 @@
     "@types/react-dom": "^18.2.1",
     "eslint": "^8.39.0",
     "eslint-config-next": "^14.0.0",
-    "framer-motion": "^10.16.12",
     "next": "^14.0.0",
     "postcss-preset-mantine": "^1.11.0",
     "react": "^18.2.0",
