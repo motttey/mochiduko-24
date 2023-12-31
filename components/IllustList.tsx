@@ -168,8 +168,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
       <div className={styles.hexContainer}>
         <Virtuoso
           style={{
-            width: "80vh",
-            minHeight: "100vh"
+            width: "80vw",
+            maxWidth: "1200px",
+            height: "1200px",
+            margin: "0 auto",
           }}
           data={groupedIllusts}
           endReached={undefined}
@@ -192,7 +194,10 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                   <div
                     className={styles.hex}
                     key={index.toString() + '_' + illust.id}
-                    >
+                    style={{
+                      minHeight: "50px"
+                    }}
+                  >
                     <a
                       href={fetchPixivLink(illust.id.toString())}
                       className={styles.card}
@@ -218,7 +223,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                           />
                           <p>{illust.title}</p>
                         </div>
-                    </a>
+                      </a>
                     </div>
                 ))}
               </div>

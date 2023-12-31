@@ -236,14 +236,6 @@ a.card > div {
   transform: translateY(-50%);
 }
 
-.hex:hover p {
-  display: block;
-}
-
-.hex p {
-  display: none;
-}
-
 .diamond {
   display: flex;
   position: relative;
@@ -268,7 +260,7 @@ a.card > div {
   transition: opacity 0.5s, transform 0.5s;
 }
 
-.diamond p, .hex.p {
+.diamond p, .hex p {
   position: absolute;
   pointer-events: none;
   /* 中央に配置 */
@@ -276,15 +268,23 @@ a.card > div {
   left: 50%;
   transform: translate(-50%, -50%);
   /* 縁取り */
-  text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
-    -1px 1px 0 #FFF, 1px -1px 0 #FFF,
-    0px 1px 0 #FFF,  0-1px 0 #FFF,
-    -1px 0 0 #FFF, 1px 0 0 #FFF;
+  text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF,
+    -2px 2px 0 #FFF, 2px -2px 0 #FFF,
+    0px 2px 0 #FFF,  0 -2px 0 #FFF,
+    -2px 0 0 #FFF, 2px 0 0 #FFF;
   font-weight: bold;
   font-size: 1em;
   color: "dimgray";
   /* 手前に配置 */
   z-index: 10;
+}
+
+.hex:hover p {
+  display: block;
+}
+
+.hex p {
+  display: none;
 }
 
 .diamondRow {
