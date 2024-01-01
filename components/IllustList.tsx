@@ -31,7 +31,7 @@ const chunkArray = (array: Array<Illust>) => {
 const isProd = process.env.NODE_ENV === 'production'
 const prefixPath = isProd ? '/mochiduko-24' : ''
 
-const fetchUrl = (id: string) => `http://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
+const fetchUrl = (id: string) => `https://embed.pixiv.net/decorate.php?illust_id=${id || ''}&mode=sns-automator`;
 const fetchPixivLink = (id: string) => `https://www.pixiv.net/artworks/${id || ''}`;
 
 const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
@@ -216,7 +216,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                           alt={illust.title}
                           style={{objectFit: "cover"}}
                           className={styles.illustImage}
-                          loading="lazy"
+                          loading="eager"
                           placeholder="blur"
                           fallbackSrc="https://placehold.co/600x400?text=Loading..."
                         />
