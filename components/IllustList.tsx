@@ -165,71 +165,70 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           />
         </Grid.Col>
       </Grid>
-      <div className={styles.hexContainer}>
-        <Virtuoso
-          style={{
-            width: "80vw",
-            maxWidth: "1200px",
-            height: "1200px",
-            margin: "0 auto",
-          }}
-          data={groupedIllusts}
-          endReached={undefined}
-          overscan={200}
-          itemContent={(groupIdx, group) => {
-            return (
-              <div 
-                className={
-                  `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
-                  styles.hexRowEven : 
-                  styles.hexRowOdd}`
-                }
-                style={{
-                  visibility: (isValidating) ? 'hidden' : 'visible',
-                  overflow: "hidden"
-                }}
-                key={groupIdx}
-              >
-                {group.map((illust, index) => (
-                  <div
-                    className={styles.hex}
-                    key={index.toString() + '_' + illust.id}
-                    style={{
-                      minHeight: "50px"
-                    }}
+      <Virtuoso
+        style={{
+          width: "80vw",
+          maxWidth: "1200px",
+          height: "100vh",
+          margin: "0 auto",
+        }}
+        className={styles.hexContainer}
+        data={groupedIllusts}
+        totalCount={groupedIllusts.length}
+        itemContent={(groupIdx, group) => {
+          return (
+            <div 
+              className={
+                `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
+                styles.hexRowEven : 
+                styles.hexRowOdd}`
+              }
+              style={{
+                visibility: (isValidating) ? 'hidden' : 'visible',
+                overflow: "hidden"
+              }}
+              key={groupIdx}
+            >
+              {group.map((illust, index) => (
+                <div
+                  className={styles.hex}
+                  key={index.toString() + '_' + illust.id}
+                  style={{
+                    minHeight: "50px"
+                  }}
+                >
+                  <a
+                    href={fetchPixivLink(illust.id.toString())}
+                    className={styles.card}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={`${index}_${illust.id.toString()}`}
                   >
-                    <a
-                      href={fetchPixivLink(illust.id.toString())}
-                      className={styles.card}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={`${index}_${illust.id.toString()}`}
-                    >
-                      {/*
-                        <h2>
-                          {illust.title}
-                        </h2>
-                        <p>{illust.date}</p>
-                      */}
-                        <div className="relative aspect-square">
-                          <Image
-                            src={fetchUrl(illust.id.toString())}
-                            alt={illust.title}
-                            style={{objectFit: "cover"}}
-                            className={styles.illustImage}
-                            loading="lazy"
-                            placeholder="blur"
-                            fallbackSrc="https://placehold.co/600x400?text=Loading..."
-                          />
-                          <p>{illust.title}</p>
-                        </div>
-                      </a>
-                    </div>
-                ))}
-              </div>
-            )
-          }}
-        />
+                    {/*
+                      <h2>
+                        {illust.title}
+                      </h2>
+                      <p>{illust.date}</p>
+                    */}
+                      <div className="relative aspect-square">
+                        <Image
+                          src={fetchUrl(illust.id.toString())}
+                          alt={illust.title}
+                          style={{objectFit: "cover"}}
+                          className={styles.illustImage}
+                          loading="lazy"
+                          placeholder="blur"
+                          fallbackSrc="https://placehold.co/600x400?text=Loading..."
+                        />
+                        <p>{illust.title}</p>
+                      </div>
+                    </a>
+                  </div>
+              ))}
+            </div>
+          )
+        }}
+      />
         {/*
         {groupedIllusts.map((group, groupIdx) => (
           <div 
@@ -275,7 +274,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           </div>
         ))}
           */}
-    </div>
     </div>
   );
 }
