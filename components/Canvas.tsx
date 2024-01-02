@@ -11,7 +11,6 @@ const Canvas: React.FC = () => {
     } 
 
     useEffect(() => {
-
         if (canvas.current) {
             webGLFluidEnhanced.simulation(canvas.current, {
                 SIM_RESOLUTION: 256,
@@ -47,7 +46,7 @@ const Canvas: React.FC = () => {
                 // clearInterval(interval);
             }
         };
-    }, []);
+    }, [canvas.current]);
 
     return (
         <div className="canvas" style={{

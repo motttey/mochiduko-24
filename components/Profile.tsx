@@ -1,5 +1,5 @@
 'use client'
-import { Image, Card, Grid, Blockquote, Text, Box, Divider } from '@mantine/core';
+import { Image, Card, Grid, Text, Box, Divider } from '@mantine/core';
 import styles from '@/app/page.module.css'
 
 const Profile: React.FC = () => {
