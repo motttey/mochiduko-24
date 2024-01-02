@@ -76,6 +76,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
         ) : fetchedIllust)
         .sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
+
     /*
     if (queryList.length > 0) {
       const params = new URLSearchParams()
@@ -229,51 +230,6 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           )
         }}
       />
-        {/*
-        {groupedIllusts.map((group, groupIdx) => (
-          <div 
-            className={
-              `${styles.hexRow} ${(groupIdx % 2 === 0) ? 
-              styles.hexRowEven : 
-              styles.hexRowOdd}`
-            }
-            style={{
-              visibility: (isValidating) ? 'hidden' : 'visible',
-              overflow: "hidden"
-            }}
-            key={groupIdx}
-          >
-            {group.map((illust, index) => (
-              <div
-                className={styles.hex}
-                key={index.toString() + '_' + illust.id}
-                >
-                <a
-                  href={fetchPixivLink(illust.id.toString())}
-                  className={styles.card}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={`${index}_${illust.id.toString()}`}
-                >
-
-                    <div className="relative aspect-square">
-                      <Image
-                        src={fetchUrl(illust.id.toString())}
-                        alt={illust.title}
-                        style={{objectFit: "cover"}}
-                        className={styles.illustImage}
-                        loading="lazy"
-                        placeholder="blur"
-                        fallbackSrc="https://placehold.co/600x400?text=Loading..."
-                      />
-                      <p>{illust.title}</p>
-                    </div>
-                </a>
-                </div>
-            ))}
-          </div>
-        ))}
-          */}
     </div>
   );
 }

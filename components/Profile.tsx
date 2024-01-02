@@ -15,10 +15,11 @@ const Profile: React.FC = () => {
                         </>
                     }
                 />
+                {/* I'm Hyper Doraemon Creator in JAPAN */}
             </Grid.Col>
         </Grid>
         <Grid my="10">
-            <Grid.Col span={6}>
+            <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
                 <Card shadow="0" padding="md" radius="0">
                     <Card.Section>
                         <Image
@@ -34,20 +35,30 @@ const Profile: React.FC = () => {
                     </Card.Section>
                 </Card>
             </Grid.Col>
-            <Grid.Col span={6}>
-                <Card shadow="sm" padding="md" radius="0">
+            <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
+                <Card shadow="0" padding="md" radius="0">
                     <Card.Section>
                         <Text my={4}>
                             お仕事のご依頼や感想は、 motitago(at)gmail.com までよろしくお願いします。
                         </Text>
                         <Text my={4}>
-                            もしイラストなど気に入って頂けた場合には、ほしいものリストから何か送っていただけるとすごい喜びます。
+                            もしイラストなど気に入って頂けた場合には、
+                                <a
+                                    className="link"
+                                    target="blank"
+                                    href="https://www.amazon.jp/hz/wishlist/ls/1YEAX8DRN0GWO?ref_=wl_share"
+                                >
+                                    ほしいものリスト
+                                </a>
+                                から何か送っていただけるとすごい喜びます。
                         </Text>
                     </Card.Section>
                     <Card.Section>
+                        {/*
                         <Blockquote cite="Tagosaku Mochiduki">
                             He is a Hyper Doraemon Creator
                         </Blockquote>
+                        */}
                     </Card.Section>
                 </Card>
             </Grid.Col>
