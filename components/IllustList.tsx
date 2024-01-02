@@ -158,6 +158,11 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           />
           <Divider 
             my="md"
+            size="xs"
+            style={{
+              width: "80%",
+              margin: "0 auto"
+            }}
             label={
               <>
                 <Box ml={5}>Search results</Box>
