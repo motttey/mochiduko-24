@@ -150,7 +150,9 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
           </Input>
           */}
           <TagsInput 
-            my={5} 
+            my={5}
+            py={5}
+            mx={20}
             data={[]}
             value={queryList}
             placeholder='Please input keywords'
