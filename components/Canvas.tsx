@@ -11,7 +11,8 @@ const Canvas: React.FC = () => {
     } 
 
     useEffect(() => {
-        if (canvas.current) {
+        const currentCanvas = canvas.current; // canvas.currentを変数にコピー
+        if (currentCanvas) {
             webGLFluidEnhanced.simulation(canvas.current, {
                 SIM_RESOLUTION: 256,
                 HOVER: false,
@@ -29,24 +30,24 @@ const Canvas: React.FC = () => {
                 COLOR_PALETTE: ['#61dafb', '#a8dadc', '#457b9d', '#1d3557', '#f1faee'],
                 SUNRAYS: false
             });
-            canvas.current.addEventListener('click', handleClick, { passive: true });
+            currentCanvas.addEventListener('click', handleClick, { passive: true });
         }
 
         /*
         const interval = setInterval(() => {
-            if (canvas.current) {
+            if (currentCanvas) {
                 webGLFluidEnhanced.splats(); // splats 関数を呼び出し
             }
         }, 5000);
         */
     
         return () => {
-            if (canvas.current) {
-                canvas.current.removeEventListener('click', handleClick);
+            if (currentCanvas) {
+                currentCanvas.removeEventListener('click', handleClick);
                 // clearInterval(interval);
             }
         };
-    }, [canvas.current]);
+    }, []);
 
     return (
         <div className="canvas" style={{
