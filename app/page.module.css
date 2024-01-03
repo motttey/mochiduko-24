@@ -334,7 +334,6 @@ a.card > div {
 
 .profileContainer{
   max-width: 1200px;
-  pointer-events: none;;
 }
 
 .illustContainer {
@@ -423,7 +422,6 @@ a.card > div {
 
   .profileContainer{
     max-width: 100%;
-    pointer-events: none;;
   }
 
   .hexContainer {
