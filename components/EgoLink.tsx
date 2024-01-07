@@ -11,64 +11,65 @@ interface MyLink {
 }
 
 const PIXIV_API_URL: string = 'http://embed.pixiv.net/decorate.php';
+const fetchUrl = (id: string) => `${PIXIV_API_URL}?illust_id=${id || ''}&mode=sns-automator`;
 const myLinks: Array<MyLink> =  [
     { 
         title: 'pixiv',
-        src: PIXIV_API_URL + '?illust_id=56266129',
+        src: fetchUrl('56266129'),
         url: 'https://www.pixiv.net/users/415546',
         flex: 12 
     },
     { 
         title: 'BOOTH', 
-        src: PIXIV_API_URL + '?illust_id=58885220',
+        src: fetchUrl('58885220'),
         url: 'https://motitago.booth.pm/',
         flex: 6
     },
     { 
         title: 'Skeb',
-        src: PIXIV_API_URL + '?illust_id=86992637',
+        src: fetchUrl('86992637'),
         url: 'https://skeb.jp/@mt_tg',
         flex: 6
     },
     { 
         title: 'deviantART',
-        src: PIXIV_API_URL + '?illust_id=49554002',
+        src: fetchUrl('49554002'),
         url: 'https://www.deviantart.com/motttey',
         flex: 6
     },
     { 
         title: 'weibo',
-        src: PIXIV_API_URL + '?illust_id=56608401',
+        src: fetchUrl('56608401'),
         url: 'https://weibo.com/7310121728',
         flex: 6 
     },
     { 
         title: 'X (Twitter)',
-        src: PIXIV_API_URL + '?illust_id=98419049',
+        src: fetchUrl('98419049'),
         url: 'https://twitter.com/mt_tg',
         flex: 12
     },
     { 
         title: 'Instagram',
-        src: PIXIV_API_URL + '?illust_id=49339965',
+        src: fetchUrl('49339965'),
         url: 'https://www.instagram.com/tagosaku_mochiduki',
         flex: 6
     },
     {
         title: 'Blog',
-        src: PIXIV_API_URL + '?illust_id=83975466',
+        src: fetchUrl('83975466'),
         url: 'http://motttey.hatenablog.com/',
         flex: 6
     },
     { 
         title: 'Threads',
-        src: PIXIV_API_URL + '?illust_id=110011678',
+        src: fetchUrl('110011678'),
         url: 'https://www.threads.net/@tagosaku_mochiduki',
         flex: 6
     },
     { 
         title: 'Misskey.io',
-        src: PIXIV_API_URL + '?illust_id=98440437',
+        src: fetchUrl('98440437'),
         url: 'https://misskey.io/@mt_tg',
         flex: 6
     }        

@@ -248,9 +248,9 @@ a.card > div {
 }
 
 .linkImage {
-  margin-top: -2.5%;
+  margin-top: -20px;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(20px) scale(125%);
   animation-name: fadeInUp;
   animation-duration: 1s;
 }
@@ -290,6 +290,7 @@ a.card > div {
 .diamondRow {
   display: grid;
   margin-bottom: calc(-100px);
+  row-gap: 20px;
 }
 
 .linkImage {

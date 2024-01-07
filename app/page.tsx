@@ -56,6 +56,7 @@ export default async function Page() {
       <main className={styles.main}>
         <Profile></Profile>
         <EgoLink></EgoLink>
+        {/* Worksを作る */}
         <Suspense fallback={<SearchBarFallback />}>
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
