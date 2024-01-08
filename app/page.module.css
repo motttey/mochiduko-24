@@ -367,15 +367,6 @@ a.card > div {
     margin-left: 0%;
     margin-right: 0%;
   }
-
-  .profileContainer{
-    max-width: 100%;
-  }
-
-  .hexContainer {
-    max-width: 100%;
-    margin: 0 auto;
-  }
 }
 
 /* Mobile */
@@ -398,7 +389,6 @@ a.card > div {
     margin-top: 0px;
   }
 }
-
 
 /* Mobile styles for EgoLink */
 @media (max-width: 800px) {
