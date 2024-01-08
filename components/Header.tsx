@@ -1,6 +1,6 @@
 "use client"
 import styles from '@/app/page.module.css'
-import { Anchor, Box, Container, Group, Image } from '@mantine/core';
+import { Anchor, Box, Container, Group, Image, Text } from '@mantine/core';
 import { useState } from 'react';
 
 const linksHref = [
@@ -19,8 +19,7 @@ const SiteHeader: React.FC = () => {
       key={item.label}
       data-active={index === active || undefined}
       className={styles.mainLink}
-      onClick={(event) => {
-        event.preventDefault();
+      onClick={() => {
         setActive(index);
       }}
     >
@@ -37,14 +36,9 @@ const SiteHeader: React.FC = () => {
               h={64}
               alt="header image of doraemon"
               src='https://motttey.github.io/doraemon-namecard.webp'
-            />
-          {/*
-          <Anchor<'a'> href="/" className="header-link" aria-label="logo">
-            {title}
-          </Anchor>
-          */}
+          />
           <Box className={styles.links} visibleFrom="sm">
-            <Group justify="flex-end">{title}</Group>
+            <Group justify="flex-end"><Text c="cyan" fw={700} size="lg" span>{title}</Text> </Group>
             <Group gap={0} justify="flex-end" className={styles.mainLinks}>
               {mainItems}
             </Group>
