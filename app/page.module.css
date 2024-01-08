@@ -367,6 +367,15 @@ a.card > div {
     margin-left: 0%;
     margin-right: 0%;
   }
+
+  .profileContainer{
+    max-width: 100%;
+  }
+
+  .hexContainer {
+    max-width: 100%;
+    margin: 0 auto;
+  }
 }
 
 /* Mobile */
@@ -391,8 +400,8 @@ a.card > div {
 }
 
 
-/* Mobile */
-@media (max-width: 700px) {
+/* Mobile styles for EgoLink */
+@media (max-width: 800px) {
   .diamond {
     clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
     -webkit-clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
@@ -419,15 +428,6 @@ a.card > div {
   .diamondRow {
     margin-bottom: 10px;
     margin-top: 10px;
-  }
-
-  .profileContainer{
-    max-width: 100%;
-  }
-
-  .hexContainer {
-    max-width: 100%;
-    margin: 0 auto;
   }
 }
 

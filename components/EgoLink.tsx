@@ -56,7 +56,7 @@ const myLinks: Array<MyLink> =  [
         flex: 6
     },
     {
-        title: 'Blog',
+        title: 'Hatena Blog',
         src: fetchUrl('83975466'),
         url: 'http://motttey.hatenablog.com/',
         flex: 6
