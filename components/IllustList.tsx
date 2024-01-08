@@ -125,6 +125,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
   return (
     <div 
       className={styles.illustContainer}
+      id="illustContainer"
       onClick={handleClick}
     >
       <Grid my="lg">

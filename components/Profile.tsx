@@ -4,7 +4,7 @@ import styles from '@/app/page.module.css'
 
 const Profile: React.FC = () => {
   return (
-    <div className={styles.profileContainer}>
+    <div className={styles.profileContainer} id="profileContainer">
         <Grid my="10" >
             <Grid.Col>
                 <Title order={5} ta="center">

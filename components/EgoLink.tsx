@@ -97,7 +97,7 @@ const chunkArray = (array: Array<MyLink>) => {
 const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
-    <div className={styles.egoLinkContainer}>
+    <div className={styles.egoLinkContainer} id="">
         <Grid my="lg">
             <Grid.Col>
                 <Divider 
