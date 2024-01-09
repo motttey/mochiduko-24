@@ -456,7 +456,7 @@ a.card > div {
     border-color 100ms ease,
     color 100ms ease;
 
-  @mixin hover {
+  hover {
     color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
     text-decoration: none;
   }
