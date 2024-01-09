@@ -353,13 +353,19 @@ a.card > div {
 }
 
 .profileImage {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  z-index: 1;
+  top: 20px;
+  left: 15%;
 }
 
 .profileDescription {
-  max-width: 600px;
+  position: relative;
+  max-width: 500px;
   margin: 0 auto;
+  z-index: 2;
 }
 
 /* Middle-width device */

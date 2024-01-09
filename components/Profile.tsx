@@ -24,8 +24,8 @@ const Profile: React.FC = () => {
                 />
             </Grid.Col>
         </Grid>
-        <Grid my="10">
-            <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
+        <Grid my="10" className={styles.profileGrid}>
+            <Grid.Col span={{ base: 12, md: 6, lg: 6 }} className={styles.profileCol}>
                 <Card 
                     shadow="0"
                     padding="md"
@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
                     </Card.Section>
                 </Card>
             </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
+            <Grid.Col span={{ base: 12, md: 6, lg: 6 }} className={styles.profileCol}>
                 <Card 
                     p="lg"
                     className={styles.profileDescription}
