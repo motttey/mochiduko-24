@@ -26,7 +26,12 @@ const Profile: React.FC = () => {
         </Grid>
         <Grid my="10">
             <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
-                <Card shadow="0" padding="md" radius="0">
+                <Card 
+                    shadow="0"
+                    padding="md"
+                    radius="0"
+                    className={styles.profileImage}
+                >
                     <Card.Section>
                         <Image
                             src='https://motttey.github.io/doraemon-namecard.webp'
@@ -42,7 +47,10 @@ const Profile: React.FC = () => {
                 </Card>
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
-                <Card shadow="sm" p="lg" style={{ position: 'relative' }}>
+                <Card 
+                    p="lg"
+                    className={styles.profileDescription}
+                >
                     <Card.Section>
                         <Text my={4}>
                             望月田吾作(もちづき たごさく)と申します。ドラえもんや藤子不二雄作品の二次創作を中心に、イラストを描いています。
@@ -62,16 +70,6 @@ const Profile: React.FC = () => {
                                 </Anchor>
                                 から何か送っていただけるとすごい喜びます。
                         </Text>
-                        <div style={{
-                            width: 0,
-                            height: 0,
-                            borderLeft: '15px solid transparent',
-                            borderRight: '15px solid transparent',
-                            borderTop: '15px solid #fff', // これはCardの背景色と同じにしてください
-                            position: 'absolute',
-                            bottom: '-15px', // 吹き出しの矢印の位置調整
-                            left: '20px', // 吹き出しの矢印の位置調整
-                        }} />
                     </Card.Section>
                 </Card>
             </Grid.Col>

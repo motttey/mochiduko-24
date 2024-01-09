@@ -352,6 +352,16 @@ a.card > div {
   margin: 0 auto;
 }
 
+.profileImage {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profileDescription {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 /* Middle-width device */
 @media (max-width: 800px) {
   .hexRowOdd {
