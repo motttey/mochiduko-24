@@ -74,6 +74,7 @@
 .logo {
   position: relative;
 }
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -216,7 +217,6 @@
 }
 
 .illustImage {
-  /* background-color: #545454; */
   margin-top: 2.5%;
   opacity: 1;
   transform: translateY(0);
@@ -330,16 +330,18 @@ a.card > div {
 
 .egoLinkContainer {
   max-width: 1200px;
-  min-width: "80vw";
+  min-width: 80vw;
 }
 
 .profileContainer{
   max-width: 1200px;
+  min-width: 80vw;
+  margin: 0 auto;
 }
 
 .illustContainer {
   max-width: "100vw";
-  min-width: "80vw";
+  min-width: 80vw;
 }
 
 .diamondContainer {
@@ -352,12 +354,16 @@ a.card > div {
   margin: 0 auto;
 }
 
+.profileGrid {
+  position: relative;
+  top: -25px;
+}
+
 .profileImage {
   position: relative;
-  max-width: 1200px;
   margin: 0 auto;
   z-index: 1;
-  top: 20px;
+  top: 50px;
   left: 15%;
 }
 

@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
                 />
             </Grid.Col>
         </Grid>
-        <Grid my="10" className={styles.profileGrid}>
+        <Grid my="5" className={styles.profileGrid}>
             <Grid.Col span={{ base: 12, md: 6, lg: 6 }} className={styles.profileCol}>
                 <Card 
                     shadow="0"
@@ -47,7 +47,7 @@ const Profile: React.FC = () => {
                     p="lg"
                     className={styles.profileDescription}
                 >
-                    <Card.Section>
+                    <Card.Section my="-1rem" p="1rem">
                         <Text my={4}>
                             望月田吾作(もちづき たごさく)と申します。ドラえもんや藤子不二雄作品の二次創作を中心に、イラストを描いています。
                         </Text>
