@@ -34,12 +34,8 @@ const Profile: React.FC = () => {
                 >
                     <Card.Section>
                         <Image
-                            src='https://motttey.github.io/doraemon-namecard.webp'
+                            src="/dora2024.webp"
                             height={300}
-                            style={{
-                                maxWidth: "500px",
-                                textAlign: "center"
-                            }}
                             fit="cover"
                             alt="Tagosaku Mochiduki Profile"
                         />
