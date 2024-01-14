@@ -5,8 +5,9 @@ import { useState } from 'react';
 
 const linksHref = [
   { link: '#profileContainer', label: 'Profile' },
+  { link: '#worksContainer', label: 'Works' },
   { link: '#egoLinkContainer', label: 'Links' },
-  { link: '#illustContainer', label: 'Works' }
+  { link: '#illustContainer', label: 'Illusts' }
 ];
 
 const SiteHeader: React.FC = () => {

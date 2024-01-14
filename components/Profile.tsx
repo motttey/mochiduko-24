@@ -1,6 +1,6 @@
 'use client'
 import { Anchor, Image, Card, Grid, Text, Title, Box, Divider } from '@mantine/core';
-import styles from '@/app/page.module.css'
+import styles from '@/app/page.module.css';
 
 const Profile: React.FC = () => {
   return (
@@ -74,4 +74,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default Profile;

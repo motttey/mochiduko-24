@@ -344,6 +344,13 @@ a.card > div {
   min-width: 80vw;
 }
 
+.worksContainer{
+  max-width: 1200px;
+  min-width: 80vw;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
 .diamondContainer {
   max-width: 1200px;
   margin-left: 20px;

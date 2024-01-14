@@ -37,6 +37,7 @@ function SearchBarFallback() {
 
 import dynamic from 'next/dynamic';
 import EgoLink from '@/components/EgoLink'
+import MyWork from '@/components/MyWork'
 
 const DynamicComponent = dynamic(
   () => import('@/components/Canvas'), // コンポーネントのパスを指定
@@ -55,6 +56,7 @@ export default async function Page() {
     <>
       <main className={styles.main}>
         <Profile></Profile>
+        <MyWork></MyWork>
         <EgoLink></EgoLink>
         {/* Worksを作る */}
         <Suspense fallback={<SearchBarFallback />}>
