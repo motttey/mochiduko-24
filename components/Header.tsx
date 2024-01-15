@@ -23,6 +23,7 @@ const SiteHeader: React.FC = () => {
       onClick={() => {
         setActive(index);
       }}
+      visibleFrom="xs"
     >
       {item.label}
     </Anchor>
@@ -31,16 +32,18 @@ const SiteHeader: React.FC = () => {
   return (
     <header>
       <Container size="md" className={styles.header}>
-        <Group justify="space-between" h="100%" className={styles.inner}>
+        <Group justify="space-between" className={styles.inner}>
           <Image 
               className={styles.hex}
               h={64}
               alt="header image of doraemon"
               src='https://motttey.github.io/doraemon-namecard.webp'
           />
-          <Box className={styles.links} visibleFrom="sm">
-            <Group justify="flex-end"><Text c="cyan" fw={700} size="lg" span>{title}</Text> </Group>
-            <Group gap={0} justify="flex-end" className={styles.mainLinks}>
+          <Box className={styles.links}>
+            <Group justify="flex-end">
+              <Text c="cyan" fw={700} size="lg" span>{title}</Text>
+            </Group>
+            <Group gap={0} justify="space-between" className={styles.mainLinks}>
               {mainItems}
             </Group>
           </Box>
