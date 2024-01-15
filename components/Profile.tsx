@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
                 >
                     <Card.Section>
                         <Image
-                            src="/dora2024.webp"
+                            src="dora2024.webp"
                             height={300}
                             fit="cover"
                             alt="Tagosaku Mochiduki Profile"
