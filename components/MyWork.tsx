@@ -79,10 +79,17 @@ const MyWork: React.FC = () => {
             </Grid>
             <Grid my="5" className="worksGrid">
             {worksArray.map((work) => (
-                <Grid.Col span={{ base: 6, md: 6, lg: 4 }} key={work.title}>
+                <Grid.Col 
+                    span={{ base: 12, md: 6, lg: 4 }}
+                    key={work.title}
+                    style={{
+                        paddingBottom: "10px"
+                    }}
+                >
                     <Card
                         shadow="sm"
-                        padding="xl"
+                        padding="md"
+                        mx="lg"
                         component="a"
                         href={work.url}
                         target="_blank"
