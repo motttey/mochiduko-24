@@ -134,8 +134,8 @@ const EgoLink: React.FC = () => {
                                     <Image
                                         src={link.src}
                                         className={styles.linkImage}
-                                        width={300}
-                                        height={300}
+                                        width={275}
+                                        height={275}
                                         fit="cover"
                                         alt={link.title}
                                     />
