@@ -62,9 +62,25 @@ const worksArray: Array<MyWorks> = [
     }
 ];
 
+const handleClick = (e: { clientX: number; clientY: number; }) => {
+    const canvas = document.getElementById('fluidCanvas');
+    if (canvas) {
+      // 新しいイベントを作成し、Canvasに発火させる
+      const event = new MouseEvent('click', {
+          clientX: e.clientX,
+          clientY: e.clientY
+      });
+      canvas.dispatchEvent(event);
+    }
+};
+
 const MyWork: React.FC = () => {
     return (
-        <div className={styles.profileContainer} id="worksContainer">
+        <div 
+            className={styles.profileContainer}
+            id="worksContainer"
+            onClick={handleClick}
+        >
             <Grid my="5" >
                 <Grid.Col>
                     <Divider 

@@ -94,10 +94,23 @@ const chunkArray = (array: Array<MyLink>) => {
     return results;
 };  
 
+
+const handleClick = (e: { clientX: number; clientY: number; }) => {
+    const canvas = document.getElementById('fluidCanvas');
+    if (canvas) {
+      // 新しいイベントを作成し、Canvasに発火させる
+      const event = new MouseEvent('click', {
+          clientX: e.clientX,
+          clientY: e.clientY
+      });
+      canvas.dispatchEvent(event);
+    }
+};
+
 const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
-    <div id="egoLinkContainer">
+    <div id="egoLinkContainer" onClick={handleClick}>
         <Grid my="lg">
             <Grid.Col>
                 <Divider 

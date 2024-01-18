@@ -54,7 +54,7 @@ export default async function Page() {
 
   return (
     <>
-      <main className={styles.main}>
+      <main className={styles.main} id="mainLayout">
         <Profile></Profile>
         <MyWork></MyWork>
         <EgoLink></EgoLink>
