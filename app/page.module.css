@@ -357,18 +357,23 @@ a.card > div {
 
 .profileGrid {
   position: relative;
-  top: -25px;
+  top: -10px;
 }
 
 .profileImage {
   position: relative;
   margin: 0 auto;
-  top: 50px;
+  top: 60px;
   left: 15%;
 
   transform: translateY(0);
   animation-name: fadeInUp;
   animation-duration: 1s;
+
+  /*プロフィールに表示するボーダー */
+  border: 2px solid #22B8CF;
+  border-top: none;
+  border-right: none;
 }
 
 .profileDescription {
@@ -380,6 +385,11 @@ a.card > div {
   transform: translateY(0);
   animation-name: fadeInUp;
   animation-duration: 1s;
+
+  /*プロフィールに表示するボーダー */
+  border: 2px solid #22B8CF;
+  border-bottom: none;
+  border-left: none;
 }
 
 /* Middle-width device */
