@@ -333,17 +333,17 @@ a.card > div {
 
 .profileContainer{
   max-width: 1200px;
-  min-width: 80vw;
+  min-width: 60vw;
 }
 
 .illustContainer {
   max-width: 100vw;
-  min-width: 80vw;
+  min-width: 60vw;
 }
 
 .worksContainer{
   max-width: 1200px;
-  min-width: 80vw;
+  min-width: 60vw;
 }
 
 .diamondContainer {

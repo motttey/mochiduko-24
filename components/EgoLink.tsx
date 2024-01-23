@@ -110,7 +110,7 @@ const handleClick = (e: { clientX: number; clientY: number; }) => {
 const EgoLink: React.FC = () => {
     const groupedLinks = chunkArray(myLinks);
   return (
-    <div id="egoLinkContainer" onClick={handleClick}>
+    <div className={styles.egoLinkContainer} onClick={handleClick}>
         <Grid my="lg">
             <Grid.Col>
                 <Divider 

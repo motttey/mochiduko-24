@@ -77,7 +77,7 @@ const handleClick = (e: { clientX: number; clientY: number; }) => {
 const MyWork: React.FC = () => {
     return (
         <div 
-            className={styles.profileContainer}
+            className={styles.worksContainer}
             id="worksContainer"
             onClick={handleClick}
         >
