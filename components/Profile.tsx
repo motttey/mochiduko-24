@@ -66,6 +66,13 @@ const Profile: React.FC = () => {
                                 </Anchor>
                                 から何か送っていただけるとすごい喜びます。
                         </Text>
+                        <Image
+                            src="signature.png"
+                            height={60}
+                            fit="contain"
+                            alt="Tagosaku Mochiduki Signature"
+                            style={{ filter: "invert(1)" }}
+                        />
                     </Card.Section>
                 </Card>
             </Grid.Col>
