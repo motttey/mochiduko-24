@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
             </Grid.Col>
         </Grid>
         <Grid my="5" className={styles.profileGrid}>
-            <Grid.Col span={{ base: 12, md: 6, lg: 6 }} className={styles.profileCol}>
+            <Grid.Col span={{ base: 12, md: 8, lg: 6 }} className={styles.profileCol}>
                 <Card 
                     shadow="0"
                     padding="md"
@@ -35,14 +35,14 @@ const Profile: React.FC = () => {
                     <Card.Section>
                         <Image
                             src="dora2024.webp"
-                            height={300}
+                            height={500}
                             fit="cover"
                             alt="Tagosaku Mochiduki Profile"
                         />
                     </Card.Section>
                 </Card>
             </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 6 }} className={styles.profileCol}>
+            <Grid.Col span={{ base: 12, md: 4, lg: 6 }} className={styles.profileCol}>
                 <Card 
                     p="lg"
                     className={styles.profileDescription}
