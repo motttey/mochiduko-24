@@ -84,7 +84,7 @@ const MyWork: React.FC = () => {
             <Grid my="5" >
                 <Grid.Col>
                     <Divider 
-                        my="md"
+                        className={styles.commonDivider}
                         label={
                             <>
                                 <Box ml={5}><h2>望月田吾作の作品</h2></Box>

@@ -1,7 +1,7 @@
 'use client'
 import { Image, Grid, Divider, Box } from '@mantine/core';
 
-import styles from '@/app/page.module.css'
+import styles from '@/app/page.module.css';
 
 interface MyLink {
     title: string;
@@ -118,7 +118,7 @@ const EgoLink: React.FC = () => {
         <Grid my="lg">
             <Grid.Col>
                 <Divider 
-                    my="md"
+                    className={styles.commonDivider}
                     label={
                         <>
                             <Box ml={5}><h2>望月田吾作のリンク</h2></Box>

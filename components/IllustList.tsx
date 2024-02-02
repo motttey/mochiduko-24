@@ -131,7 +131,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
       <Grid my="lg">
         <Grid.Col>
           <Divider 
-              my="md"
+              className={styles.commonDivider}
               label={
                   <>
                       <Box ml={5}><h2>望月田吾作のイラスト</h2></Box>

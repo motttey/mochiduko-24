@@ -15,7 +15,7 @@ const Profile: React.FC = () => {
         <Grid my="5" >
             <Grid.Col>
                 <Divider 
-                    my="md"
+                    className={styles.commonDivider}
                     label={
                         <>
                             <Box ml={5}><h2>望月田吾作について</h2></Box>
