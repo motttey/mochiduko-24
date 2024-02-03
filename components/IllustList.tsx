@@ -138,22 +138,9 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                   </>
               }
           />
-          {/*
-          <Input 
-            placeholder='Search...'
-            value={query || ''}
-            onChange={(e) => handleChangeQuery(e.target.value)}
-            onBlur={() => handleOnBlur()}
-          >
-            {query ? <Label as='span' color='teal' tag>
-              {query}
-            </Label>: ''}
-          </Input>
-          */}
           <TagsInput 
-            my={5}
-            py={5}
-            mx={20}
+            my={10}
+            mx={100}
             data={[]}
             value={queryList}
             placeholder='Please input keywords'
