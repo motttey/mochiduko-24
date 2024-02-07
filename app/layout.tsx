@@ -12,7 +12,7 @@ const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
   subsets: ["latin"],
   // https://github.com/vercel/next.js/pull/44594
-  preload: false,
+  preload: true,
 });
 
 export interface MetaTag {
@@ -28,7 +28,18 @@ export const metadata: Metadata  = {
   title,
   description,
   icons: "/favicon.ico",
-  keywords: ["望月","望月田吾作","ドラえもん","Doraemon","Fujiko Fujio","藤子不二雄","藤子・F・不二雄","イラスト","ドラえもん イラスト"],
+  keywords: [
+    "望月",
+    "望月田吾作",
+    "Tagosaku Mochiduki",
+    "ドラえもん",
+    "Doraemon",
+    "Fujiko Fujio",
+    "藤子不二雄",
+    "藤子・F・不二雄",
+    "イラスト",
+    "ドラえもん イラスト"
+  ],
   openGraph: {
     title,
     description,
