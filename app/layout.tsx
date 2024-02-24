@@ -1,5 +1,5 @@
 import './globals.css';
-import { Inter, Noto_Sans_JP } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 
 import { Metadata, Viewport } from 'next';
 import Header from '../components/Header';
@@ -7,12 +7,13 @@ import Footer from '@/components/Footer';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 
-const inter = Inter({ subsets: ['latin'] });
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
   subsets: ["latin"],
   // https://github.com/vercel/next.js/pull/44594
+  variable: '--font-noto-sans-jp',
   preload: true,
+  display: 'swap',
 });
 
 export interface MetaTag {
@@ -77,8 +78,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja">
-      <body className={`${NotoSansJP.className} ${inter.className}`}>
+    <html lang="ja" className={`${NotoSansJP.className}`}>
+      <body>
         <MantineProvider>
           <Header></Header>
           {children}

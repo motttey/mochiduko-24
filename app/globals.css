@@ -73,6 +73,10 @@
   }
 }
 
+html {
+  font-family: var(--font-noto-sans-jp);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
