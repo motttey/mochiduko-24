@@ -134,7 +134,7 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
               className={styles.commonDivider}
               label={
                   <>
-                      <Box ml={5}><h2>望月田吾作のイラスト</h2></Box>
+                      <Box ml={5}><h3>望月田吾作のイラスト</h3></Box>
                   </>
               }
           />
@@ -200,26 +200,20 @@ const IllustList: React.FC<{initialContentsList: Array<Illust>}> = (
                     rel="noopener noreferrer"
                     key={`${index}_${illust.id.toString()}`}
                   >
-                    {/*
-                      <h2>
-                        {illust.title}
-                      </h2>
-                      <p>{illust.date}</p>
-                    */}
-                      <div className="relative aspect-square">
-                        <Image
-                          src={fetchUrl(illust.id.toString())}
-                          alt={illust.title}
-                          style={{objectFit: "cover"}}
-                          className={styles.illustImage}
-                          loading="eager"
-                          placeholder="blur"
-                          fallbackSrc="https://placehold.co/600x400?text=Loading..."
-                        />
-                        <p>{illust.title}</p>
-                      </div>
-                    </a>
-                  </div>
+                    <div className="relative aspect-square">
+                      <Image
+                        src={fetchUrl(illust.id.toString())}
+                        alt={illust.title}
+                        style={{objectFit: "cover"}}
+                        className={styles.illustImage}
+                        loading="eager"
+                        placeholder="blur"
+                        fallbackSrc="https://placehold.co/600x400?text=Loading..."
+                      />
+                      <p>{illust.title}</p>
+                    </div>
+                  </a>
+                </div>
               ))}
             </div>
           )

@@ -121,7 +121,7 @@ const EgoLink: React.FC = () => {
                     className={styles.commonDivider}
                     label={
                         <>
-                            <Box ml={5}><h2>望月田吾作のリンク</h2></Box>
+                            <Box ml={5}><h3>望月田吾作のリンク</h3></Box>
                         </>
                     }
                 />

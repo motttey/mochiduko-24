@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
                     className={styles.commonDivider}
                     label={
                         <>
-                            <Box ml={5}><h2>望月田吾作について</h2></Box>
+                            <Box ml={5}><h3>望月田吾作について</h3></Box>
                         </>
                     }
                 />
