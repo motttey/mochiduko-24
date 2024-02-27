@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production'
-const prefixPath = isProd ? '/mochiduko-24' : ''
+const isProd = process.env.NODE_ENV === "production";
+const prefixPath = isProd ? "/mochiduko-24" : "";
 
 const nextConfig = {
-  output: 'export',
+  output: "export",
   experimental: {
     // serverActions: true,
   },
@@ -14,10 +14,10 @@ const nextConfig = {
   },
   */
   images: {
-    domains: ['embed.pixiv.net'],
+    domains: ["embed.pixiv.net"],
   },
   assetPrefix: prefixPath,
   basePath: prefixPath,
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
