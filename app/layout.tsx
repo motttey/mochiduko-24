@@ -24,8 +24,8 @@ export interface MetaTag {
 const title = "モチヅ庫'24";
 const description =
   "望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.";
-const url = "http://motttey.github.io/mochiduko-20";
-const imgUrl = "https://motttey.github.io/mochiduko-20/drawer-bg.webp";
+const url = "https://motttey.github.io/mochiduko-24";
+const imgUrl = "https://motttey.github.io/mochiduko-24/dora2024.webp";
 export const metadata: Metadata = {
   title,
   description,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: url,
   },
-  metadataBase: new URL(process.env.URL ?? "http://localhost:3000"),
+  metadataBase: new URL(process.env.URL ?? "https://motttey.github.io/mochiduko-24"),
 };
 
 export const viewport: Viewport = {
