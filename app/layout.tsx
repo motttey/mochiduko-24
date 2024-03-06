@@ -64,7 +64,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: url,
   },
-  metadataBase: new URL(process.env.URL ?? "https://motttey.github.io/mochiduko-24"),
+  metadataBase: new URL(
+    process.env.URL ?? "https://motttey.github.io/mochiduko-24",
+  ),
 };
 
 export const viewport: Viewport = {
