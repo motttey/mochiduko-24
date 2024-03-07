@@ -11,7 +11,7 @@ const linksHref = [
 ];
 
 const SiteHeader: React.FC = () => {
-  const title = "Mochiduko 2024";
+  const title = "モチヅ庫'24";
   const [active, setActive] = useState(0);
 
   const mainItems = linksHref.map((item, index) => (
@@ -37,7 +37,7 @@ const SiteHeader: React.FC = () => {
             className={styles.hex}
             h={64}
             alt="header image of doraemon"
-            src="https://motttey.github.io/doraemon-namecard.webp"
+            src="./doraemon-namecard.webp"
           />
           <Box className={styles.links}>
             <Group justify="flex-end">
