@@ -55,7 +55,7 @@ const Profile: React.FC = () => {
                 src="dora2024.webp"
                 height={500}
                 fit="cover"
-                alt="Tagosaku Mochiduki Profile"
+                alt="Tagosaku Mochiduki Profile Image"
               />
             </Card.Section>
           </Card>
