@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@nextui-org/react": "^2.2.10",
+    "@types/node": "^20.11.28",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "eslint": "^8.38.0",
