@@ -67,8 +67,10 @@ const Profile: React.FC = () => {
           <Card p="lg" className={styles.profileDescription}>
             <Card.Section my="-1rem" p="1rem">
               <Text my={4}>
-                望月田吾作(もちづき
-                たごさく)と申します。ドラえもんや藤子不二雄作品の二次創作を中心に、イラストを描いています。
+                <Text span fw={700}>
+                  望月田吾作(もちづき たごさく)
+                </Text>
+                と申します。ドラえもんや藤子不二雄作品の二次創作を中心に、イラストを描いています。
               </Text>
               <Text my={4}>
                 お仕事のご依頼や感想は、 motitago(at)gmail.com

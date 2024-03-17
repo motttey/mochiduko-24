@@ -122,7 +122,7 @@ const MyWork: React.FC = () => {
                 <Image src={work.src} h={250} alt={work.title} />
               </Card.Section>
 
-              <Text fw={500} size="lg" mt="md">
+              <Text fw={700} size="md" mt="md">
                 {work.title}
               </Text>
 
