@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     images: [imgUrl],
   },
   alternates: {
-    canonical: url,
+    canonical: "https://motttey.github.io/",
   },
   metadataBase: new URL(
     process.env.URL ?? "https://motttey.github.io/mochiduko-24",
