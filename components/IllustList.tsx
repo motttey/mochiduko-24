@@ -215,7 +215,6 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                         style={{ objectFit: "cover" }}
                         className={styles.illustImage}
                         loading="eager"
-                        placeholder="blur"
                         fallbackSrc="https://placehold.co/600x400?text=Loading..."
                       />
                       <p>{illust.title}</p>
