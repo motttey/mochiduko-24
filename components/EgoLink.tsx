@@ -74,6 +74,13 @@ const myLinks: Array<MyLink> = [
     url: "https://misskey.io/@mt_tg",
     flex: 6,
   },
+
+  {
+    title: "Bluesky",
+    src: fetchUrl("89634560"),
+    url: "https://bsky.app/profile/motttey.bsky.social",
+    flex: 6,
+  },
 ];
 
 const chunkArray = (array: Array<MyLink>) => {
