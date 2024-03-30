@@ -13,6 +13,7 @@ interface MyLink {
 const PIXIV_API_URL: string = "http://embed.pixiv.net/decorate.php";
 const fetchUrl = (id: string) =>
   `${PIXIV_API_URL}?illust_id=${id || ""}&mode=sns-automator`;
+
 const myLinks: Array<MyLink> = [
   {
     title: "pixiv",
@@ -74,7 +75,6 @@ const myLinks: Array<MyLink> = [
     url: "https://misskey.io/@mt_tg",
     flex: 6,
   },
-
   {
     title: "Bluesky",
     src: fetchUrl("89634560"),
@@ -83,6 +83,7 @@ const myLinks: Array<MyLink> = [
   },
 ];
 
+// リンクの配列を偶数行ごとにパターンに分割する
 const chunkArray = (array: Array<MyLink>) => {
   const results = [];
   let count = 0;
@@ -105,7 +106,7 @@ const chunkArray = (array: Array<MyLink>) => {
 const handleClick = (e: { clientX: number; clientY: number }) => {
   const canvas = document.getElementById("fluidCanvas");
   if (canvas) {
-    // 新しいイベントを作成し、Canvasに発火させる
+    // クリック発生時に新しいイベントを作成し、Canvasに発火させる
     const event = new MouseEvent("click", {
       clientX: e.clientX,
       clientY: e.clientY,
@@ -160,8 +161,7 @@ const EgoLink: React.FC = () => {
                       <Image
                         src={link.src}
                         className={styles.linkImage}
-                        width={275}
-                        height={275}
+                        style={{ objectFit: "cover" }}
                         fit="cover"
                         alt={link.title}
                       />
