@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
-const prefixPath = isProd ? "/mochiduko-24" : "";
+// const isProd = process.env.NODE_ENV === "production";
+// const prefixPath = isProd ? "/mochiduko-24" : "";
 
 const nextConfig = {
   output: "export",
@@ -16,8 +16,9 @@ const nextConfig = {
   images: {
     domains: ["embed.pixiv.net"],
   },
-  assetPrefix: prefixPath,
-  basePath: prefixPath,
+  // デプロイ先が /mochiduko-24などになる場合はprefixPathをいじる
+  assetPrefix: "",
+  basePath: "",
 };
 
 module.exports = nextConfig;
