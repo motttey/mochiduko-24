@@ -92,10 +92,18 @@ a {
 }
 
 header {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
+  left: 0;
   z-index: 10;
   background-color: white;
+}
+
+main {
+  position: sticky;
+  /* ヘッダーの分マージンを入れる */
+  margin-top: 110px;
 }
 
 footer {
