@@ -34,12 +34,12 @@ const Canvas: React.FC = () => {
     }
 
     /*
-        const interval = setInterval(() => {
-            if (currentCanvas) {
-                webGLFluidEnhanced.splats(); // splats 関数を呼び出し
-            }
-        }, 5000);
-        */
+    const interval = setInterval(() => {
+        if (currentCanvas) {
+            webGLFluidEnhanced.splats(); // splats 関数を呼び出し
+        }
+    }, 5000);
+    */
 
     return () => {
       if (currentCanvas) {
@@ -60,7 +60,7 @@ const Canvas: React.FC = () => {
         id="fluidCanvas"
         ref={canvas}
         style={{
-          position: "absolute",
+          position: "fixed",
           width: "100vw",
           height: "100vh",
           top: 0,
