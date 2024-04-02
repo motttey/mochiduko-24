@@ -396,6 +396,7 @@ a.card > div {
 .profileDescription {
   position: relative;
   max-width: 500px;
+  min-width: 300px;
   margin: -20px 20px;
   z-index: 2;
 
@@ -444,6 +445,27 @@ a.card > div {
 
   .hexRow {
     margin-top: 0px;
+  }
+
+  .egoLinkContainer {
+    min-width: 80vw;
+  }
+  
+  .profileContainer {
+    min-width: 80vw;
+  }
+  
+  .illustContainer {
+    min-width: 80vw;
+  }
+  
+  .worksContainer {
+    min-width: 80vw;
+  }
+
+  /* 画面が小さい場合はmin-width */
+  .profileDescription {
+    min-width: none;
   }
 }
 
