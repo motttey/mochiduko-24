@@ -303,7 +303,7 @@ a.card > div {
 .diamondRow {
   display: grid;
   max-width: 1200px;
-  margin-bottom: calc(-100px);
+  margin-bottom: calc(-50px);
   row-gap: 20px;
 }
 
@@ -424,6 +424,13 @@ a.card > div {
     grid-auto-rows: 1fr;
     margin-left: 0%;
     margin-right: 0%;
+  }
+
+  .diamondRow {
+    display: grid;
+    max-width: 1200px;
+    margin-bottom: calc(-25px);
+    row-gap: 20px;
   }
 }
 
