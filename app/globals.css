@@ -128,6 +128,7 @@ footer {
 @media screen and (max-width: 768px) {
   /* iOSのブラウザでのみ適用されるスタイル */
   ::-webkit-scrollbar {
-    display: none;
+    /* デフォルトのスクロールバーを表示 */
+    display: block;
   }
 }
