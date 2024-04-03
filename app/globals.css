@@ -123,3 +123,11 @@ footer {
 ::-webkit-scrollbar-thumb {
   background-color: #22b8cf;
 }
+
+/* iOSだとカスタムスクロールバーを使えないので無効にする */
+@media screen and (max-width: 768px) {
+  /* iOSのブラウザでのみ適用されるスタイル */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
