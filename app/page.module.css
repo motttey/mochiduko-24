@@ -436,6 +436,34 @@ a.card > div {
 
 /* Mobile */
 @media (max-width: 500px) {
+  .hexRow {
+    margin-top: 0px;
+  }
+
+  .egoLinkContainer {
+    min-width: 80vw;
+  }
+
+  .profileContainer {
+    min-width: 80vw;
+  }
+
+  .illustContainer {
+    min-width: 80vw;
+  }
+
+  .worksContainer {
+    min-width: 80vw;
+  }
+
+  /* 画面が小さい場合はmin-width */
+  .profileDescription {
+    min-width: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 250px) {
   .hexRowOdd {
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: minmax(auto, 1fr);
@@ -448,31 +476,6 @@ a.card > div {
     grid-auto-rows: minmax(auto, 1fr);
     margin-left: -5%;
     margin-right: -5%;
-  }
-
-  .hexRow {
-    margin-top: 0px;
-  }
-
-  .egoLinkContainer {
-    min-width: 80vw;
-  }
-  
-  .profileContainer {
-    min-width: 80vw;
-  }
-  
-  .illustContainer {
-    min-width: 80vw;
-  }
-  
-  .worksContainer {
-    min-width: 80vw;
-  }
-
-  /* 画面が小さい場合はmin-width */
-  .profileDescription {
-    min-width: none;
   }
 }
 
