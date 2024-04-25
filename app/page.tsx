@@ -1,8 +1,13 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
 import { Illust } from "@/types/api";
-import IllustList from "@/components/IllustList";
+
 import Profile from "@/components/Profile";
+import EgoLink from "@/components/EgoLink";
+import MyWork from "@/components/MyWork";
+import IllustList from "@/components/IllustList";
+
 import styles from "./page.module.css";
 
 interface PrefetchResponse {
@@ -10,12 +15,12 @@ interface PrefetchResponse {
 }
 
 const getData = async () => {
-  // 1時間ごとにprefetchする
+  // 1日ごとにprefetchする
   let res: Array<Illust> = new Array<Illust>();
 
   if (process.env.DEPLOY_MODE === "SSR") {
     res = await fetch("https://mochiduko-api.netlify.app/each_illusts.json", {
-      next: { revalidate: 60 * 60 },
+      next: { revalidate: 24 * 60 * 60 },
     }).then((res) => res.json());
   }
 
@@ -30,13 +35,9 @@ const getData = async () => {
 // will be replaced with the `<SearchBar>` component.
 
 // https://nextjs.org/docs/messages/deopted-into-client-rendering
-function SearchBarFallback() {
+const SearchBarFallback = () => {
   return <>placeholder</>;
-}
-
-import dynamic from "next/dynamic";
-import EgoLink from "@/components/EgoLink";
-import MyWork from "@/components/MyWork";
+};
 
 const DynamicComponent = dynamic(
   () => import("@/components/Canvas"), // コンポーネントのパスを指定
@@ -57,7 +58,6 @@ export default async function Page() {
         <Profile></Profile>
         <MyWork></MyWork>
         <EgoLink></EgoLink>
-        {/* Worksを作る */}
         <Suspense fallback={<SearchBarFallback />}>
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
