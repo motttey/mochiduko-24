@@ -1,11 +1,16 @@
-import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
-
 import { Metadata, Viewport } from "next";
-import Header from "../components/Header";
-import Footer from "@/components/Footer";
-import "@mantine/core/styles.css";
+
+// https://ospaarmann.medium.com/google-analytics-4-ga4-in-next-js-14-and-react-with-event-tracking-2ceabb00c59a
+// Use google analytics with next.js
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { MantineProvider } from "@mantine/core";
+
+import "@mantine/core/styles.css";
+import "./globals.css";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
@@ -89,6 +94,7 @@ export default function RootLayout({
           <Footer></Footer>
         </MantineProvider>
       </body>
+      <GoogleAnalytics gaId="G-Q7PCEF8R0K" />
     </html>
   );
 }
