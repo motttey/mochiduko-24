@@ -1,3 +1,6 @@
+// mjsだと動かないらしい
+// https://github.com/actions/upload-pages-artifact/issues/74
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -9,4 +12,4 @@ const nextConfig = {
   basePath: "",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
