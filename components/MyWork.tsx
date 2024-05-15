@@ -104,7 +104,7 @@ const MyWork: React.FC = () => {
       <Grid my="5" className="worksGrid">
         {worksArray.map((work) => (
           <Grid.Col
-            span={{ base: 12, md: 6, lg: 4 }}
+            span={{ base: 12, sm: 6, md: 6, lg: 4 }}
             key={work.title}
             style={{
               paddingBottom: "10px",
