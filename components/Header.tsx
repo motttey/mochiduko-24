@@ -8,6 +8,7 @@ const linksHref = [
   { link: "#worksContainer", label: "Works" },
   { link: "#egoLinkContainer", label: "Links" },
   { link: "#illustContainer", label: "Illusts" },
+  { link: "https://motttey.github.io/dialy/", label: "Dialy" },
 ];
 
 const SiteHeader: React.FC = () => {
