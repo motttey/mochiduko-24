@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "serve out",
     "lint": "next lint --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@mantine/core": "^7.2.2",
@@ -27,7 +29,16 @@
     "webgl-fluid-enhanced": "^0.6.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.5.0",
     "@nextui-org/react": "^2.2.10",
+    "@storybook/addon-essentials": "^8.1.5",
+    "@storybook/addon-interactions": "^8.1.5",
+    "@storybook/addon-links": "^8.1.5",
+    "@storybook/addon-onboarding": "^8.1.5",
+    "@storybook/blocks": "^8.1.5",
+    "@storybook/nextjs": "^8.1.5",
+    "@storybook/react": "^8.1.5",
+    "@storybook/test": "^8.1.5",
     "@types/node": "^20.11.28",
     "@types/react": "18.2.71",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
@@ -35,6 +46,8 @@
     "eslint": "^8.38.0",
     "eslint-config-next": "^14.0.0",
     "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.2.5"
+    "eslint-plugin-storybook": "^0.8.0",
+    "prettier": "^3.2.5",
+    "storybook": "^8.1.5"
   }
 }
