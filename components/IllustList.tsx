@@ -143,10 +143,11 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
             label={
               <>
                 <Box ml={5}>
-                  <h3>望月田吾作のイラスト</h3>
+                  <h3 id="illustration-heading">望月田吾作のイラスト</h3>
                 </Box>
               </>
             }
+            aria-labelledby="illustration-heading"
           />
           <TagsInput
             my={10}
@@ -155,6 +156,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
             value={queryList}
             placeholder="Please input keywords"
             onChange={setQueryList}
+            aria-label="キーワード入力"
           />
           <Divider
             my="md"
@@ -165,9 +167,10 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
             }}
             label={
               <>
-                <Box ml={5}>Search results</Box>
+                <span id="search-results-heading">検索結果</span>
               </>
             }
+            aria-labelledby="search-results-heading"
           />
         </Grid.Col>
       </Grid>
@@ -207,6 +210,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                     target="_blank"
                     rel="noopener noreferrer"
                     key={`${index}_${illust.id.toString()}`}
+                    aria-label={`イラスト ${illust.title}`}
                   >
                     <div className="relative aspect-square">
                       <Image
