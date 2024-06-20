@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 
 // https://ospaarmann.medium.com/google-analytics-4-ga4-in-next-js-14-and-react-with-event-tracking-2ceabb00c59a
 // Use google analytics with next.js
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { MantineProvider } from "@mantine/core";
 
 import "@mantine/core/styles.css";
