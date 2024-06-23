@@ -1,6 +1,8 @@
 import { Noto_Sans_JP } from "next/font/google";
 import { Metadata, Viewport } from "next";
 
+import React from "react";
+
 // https://ospaarmann.medium.com/google-analytics-4-ga4-in-next-js-14-and-react-with-event-tracking-2ceabb00c59a
 // Use google analytics with next.js
 import { GoogleAnalytics } from "@next/third-parties/google";

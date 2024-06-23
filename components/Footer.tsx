@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import Link from "next/link";
 import { Container, Divider } from "@mantine/core";
 import styles from "@/app/page.module.css";

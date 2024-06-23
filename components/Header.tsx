@@ -1,7 +1,8 @@
 "use client";
-import styles from "@/app/page.module.css";
+
+import React, { useState } from "react";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
-import { useState } from "react";
+import styles from "@/app/page.module.css";
 
 const linksHref = [
   { link: "#profileContainer", label: "Profile" },
