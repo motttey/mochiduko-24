@@ -1,25 +1,28 @@
 "use client";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+
 import React, { useState } from "react";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
+
 import styles from "@/app/page.module.css";
 
 const linksHref = [
-  { link: "#profileContainer", label: "Profile" },
-  { link: "#worksContainer", label: "Works" },
-  { link: "#egoLinkContainer", label: "Links" },
-  { link: "#illustContainer", label: "Illusts" },
-  { link: "https://motttey.github.io/dialy/", label: "Dialy" },
+  { link: "#profileContainer", label: "Profile", external: false },
+  { link: "#worksContainer", label: "Works", external: false },
+  { link: "#egoLinkContainer", label: "Links", external: false },
+  { link: "#illustContainer", label: "Illusts", external: false },
+  { link: "https://motttey.github.io/dialy/", label: "Dialy", external: true },
 ];
-
 const SiteHeader: React.FC = () => {
   const title = "モチヅ庫'24";
   const [active, setActive] = useState(0);
-
   const mainItems = linksHref.map((item, index) => (
     <Anchor<"a">
       href={item.link}
       key={item.label}
+      target={item.external ? "_blank" : "_self"}
       data-active={index === active || undefined}
       className={styles.mainLink}
       onClick={() => {
@@ -27,7 +30,21 @@ const SiteHeader: React.FC = () => {
       }}
       visibleFrom="xs"
     >
-      {item.label}
+      <span
+        style={{
+          marginLeft: "4px",
+          marginRight: "4px",
+        }}
+      >
+        {item.label}
+      </span>
+      {item.external && (
+        <FontAwesomeIcon
+          icon={faUpRightFromSquare}
+          className="h-[20px]"
+          color="#22b8cf"
+        />
+      )}
     </Anchor>
   ));
 
