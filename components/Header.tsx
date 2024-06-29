@@ -30,18 +30,12 @@ const SiteHeader: React.FC = () => {
       }}
       visibleFrom="xs"
     >
-      <span
-        style={{
-          marginLeft: "4px",
-          marginRight: "4px",
-        }}
-      >
-        {item.label}
-      </span>
+      <span>{item.label}</span>
       {item.external && (
         <FontAwesomeIcon
           icon={faUpRightFromSquare}
-          className="h-[20px]"
+          className={styles.icon}
+          size="sm"
           color="#22b8cf"
         />
       )}

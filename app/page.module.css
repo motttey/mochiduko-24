@@ -525,3 +525,8 @@ a.card > div {
     border-bottom-color: #22b8cf;
   }
 }
+
+.icon {
+  margin-left: 4px;
+  margin-right: 4px;
+}
