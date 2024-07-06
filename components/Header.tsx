@@ -2,6 +2,9 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 import React, { useState } from "react";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
@@ -18,6 +21,7 @@ const linksHref = [
 const SiteHeader: React.FC = () => {
   const title = "モチヅ庫'24";
   const [active, setActive] = useState(0);
+  const iconStyle: React.CSSProperties = { marginLeft: 4, fontSize: 12 };
   const mainItems = linksHref.map((item, index) => (
     <Anchor<"a">
       href={item.link}
@@ -30,15 +34,16 @@ const SiteHeader: React.FC = () => {
       }}
       visibleFrom="xs"
     >
-      <span>{item.label}</span>
-      {item.external && (
-        <FontAwesomeIcon
-          icon={faUpRightFromSquare}
-          className={styles.icon}
-          size="sm"
-          color="#22b8cf"
-        />
-      )}
+      <span>
+        {item.label}
+        {item.external && (
+          <FontAwesomeIcon
+            icon={faUpRightFromSquare}
+            style={iconStyle}
+            color="#22b8cf"
+          />
+        )}
+      </span>
     </Anchor>
   ));
 
