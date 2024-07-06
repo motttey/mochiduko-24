@@ -63,7 +63,7 @@ const SiteHeader: React.FC = () => {
                 {title}
               </Text>
             </Group>
-            <Group gap={0} justify="space-between" className={styles.mainLinks}>
+            <Group justify="space-between" className={styles.mainLinks}>
               {mainItems}
             </Group>
           </Box>

@@ -8,8 +8,10 @@ import React from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { MantineProvider } from "@mantine/core";
 
-import "@mantine/core/styles.css";
 import "./globals.css";
+
+import "@mantine/core/styles.css";
+import "@mantine/core/styles.layer.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
