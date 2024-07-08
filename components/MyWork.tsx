@@ -114,8 +114,8 @@ const MyWork: React.FC = () => {
           >
             <Card
               shadow="sm"
-              padding="md"
-              mx={{ base: "xl", md: "lg" }}
+              padding="lg"
+              mx={{ base: "lg", md: "md", lg: "sm" }}
               component="a"
               href={work.url}
               target="_blank"

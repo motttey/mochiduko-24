@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
         <Grid.Col>
           <Title order={5} ta="center">
             Tagosaku Mochidhuki is a{" "}
-            <Text c="cyan" fw={700} size="lg" span>
+            <Text c="cyan" fw={700} size="md" span>
               Hyper Doraemon Creator
             </Text>{" "}
             in JAPAN
