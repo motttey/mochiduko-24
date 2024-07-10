@@ -244,7 +244,7 @@ a.card > div {
   position: absolute;
   pointer-events: none;
   /* 中央に配置 */
-  top: 50%;
+  top: calc(50% - 1em);
   left: 50%;
   transform: translate(-50%, -50%);
   /* 縁取り */
@@ -259,7 +259,7 @@ a.card > div {
     2px 0 0 #fff;
   font-weight: bold;
   font-size: 1em;
-  color: "dimgray";
+  color: dimgray;
   /* 手前に配置 */
   z-index: 10;
 }
