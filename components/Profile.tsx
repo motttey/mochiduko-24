@@ -75,7 +75,10 @@ const Profile: React.FC = () => {
                 と申します。ドラえもんや藤子不二雄作品の二次創作を中心に、イラストを描いています。
               </Text>
               <Text my={4}>
-                お仕事のご依頼や感想は、 motitago(at)gmail.com
+                お仕事のご依頼や感想は、{" "}
+                <Text span fw={700}>
+                  motitago(at)gmail.com
+                </Text>
                 までよろしくお願いします。
               </Text>
               <Text my={4}>
@@ -85,6 +88,7 @@ const Profile: React.FC = () => {
                   target="blank"
                   underline="always"
                   href="https://www.amazon.jp/hz/wishlist/ls/1YEAX8DRN0GWO?ref_=wl_share"
+                  fw={700}
                 >
                   ほしいものリスト
                 </Anchor>
@@ -92,7 +96,7 @@ const Profile: React.FC = () => {
               </Text>
               <Image
                 src="signature.png"
-                height={60}
+                height={100}
                 fit="contain"
                 alt="Tagosaku Mochiduki Signature"
                 style={{ filter: "invert(1)" }}
