@@ -370,7 +370,9 @@ a.card > div {
   position: relative;
   max-width: 500px;
   min-width: 300px;
-  margin: -20px 20px;
+  margin: -20px 50px;
+  padding: -20px 50px;
+
   z-index: 2;
 
   transform: translateY(0);
