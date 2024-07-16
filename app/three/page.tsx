@@ -1,6 +1,8 @@
 "use client";
 import styles from "@/app/page.module.css";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from '@react-three/drei';
+
 import { useRef, useState } from "react";
 
 // https://github.com/pmndrs/react-three-fiber
@@ -54,6 +56,7 @@ export default function Page() {
           />
           <Box position={[-1.2, 0, 0]} />
           <Box position={[1.2, 0, 0]} />
+          <OrbitControls />
         </Canvas>
       </main>
     </>
