@@ -264,12 +264,13 @@ a.card > div {
   z-index: 10;
 }
 
-.hex:hover p {
-  display: block;
-}
-
 .hex p {
   display: none;
+  font-size: 1em;
+}
+
+.hex:hover p {
+  display: block;
 }
 
 .diamondRow {
@@ -434,6 +435,10 @@ a.card > div {
   /* 画面が小さい場合はmin-width */
   .profileDescription {
     min-width: none;
+  }
+
+  .hex p {
+    font-size: 0.5em;
   }
 }
 
