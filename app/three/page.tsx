@@ -2,29 +2,31 @@
 import styles from "@/app/page.module.css";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-
 import { useRef, useState } from "react";
 
-// https://github.com/pmndrs/react-three-fiber
 function Box(props: any) {
-  // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef();
-  // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  // Subscribe this component to the render-loop, rotate the mesh every frame
+  const [position, setPosition] = useState([0, 5, 0]); // 初期位置を上に設定
+
+  // 定期的に移動し, 画面外に出たらリセットする
   useFrame((_state, delta) => {
-    // Added null check and rotation property access
-    if (ref.current && (ref.current as any).rotation) {
-      (ref.current as any).rotation.x += delta;
+    if (ref.current && (ref.current as any).position) {
+      let newPosition = [...position];
+      newPosition[1] -= delta * 2;
+      if (newPosition[1] < -5) {
+        newPosition[1] = 5;
+      }
+      setPosition(newPosition);
     }
   });
 
-  // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
       {...props}
       ref={ref}
+      position={position}
       scale={clicked ? 1.5 : 1}
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
