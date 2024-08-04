@@ -241,8 +241,12 @@ a.card > div {
 
 .diamond p,
 .hex p {
+  font-weight: 700;
+  font-size: 1em;
   position: absolute;
   pointer-events: none;
+  text-align: center;
+  text-wrap: pretty;
   /* 中央に配置 */
   top: calc(50% - 1em);
   left: 50%;
@@ -257,8 +261,6 @@ a.card > div {
     0 -2px 0 #fff,
     -2px 0 0 #fff,
     2px 0 0 #fff;
-  font-weight: bold;
-  font-size: 1em;
   color: dimgray;
   /* 手前に配置 */
   z-index: 10;
