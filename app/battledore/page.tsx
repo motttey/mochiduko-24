@@ -9,7 +9,8 @@ const Ball = (props: any) => {
 
   // ボールの初期位置と速度
   const initialPosition = [0, 0, 0];
-  const initialVelocity = [0.0, -0.015, 0.01];
+  const initialVelocity = [0.01, 0.02, -0.01];
+  const gravity = -0.000098; // 重力加速度
 
   // ボールの状態管理
   const [position, setPosition] = useState(initialPosition);
@@ -17,6 +18,9 @@ const Ball = (props: any) => {
 
   // ボールの動きを制御するフレームごとの処理
   useFrame(() => {
+    // 重力を速度に加算
+    setVelocity((prev) => [prev[0], prev[1] + gravity, prev[2]]);
+
     // ボールの位置を更新
     setPosition((prev) => [
       prev[0] + velocity[0],
@@ -24,19 +28,19 @@ const Ball = (props: any) => {
       prev[2] + velocity[2],
     ]);
 
-    // ゲームオーバー条件のチェック
+    // 画面端の処理
     if (position[1] < -5) {
       props.setGameOver(true);
       window.alert("game over");
     }
     if (position[1] > 5) {
-      setVelocity([0, -0.03, velocity[2]]);
+      setVelocity((prev) => [prev[0], -0.03, prev[2]]);
     }
-    if (position[2] <= -3) {
-      setVelocity([0, velocity[1], -0.01]);
+    if (position[2] <= -3 || position[2] >= 3) {
+      setVelocity((prev) => [prev[0], prev[1], -prev[2]]);
     }
-    if (position[2] <= 3) {
-      setVelocity([0, velocity[1], 0.01]);
+    if (position[0] <= -3 || position[0] >= 3) {
+      setVelocity((prev) => [-prev[0], prev[1], prev[2]]);
     }
   });
 
@@ -44,8 +48,9 @@ const Ball = (props: any) => {
   const handleClick = () => {
     if (!props.gameOver) {
       // ボールを上に打ち返す
-      const velocityX = (Math.random() - 0.5) * 0.01;
-      setVelocity([velocityX, 0.03, 0.01]);
+      const velocityX = (Math.random() - 0.5) * 0.02;
+      const velocityZ = (Math.random() - 0.5) * 0.02;
+      setVelocity([velocityX, 0.03, velocityZ]);
     } else {
       props.setGameOver(false);
     }
