@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, Vector3 } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
@@ -29,9 +29,8 @@ const Ball = (props: any) => {
     ]);
 
     // 画面端の処理
-    if (position[1] < -5) {
+    if (position[1] < -3) {
       props.setGameOver(true);
-      window.alert("game over");
     }
     if (position[1] > 5) {
       setVelocity((prev) => [prev[0], -0.03, prev[2]]);
@@ -92,6 +91,15 @@ export default function Page() {
   const handleClick = () => {
     setGameOver(false);
   };
+
+  // ゲームオーバー時にアラートを表示
+  useEffect(() => {
+    console.log(gameOver);
+    if (gameOver) {
+      window.alert("game over");
+    }
+  }, [gameOver]);
+
   return (
     <div style={{ width: "100vw", height: "75vh" }}>
       <Canvas onClick={handleClick}>
