@@ -8,7 +8,7 @@ const Ball = (props: any) => {
   const ballRef: React.Ref<any> | undefined = useRef();
 
   // ボールの初期位置と速度
-  const initialPosition = [0, 0, 0];
+  const initialPosition = [0, 0, 1];
   const initialVelocity = [0.01, 0.02, -0.01];
   const gravity = -0.000098; // 重力加速度
 
@@ -36,6 +36,7 @@ const Ball = (props: any) => {
     if (position[1] > 5) {
       setVelocity((prev) => [prev[0], -0.03, prev[2]]);
     }
+
     if (position[2] <= -3 || position[2] >= 3) {
       setVelocity((prev) => [prev[0], prev[1], -prev[2]]);
     }
@@ -45,12 +46,34 @@ const Ball = (props: any) => {
   });
 
   // ユーザーのクリックでボールを打ち返す関数
+  // ユーザーのクリックでボールを打ち返す関数
   const handleClick = () => {
     if (!props.gameOver) {
-      // ボールを上に打ち返す
-      const velocityX = (Math.random() - 0.5) * 0.02;
-      const velocityZ = (Math.random() - 0.5) * 0.02;
-      setVelocity([velocityX, 0.03, velocityZ]);
+      // 現在の位置から[0, 0, -3]への方向ベクトルを計算
+      const target = [0, 0, -3];
+      const direction = [
+        target[0] - position[0],
+        target[1] - position[1],
+        target[2] - position[2],
+      ];
+
+      // 方向ベクトルを正規化
+      const magnitude = Math.sqrt(
+        direction[0] ** 2 + direction[1] ** 2 + direction[2] ** 2,
+      );
+      const normalizedDirection = [
+        direction[0] / magnitude,
+        direction[1] / magnitude,
+        direction[2] / magnitude,
+      ];
+
+      // 速度を設定（速度の大きさは任意で調整可能）
+      const speed = 0.03;
+      setVelocity([
+        normalizedDirection[0] * speed,
+        normalizedDirection[1] * speed,
+        normalizedDirection[2] * speed,
+      ]);
     } else {
       props.setGameOver(false);
     }
