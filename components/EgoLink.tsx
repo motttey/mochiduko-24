@@ -11,7 +11,7 @@ interface MyLink {
   flex?: number;
 }
 
-const PIXIV_API_URL: string = "http://embed.pixiv.net/decorate.php";
+const PIXIV_API_URL: string = "https://embed.pixiv.net/decorate.php";
 const fetchUrl = (id: string) =>
   `${PIXIV_API_URL}?illust_id=${id || ""}&mode=sns-automator`;
 
