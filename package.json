@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
-    "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mantine/core": "^7.11.1",
@@ -36,17 +35,14 @@
     "webgl-fluid-enhanced": "^0.6.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.5.0",
     "@nextui-org/react": "^2.2.10",
-    "@storybook/addon-essentials": "^8.1.5",
-    "@storybook/addon-interactions": "^8.1.5",
-    "@storybook/addon-links": "^8.1.5",
-    "@storybook/addon-onboarding": "^8.1.5",
+    "@storybook/addon-interactions": "^8.2.8",
+    "@storybook/addon-onboarding": "^8.2.8",
     "@storybook/addon-styling-webpack": "^1.0.0",
-    "@storybook/blocks": "^8.1.5",
-    "@storybook/nextjs": "^8.1.5",
-    "@storybook/react": "^8.1.5",
-    "@storybook/test": "^8.1.5",
+    "@storybook/blocks": "^8.2.8",
+    "@storybook/nextjs": "^8.2.8",
+    "@storybook/react": "^8.2.8",
+    "@storybook/test": "^8.2.8",
     "@types/node": "^20.11.28",
     "@types/react": "18.2.71",
     "eslint": "^8.56.0",
@@ -54,6 +50,6 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-storybook": "^0.8.0",
     "prettier": "^3.3.2",
-    "storybook": "^8.1.5"
+    "storybook": "^8.2.8"
   }
 }
