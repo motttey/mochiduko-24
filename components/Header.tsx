@@ -32,7 +32,6 @@ const SiteHeader: React.FC = () => {
       onClick={() => {
         setActive(index);
       }}
-      visibleFrom="xs"
     >
       <span>
         {item.label}
@@ -50,12 +49,13 @@ const SiteHeader: React.FC = () => {
   return (
     <header>
       <Container size="md" className={styles.header}>
-        <Group justify="space-between" className={styles.inner}>
+        <Group className={styles.inner}>
           <Image
             className={styles.hex}
             h={64}
             alt="header image of doraemon"
             src="./doraemon-namecard.webp"
+            visibleFrom="xs"
           />
           <Box className={styles.links}>
             <Group justify="flex-end">
