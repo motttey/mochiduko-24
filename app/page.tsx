@@ -1,12 +1,10 @@
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
-
-import { Illust } from "@/types/api";
-
-import Profile from "@/components/Profile";
 import EgoLink from "@/components/EgoLink";
-import MyWork from "@/components/MyWork";
 import IllustList from "@/components/IllustList";
+import MyWork from "@/components/MyWork";
+import Profile from "@/components/Profile";
+import { Illust } from "@/types/api";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 import styles from "./page.module.css";
 

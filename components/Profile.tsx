@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import styles from "@/app/page.module.css";
 import {
   Anchor,
   Image,
@@ -11,7 +11,7 @@ import {
   Box,
   Divider,
 } from "@mantine/core";
-import styles from "@/app/page.module.css";
+import React from "react";
 
 const Profile: React.FC = () => {
   return (

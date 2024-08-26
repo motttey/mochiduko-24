@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
 import { MantineProvider } from "@mantine/core";
+import type { Preview } from "@storybook/react";
 import React from "react";
 
 export const preview: Preview = {

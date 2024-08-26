@@ -1,7 +1,8 @@
 "use client";
+
 import styles from "@/app/page.module.css";
-import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 
 const POSITION_MAX = 10;

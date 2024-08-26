@@ -1,15 +1,14 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import styles from "@/app/page.module.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
-
-import React, { useState } from "react";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
+import React, { useState } from "react";
 
-import styles from "@/app/page.module.css";
+config.autoAddCss = false;
 
 const linksHref = [
   { link: "#profileContainer", label: "Profile", external: false },

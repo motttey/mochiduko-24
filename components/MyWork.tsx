@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
-import { Grid, Box, Divider, Image, Card, Text } from "@mantine/core";
 import styles from "@/app/page.module.css";
+import { Grid, Box, Divider, Image, Card, Text } from "@mantine/core";
+import React from "react";
 
 interface MyWorks {
   title: string;

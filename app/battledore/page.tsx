@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, Vector3 } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { Canvas, useFrame, Vector3 } from "@react-three/fiber";
+import React, { useEffect, useRef, useState } from "react";
 
 const Ball = (props: any) => {
   const ballRef: React.Ref<any> | undefined = useRef();
