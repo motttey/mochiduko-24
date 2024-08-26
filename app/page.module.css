@@ -543,3 +543,10 @@ a.card > div {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   text-decoration: none;
 }
+
+/* Mobile styles for EgoLink */
+@media (max-width: 600px) {
+  .mainLink > span {
+    font-size: 10px;
+  }
+}

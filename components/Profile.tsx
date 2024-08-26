@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
     <div className={styles.profileContainer} id="profileContainer">
       <Grid my="10">
         <Grid.Col>
-          <Title order={5} ta="center">
+          <Title mr={20} ml={20} order={5} ta="center">
             Tagosaku Mochidhuki is a{" "}
             <Text c="cyan" fw={700} size="md" span>
               Hyper Doraemon Creator
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
             className={styles.commonDivider}
             label={
               <>
-                <Box ml={5}>
+                <Box mr={5} ml={5}>
                   <h3>望月田吾作について</h3>
                 </Box>
               </>
