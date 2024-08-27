@@ -312,16 +312,17 @@ a.card > div {
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
+/* Mantineのスタイルを上書きするためimportantを付与 */
 .inner {
   height: rem(84px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 
 @media (max-width: 800px) {
   .inner {
-    justify-content: center;
+    justify-content: center !important;
   }
 }
 
