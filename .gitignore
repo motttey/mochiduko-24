@@ -133,3 +133,7 @@ dist
 
 # vscode
 .vscode
+
+# pwa generated file
+public/sw.js
+public/workbox-*.js
