@@ -4,6 +4,7 @@ import styles from "@/app/page.module.css";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
+import { TextureLoader } from "three";
 
 const POSITION_MAX = 10;
 const BOX_NUM = 10;
@@ -30,6 +31,9 @@ function Box(props: any) {
     }
   });
 
+  const loader = new TextureLoader();
+  const texture = loader.load("/icon256_maskable.png");
+
   return (
     <mesh
       {...props}
@@ -42,6 +46,10 @@ function Box(props: any) {
     >
       <boxGeometry args={[0.5, 0.5, 0.5]} />
       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+      {/* Add a Sprite */}
+      <sprite scale={[1, 1, 1]} position={[0, 1, 0]}>
+        <spriteMaterial attach="material" map={texture} />
+      </sprite>
     </mesh>
   );
 }
@@ -66,7 +74,7 @@ export default function Page() {
           />
           {Array(BOX_NUM)
             .fill(0)
-            .map((index: number) => {
+            .map((_: number, index: number) => {
               const x = (Math.random() * POSITION_MAX) / 2 - POSITION_MAX / 2;
               const y = (Math.random() * POSITION_MAX) / 2;
               const z = (Math.random() * POSITION_MAX) / 3 - POSITION_MAX / 3;
