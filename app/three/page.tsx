@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { TextureLoader } from "three";
 
 const POSITION_MAX = 10;
-const BOX_NUM = 10;
+const BOX_NUM = 15;
 
 function Box(props: any) {
   const ref = useRef();
@@ -32,7 +32,7 @@ function Box(props: any) {
   });
 
   const loader = new TextureLoader();
-  const texture = loader.load("/icon256_maskable.png");
+  const texture = loader.load("/dorayaki.png");
 
   return (
     <mesh
@@ -44,7 +44,9 @@ function Box(props: any) {
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
     >
-      <boxGeometry args={[0.5, 0.5, 0.5]} />
+      {/*
+        <boxGeometry args={[0.5, 0.5, 0.5]} />
+      */}
       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
       {/* Add a Sprite */}
       <sprite scale={[1, 1, 1]} position={[0, 1, 0]}>
@@ -57,7 +59,7 @@ function Box(props: any) {
 export default function Page() {
   return (
     <main className={styles.main} id="mainLayout">
-      <div style={{ width: "50vw", height: "75vh" }}>
+      <div style={{ width: "100vw", height: "75vh" }}>
         <Canvas>
           <ambientLight intensity={Math.PI / 2} />
           <spotLight
@@ -75,8 +77,8 @@ export default function Page() {
           {Array(BOX_NUM)
             .fill(0)
             .map((_: number, index: number) => {
-              const x = (Math.random() * POSITION_MAX) / 2 - POSITION_MAX / 2;
-              const y = (Math.random() * POSITION_MAX) / 2;
+              const x = (Math.random() * POSITION_MAX) - POSITION_MAX/2;
+              const y = (Math.random() * POSITION_MAX);
               const z = (Math.random() * POSITION_MAX) / 3 - POSITION_MAX / 3;
 
               return <Box key={index} position={[x, y, z]} />;
