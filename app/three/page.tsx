@@ -3,31 +3,26 @@
 import styles from "@/app/page.module.css";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
-import { TextureLoader } from "three";
+import { useMemo, useRef, useState } from "react";
+import { Mesh, TextureLoader } from "three";
 
 const POSITION_MAX = 10;
 const BOX_NUM = 15;
 
 function Box(props: any) {
-  const ref = useRef();
+  const ref = useRef<Mesh>(null);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  const [position, setPosition] = useState([
-    props.position[0],
-    props.position[1],
-    props.position[2],
-  ]); // 初期位置を上に設定
 
   // 定期的に移動し, 画面外に出たらリセットする
+  const initialPosition = useMemo(() => props.position, [props.position]);
+
   useFrame((_state, delta) => {
-    if (ref.current && (ref.current as any).position) {
-      let newPosition = [...position];
-      newPosition[1] -= delta * 2;
-      if (newPosition[1] < -POSITION_MAX / 2) {
-        newPosition[1] = POSITION_MAX / 2;
+    if (ref.current) {
+      ref.current.position.y -= delta * 2;
+      if (ref.current.position.y < -POSITION_MAX / 2) {
+        ref.current.position.y = POSITION_MAX / 2;
       }
-      setPosition(newPosition);
     }
   });
 
@@ -38,7 +33,7 @@ function Box(props: any) {
     <mesh
       {...props}
       ref={ref}
-      position={position}
+      position={initialPosition}
       scale={clicked ? 1.5 : 1}
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
@@ -77,8 +72,8 @@ export default function Page() {
           {Array(BOX_NUM)
             .fill(0)
             .map((_: number, index: number) => {
-              const x = (Math.random() * POSITION_MAX) - POSITION_MAX/2;
-              const y = (Math.random() * POSITION_MAX);
+              const x = Math.random() * POSITION_MAX - POSITION_MAX / 2;
+              const y = Math.random() * POSITION_MAX;
               const z = (Math.random() * POSITION_MAX) / 3 - POSITION_MAX / 3;
 
               return <Box key={index} position={[x, y, z]} />;
