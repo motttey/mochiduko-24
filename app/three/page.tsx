@@ -4,7 +4,7 @@ import styles from "@/app/page.module.css";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
-import { Mesh, TextureLoader } from "three";
+import { Color, Mesh, TextureLoader } from "three";
 
 const POSITION_MAX = 10;
 const BOX_NUM = 15;
@@ -45,7 +45,13 @@ function Box(props: any) {
       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
       {/* Add a Sprite */}
       <sprite scale={[1, 1, 1]} position={[0, 1, 0]}>
-        <spriteMaterial attach="material" map={texture} />
+        <spriteMaterial
+          attach="material"
+          color={new Color(0xffffff)}
+          depthTest={false}
+          depthWrite={false}
+          map={texture}
+        />
       </sprite>
     </mesh>
   );
@@ -58,18 +64,18 @@ export default function Page() {
     <main className={styles.main} id="mainLayout">
       <div style={{ width: "100vw", height: "75vh" }}>
         <Canvas>
-          <ambientLight intensity={Math.PI / 2} />
+          <ambientLight color={new Color(0xffffff)} intensity={1} />
           <spotLight
             position={[POSITION_MAX, POSITION_MAX, POSITION_MAX]}
             angle={0.15}
             penumbra={1}
             decay={0}
-            intensity={Math.PI}
+            intensity={1}
           />
           <pointLight
             position={[-POSITION_MAX, -POSITION_MAX, -POSITION_MAX]}
             decay={0}
-            intensity={Math.PI}
+            intensity={1}
           />
           {Array(BOX_NUM)
             .fill(0)
@@ -90,7 +96,13 @@ export default function Page() {
             ]}
           >
             <sprite scale={[10, 10, 1]} position={[0, 0, 1]}>
-              <spriteMaterial attach="material" map={maxinTexture} />
+              <spriteMaterial
+                attach="material"
+                color={new Color(0xffffff)}
+                depthTest={false}
+                depthWrite={false}
+                map={maxinTexture}
+              />
             </sprite>
           </mesh>
         </Canvas>
