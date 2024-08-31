@@ -52,6 +52,8 @@ function Box(props: any) {
 }
 
 export default function Page() {
+  const maxinTexture = new TextureLoader().load("/icon512_rounded.png");
+
   return (
     <main className={styles.main} id="mainLayout">
       <div style={{ width: "100vw", height: "75vh" }}>
@@ -80,6 +82,17 @@ export default function Page() {
             })}
           ;
           <OrbitControls />
+          <mesh
+            position={[
+              1,
+              1,
+              -(Math.random() * POSITION_MAX) / 3 - POSITION_MAX / 3,
+            ]}
+          >
+            <sprite scale={[10, 10, 1]} position={[0, 0, 1]}>
+              <spriteMaterial attach="material" map={maxinTexture} />
+            </sprite>
+          </mesh>
         </Canvas>
       </div>
     </main>
