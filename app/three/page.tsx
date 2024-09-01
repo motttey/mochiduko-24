@@ -3,8 +3,8 @@
 import styles from "@/app/page.module.css";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
-import { Color, Mesh, TextureLoader } from "three";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Color, Mesh, Texture, TextureLoader } from "three";
 
 const POSITION_MAX = 10;
 const BOX_NUM = 20;
@@ -13,6 +13,12 @@ function Box(props: any) {
   const ref = useRef<Mesh>(null);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
+  const [texture, setTexture] = useState<Texture | null>(null);
+
+  useEffect(() => {
+    const loader = new TextureLoader();
+    setTexture(loader.load("/dorayaki.png"));
+  }, []);
 
   // 定期的に移動し, 画面外に出たらリセットする
   const initialPosition = useMemo(() => props.position, [props.position]);
@@ -27,8 +33,6 @@ function Box(props: any) {
     }
   });
 
-  const loader = new TextureLoader();
-  const texture = loader.load("/dorayaki.png");
   const scale = (1 * Math.random() + 1) * 0.75;
   // X方向のランダムな回転角度（-15度から15度の間）
   const randomRotation = useMemo(() => {
@@ -66,7 +70,12 @@ function Box(props: any) {
 }
 
 export default function Page() {
-  const maxinTexture = new TextureLoader().load("/dorayakidaisuki.png");
+  const [maxinTexture, setMainTexture] = useState<Texture | null>(null);
+
+  useEffect(() => {
+    const loader = new TextureLoader();
+    setMainTexture(loader.load("/dorayakidaisuki.png"));
+  }, []);
 
   return (
     <main className={styles.main} id="mainLayout">
