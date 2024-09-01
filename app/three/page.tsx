@@ -29,14 +29,18 @@ function Box(props: any) {
 
   const loader = new TextureLoader();
   const texture = loader.load("/dorayaki.png");
-  const scale = 1 * Math.random() + 0.5;
-  const rotation = Math.random() * 10;
+  const scale = (1 * Math.random() + 1) * 0.75;
+  // X方向のランダムな回転角度（-15度から15度の間）
+  const randomRotation = useMemo(() => {
+    const maxRotation = (15 * Math.PI) / 180; // 15度をラジアンに変換
+    return Math.random() * 2 * maxRotation - maxRotation;
+  }, []);
+
   return (
     <mesh
       {...props}
       ref={ref}
       position={initialPosition}
-      rotation={[rotation, rotation, 0]}
       scale={clicked ? 1.5 : 1}
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
@@ -54,6 +58,7 @@ function Box(props: any) {
           depthTest={false}
           depthWrite={false}
           map={texture}
+          rotation={randomRotation}
         />
       </sprite>
     </mesh>
@@ -92,7 +97,7 @@ export default function Page() {
           ;
           <OrbitControls />
           <mesh position={[1, 1, -POSITION_MAX / 3]}>
-            <sprite scale={[7.5, 7.5, 0]} position={[0, 0, 1]}>
+            <sprite scale={[7.5, 7.5, 0]} position={[0, -POSITION_MAX / 2, 1]}>
               <spriteMaterial
                 attach="material"
                 color={new Color(0xffffff)}
