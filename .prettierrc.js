@@ -1,5 +1,5 @@
 module.exports = {
-  importOrder: ["^@foo/(.*)$", "^[./]"],
+  importOrder: ["^@/(.*)$", "^[./]"],
   importOrderSeparation: true,
   plugins: ["@trivago/prettier-plugin-sort-imports"],
 };

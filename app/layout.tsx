@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/core/styles.layer.css";
@@ -9,6 +7,9 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata, Viewport } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import React from "react";
+
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 import "./globals.css";
 

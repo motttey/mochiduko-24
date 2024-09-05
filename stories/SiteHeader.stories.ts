@@ -1,5 +1,6 @@
-import SiteHeader from "@/components/Header";
 import type { Meta, StoryObj } from "@storybook/react";
+
+import SiteHeader from "@/components/Header";
 
 const meta = {
   title: "Mochiduko/Header",

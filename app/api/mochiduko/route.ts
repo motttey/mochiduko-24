@@ -1,6 +1,7 @@
 // This gets called on every request
-import { Illust } from "@/types/api";
 import { NextResponse } from "next/server";
+
+import { Illust } from "@/types/api";
 
 export async function GET() {
   // Fetch data from external API

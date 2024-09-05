@@ -1,9 +1,10 @@
 "use client";
 
-import styles from "@/app/page.module.css";
 import { Container, Divider } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
+
+import styles from "@/app/page.module.css";
 
 const SiteFooter: React.FC = () => {
   const title = `© ${new Date().getFullYear()} Tagosaku Mochiduki`;

@@ -1,12 +1,13 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import { Illust, Tag } from "@/types/api";
 import { Grid, Image, Alert, TagsInput, Divider, Box } from "@mantine/core";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useMemo } from "react";
 import { Virtuoso } from "react-virtuoso";
 import useSWR from "swr";
+
+import styles from "@/app/page.module.css";
+import { Illust, Tag } from "@/types/api";
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];

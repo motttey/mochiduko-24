@@ -1,12 +1,13 @@
 "use client";
 
-import styles from "@/app/page.module.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
 import React, { useState } from "react";
+
+import styles from "@/app/page.module.css";
 
 config.autoAddCss = false;
 

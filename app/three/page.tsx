@@ -1,10 +1,11 @@
 "use client";
 
-import styles from "@/app/page.module.css";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Color, Mesh, Texture, TextureLoader } from "three";
+
+import styles from "@/app/page.module.css";
 
 const POSITION_MAX = 10;
 const BOX_NUM = 20;
