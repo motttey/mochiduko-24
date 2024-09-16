@@ -9,9 +9,9 @@ const withPWA = require("next-pwa")({
   disable: process.env.NODE_ENV === "development",
 });
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const nextConfig = withPWA({
   output: "export",
@@ -23,6 +23,6 @@ const nextConfig = withPWA({
   basePath: "",
 });
 
-const nextConfigWithBundleVisualizer = withBundleAnalyzer(nextConfig)
+const nextConfigWithBundleVisualizer = withBundleAnalyzer(nextConfig);
 
 module.exports = nextConfigWithBundleVisualizer;

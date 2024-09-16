@@ -17,7 +17,7 @@ import styles from "@/app/page.module.css";
 const Profile: React.FC = () => {
   return (
     <div className={styles.profileContainer} id="profileContainer">
-      <Grid my="10">
+      <Grid visibleFrom="sm">
         <Grid.Col>
           <Title mr={20} ml={20} order={5} ta="center">
             Tagosaku Mochidhuki is a{" "}
