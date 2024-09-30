@@ -9,6 +9,7 @@ import {
   Title,
   Box,
   Divider,
+  Code,
 } from "@mantine/core";
 import React from "react";
 
@@ -78,7 +79,7 @@ const Profile: React.FC = () => {
               <Text my={4}>
                 お仕事のご依頼や感想は、{" "}
                 <Text span fw={700}>
-                  motitago(at)gmail.com
+                  <Code>motitago(at)gmail.com</Code>
                 </Text>
                 までよろしくお願いします。
               </Text>
