@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "ANALYZE=true next build",
-    "start": "serve out",
+    "start": "next dev",
     "lint": "next lint --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "storybook": "storybook dev -p 6006",
@@ -31,7 +31,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-virtuoso": "^4.6.2",
-    "serve": "^14.2.1",
     "swr": "^2.2.5",
     "three": "^0.166.1",
     "typescript": "^5.4.0",
