@@ -28,9 +28,7 @@ const chunkArray = (array: Array<Illust>) => {
   return results;
 };
 
-// const isProd = process.env.NODE_ENV === "production";
 const prefixPath = "";
-
 const fetchUrl = (id: string) =>
   `https://embed.pixiv.net/decorate.php?illust_id=${id || ""}&mode=sns-automator`;
 const fetchPixivLink = (id: string) =>
