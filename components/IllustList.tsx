@@ -57,8 +57,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
   const pathname = usePathname()
   */
 
-  const searchParamsQueryList: Array<string> =
-    searchParams.get("query" || "")?.split(",") || [];
+  const searchParamsQueryList: Array<string> = searchParams.get("query")?.split(",") || [];
   const [queryList, setQueryList] = useState(searchParamsQueryList);
 
   const fetchedIllust: Array<Illust> = useMemo(
@@ -173,58 +172,50 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
         </Grid.Col>
       </Grid>
       <Virtuoso
-        style={{
-          width: "80vw",
-          maxWidth: "1200px",
-          height: "100vh",
-          margin: "0 auto",
-        }}
         className={styles.hexContainer}
         data={groupedIllusts}
         totalCount={groupedIllusts.length}
         itemContent={(groupIdx, group) => {
           return (
-            <div
-              className={`${styles.hexRow} ${
-                groupIdx % 2 === 0 ? styles.hexRowEven : styles.hexRowOdd
-              }`}
-              style={{
-                visibility: isValidating ? "hidden" : "visible",
-                overflow: "hidden",
-              }}
-              key={groupIdx}
-            >
-              {group.map((illust, index) => (
-                <div
-                  className={styles.hex}
-                  key={index.toString() + "_" + illust.id}
-                  style={{
-                    minHeight: "50px",
-                  }}
-                >
-                  <a
-                    href={fetchPixivLink(illust.id.toString())}
-                    className={styles.card}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={`${index}_${illust.id.toString()}`}
-                    aria-label={`イラスト ${illust.title}`}
+            !isValidating && (
+              <div
+                className={`${styles.hexRow} ${
+                  groupIdx % 2 === 0 ? styles.hexRowEven : styles.hexRowOdd
+                }`}
+                key={groupIdx}
+              >
+                {group.map((illust, index) => (
+                  <div
+                    className={styles.hex}
+                    key={index.toString() + "_" + illust.id}
+                    style={{
+                      minHeight: "50px",
+                    }}
                   >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={fetchUrl(illust.id.toString())}
-                        alt={illust.title}
-                        style={{ objectFit: "cover" }}
-                        className={styles.illustImage}
-                        loading="eager"
-                        fallbackSrc="https://placehold.co/600x400?text=Loading..."
-                      />
-                      <p>{illust.title}</p>
-                    </div>
-                  </a>
-                </div>
-              ))}
-            </div>
+                    <a
+                      href={fetchPixivLink(illust.id.toString())}
+                      className={styles.card}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={`${index}_${illust.id.toString()}`}
+                      aria-label={`イラスト ${illust.title}`}
+                    >
+                      <div className="relative aspect-square">
+                        <Image
+                          src={fetchUrl(illust.id.toString())}
+                          alt={illust.title}
+                          style={{ objectFit: "cover" }}
+                          className={styles.illustImage}
+                          loading="eager"
+                          fallbackSrc="https://placehold.co/600x400?text=Loading..."
+                        />
+                        <p>{illust.title}</p>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            )
           );
         }}
       />

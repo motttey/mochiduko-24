@@ -6,5 +6,5 @@ const buildEslintCommand = (filenames) =>
     .join(' --file ')}`
 
 module.exports = {
-  '*.{js,jsx,ts,tsx,json,css}': [buildEslintCommand],
+  '*.{js,jsx,ts,tsx,json}': [buildEslintCommand],
 }
