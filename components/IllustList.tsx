@@ -57,7 +57,8 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
   const pathname = usePathname()
   */
 
-  const searchParamsQueryList: Array<string> = searchParams.get("query")?.split(",") || [];
+  const searchParamsQueryList: Array<string> =
+    searchParams.get("query")?.split(",") || [];
   const [queryList, setQueryList] = useState(searchParamsQueryList);
 
   const fetchedIllust: Array<Illust> = useMemo(
@@ -104,9 +105,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
         variant="light"
         color="red"
         title="Failed to load"
-        style={{
-          minWidth: "80vw",
-        }}
+        className={styles.alert}
       >
         failed to load
       </Alert>
@@ -188,9 +187,6 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                   <div
                     className={styles.hex}
                     key={index.toString() + "_" + illust.id}
-                    style={{
-                      minHeight: "50px",
-                    }}
                   >
                     <a
                       href={fetchPixivLink(illust.id.toString())}
@@ -204,7 +200,6 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                         <Image
                           src={fetchUrl(illust.id.toString())}
                           alt={illust.title}
-                          style={{ objectFit: "cover" }}
                           className={styles.illustImage}
                           loading="eager"
                           fallbackSrc="https://placehold.co/600x400?text=Loading..."

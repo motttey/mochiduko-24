@@ -18,12 +18,7 @@ const SiteFooter: React.FC = () => {
       }}
     >
       <Container size="md">
-        <Divider
-          className={styles.commonDivider}
-          style={{
-            marginBottom: "10px",
-          }}
-        ></Divider>
+        <Divider className={styles.commonDivider} mb={10}></Divider>
         <Link href="/" className="footer-link" aria-label="logo">
           {title}
         </Link>

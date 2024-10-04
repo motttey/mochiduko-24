@@ -52,6 +52,10 @@
   position: relative;
 }
 
+.alert {
+  min-width: 80vw;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -230,6 +234,8 @@ a.card > div {
 .linkImage {
   margin-top: -20px;
   opacity: 1;
+  object-fit: cover;
+
   transform: translateY(20px) scale(125%);
   animation-name: fadeInUp;
   animation-duration: 1s;

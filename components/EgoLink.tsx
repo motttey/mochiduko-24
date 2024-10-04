@@ -162,7 +162,6 @@ const EgoLink: React.FC = () => {
                     <div className="relative aspect-square">
                       <Image
                         src={link.src}
-                        className={styles.linkImage}
                         style={{ objectFit: "cover" }}
                         fit="cover"
                         alt={link.title}
