@@ -7,6 +7,7 @@
     "build": "ANALYZE=true next build",
     "start": "next dev",
     "lint": "next lint --fix",
+    "stylelint": "stylelint 'app/**/*.css' --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -56,7 +57,9 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.8",
     "prettier": "^3.3.2",
-    "storybook": "^8.3.0"
+    "storybook": "^8.3.0",
+    "stylelint": "16.9.0",
+    "stylelint-config-standard": "36.0.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
