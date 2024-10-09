@@ -4,6 +4,7 @@ import { Image, Grid, Divider, Box } from "@mantine/core";
 import React from "react";
 
 import styles from "@/app/page.module.css";
+import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
 
 interface MyLink {
   title: string;
@@ -105,25 +106,13 @@ const chunkArray = (array: Array<MyLink>) => {
   return results;
 };
 
-const handleClick = (e: { clientX: number; clientY: number }) => {
-  const canvas = document.getElementById("fluidCanvas");
-  if (canvas) {
-    // クリック発生時に新しいイベントを作成し、Canvasに発火させる
-    const event = new MouseEvent("click", {
-      clientX: e.clientX,
-      clientY: e.clientY,
-    });
-    canvas.dispatchEvent(event);
-  }
-};
-
 const EgoLink: React.FC = () => {
   const groupedLinks = chunkArray(myLinks);
   return (
     <div
       id="egoLinkContainer"
       className={styles.egoLinkContainer}
-      onClick={handleClick}
+      onClick={dispatchEventOnCanvas}
     >
       <Grid my="lg">
         <Grid.Col>

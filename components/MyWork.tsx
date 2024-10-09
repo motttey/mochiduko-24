@@ -4,6 +4,7 @@ import { Grid, Box, Divider, Image, Card, Text } from "@mantine/core";
 import React from "react";
 
 import styles from "@/app/page.module.css";
+import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
 
 interface MyWorks {
   title: string;
@@ -71,24 +72,12 @@ const worksArray: Array<MyWorks> = [
   },
 ];
 
-const handleClick = (e: { clientX: number; clientY: number }) => {
-  const canvas = document.getElementById("fluidCanvas");
-  if (canvas) {
-    // 新しいイベントを作成し、Canvasに発火させる
-    const event = new MouseEvent("click", {
-      clientX: e.clientX,
-      clientY: e.clientY,
-    });
-    canvas.dispatchEvent(event);
-  }
-};
-
 const MyWork: React.FC = () => {
   return (
     <div
       className={styles.worksContainer}
       id="worksContainer"
-      onClick={handleClick}
+      onClick={dispatchEventOnCanvas}
     >
       <Grid my="5">
         <Grid.Col>

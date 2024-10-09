@@ -8,6 +8,7 @@ import useSWR from "swr";
 
 import styles from "@/app/page.module.css";
 import { Illust, Tag } from "@/types/api";
+import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];
@@ -113,24 +114,12 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
 
   if (!fetchedIllust || fetchedIllust.length === 0)
     return <div>loading...</div>;
-
-  const handleClick = (e: { clientX: number; clientY: number }) => {
-    const canvas = document.getElementById("fluidCanvas");
-    if (canvas) {
-      // 新しいイベントを作成し、Canvasに発火させる
-      const event = new MouseEvent("click", {
-        clientX: e.clientX,
-        clientY: e.clientY,
-      });
-      canvas.dispatchEvent(event);
-    }
-  };
-
+  
   return (
     <div
       className={styles.illustContainer}
       id="illustContainer"
-      onClick={handleClick}
+      onClick={dispatchEventOnCanvas}
     >
       <Grid my="lg">
         <Grid.Col>
