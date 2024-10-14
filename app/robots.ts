@@ -5,13 +5,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "GPTBot",
-        disallow: "/",
+        disallow: ["/", "/dialy"],
       },
       {
         userAgent: "Googlebot",
-        allow: ["/"],
+        allow: ["/", "/dialy"],
       },
     ],
-    sitemap: "https://motttey.github.io/mochiduko-24/sitemap.xml",
+    sitemap: "https://motttey.github.io/sitemap.xml",
   };
 }
