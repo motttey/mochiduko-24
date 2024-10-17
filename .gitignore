@@ -137,3 +137,6 @@ dist
 # pwa generated file
 public/sw.js
 public/workbox-*.js
+
+# google search console file
+public/google*.html
