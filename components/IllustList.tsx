@@ -7,8 +7,8 @@ import { Virtuoso } from "react-virtuoso";
 import useSWR from "swr";
 
 import styles from "@/app/page.module.css";
-import { Illust, Tag } from "@/types/api";
 import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
+import { Illust, Tag } from "@/types/api";
 
 const chunkArray = (array: Array<Illust>) => {
   const results = [];
@@ -114,7 +114,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
 
   if (!fetchedIllust || fetchedIllust.length === 0)
     return <div>loading...</div>;
-  
+
   return (
     <div
       className={styles.illustContainer}

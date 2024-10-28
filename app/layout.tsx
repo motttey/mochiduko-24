@@ -72,9 +72,9 @@ export const metadata: Metadata = {
     canonical: mochidukoUrl,
   },
   metadataBase: new URL(process.env.URL ?? mochidukoUrl),
-  verification: { 
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-  }
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export const viewport: Viewport = {
