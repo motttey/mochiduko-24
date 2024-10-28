@@ -14,6 +14,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -23,8 +24,10 @@
     "@next/third-parties": "^14.2.4",
     "@react-three/drei": "^9.108.4",
     "@react-three/fiber": "^8.16.8",
+    "@react-three/postprocessing": "^2.16.3",
     "@storybook/addon-themes": "^8.2.4",
     "@types/three": "^0.166.0",
+    "3d-tiles-renderer": "^0.3.39",
     "next": "^14.2.4",
     "next-pwa": "^5.6.0",
     "next-route-visualizer": "^1.1.3",
