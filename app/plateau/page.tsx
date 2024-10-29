@@ -15,7 +15,7 @@ const Page: React.FC = () => {
         height: 800,
       }}
     >
-      <fogExp2 attach="fog" color="white" density={0.0002} />
+      <fogExp2 attach="fog" color="white" density={0.002} />
       <PerspectiveCamera
         makeDefault
         position={[-1600, 450, -1400]}
