@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  return  [
     {
       url: "https://motttey.github.io",
       lastModified: new Date(),
@@ -18,13 +19,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://motttey.github.io/mochiduko-24",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.5,
+      priority: 0.3,
     },
     {
       url: "https://motttey.github.io/mochiduko-20",
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.3,
+    },
+    {
+      url: "https://motttey.github.io/c101",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 }
