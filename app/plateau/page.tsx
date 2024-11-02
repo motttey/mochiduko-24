@@ -1,6 +1,6 @@
 "use client";
 
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { MapControls, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, SSAO } from "@react-three/postprocessing";
 import React from "react";
@@ -22,6 +22,7 @@ const Page: React.FC = () => {
         near={10}
         far={1e5}
       />
+      <MapControls target={[-1200, 0, -800]} />
       <OrbitControls target={[-1200, 0, -800]} />
       <ambientLight intensity={0.5} />
       <directionalLight

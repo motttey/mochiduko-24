@@ -33,7 +33,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.register((parser) => new CesiumRTCPlugin(parser));
 
 const material = new MeshStandardMaterial({
-  metalness: 1,
+  metalness: 0,
   color: 0xffffff,
 });
 
