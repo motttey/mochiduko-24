@@ -2,9 +2,10 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPostUrls: MetadataRoute.Sitemap = [];
-  const startDate = new Date(2024, 3, 1);
+  const startDate = new Date(2024, 4, 1);
   const endDate = new Date(2024, 10, 1);
 
+  // ブログの開始/終了時刻からsitemapを作成
   for (
     let year = startDate.getFullYear();
     year <= endDate.getFullYear();
@@ -23,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `https://motttey.github.io/dialy/posts/${year}-${formattedMonth}`,
         lastModified: lastModified,
         changeFrequency: "monthly" as const,
-        priority: 0.5,
+        priority: 0.3,
       });
     }
   }
