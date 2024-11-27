@@ -9,15 +9,15 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { 
-    Box3,
-    EdgesGeometry,
-    LineSegments,
-    LineBasicMaterial,
-    Matrix4,
-    Mesh,
-    MeshStandardMaterial,
-    Vector3
+import {
+  Box3,
+  EdgesGeometry,
+  LineSegments,
+  LineBasicMaterial,
+  Matrix4,
+  Mesh,
+  MeshStandardMaterial,
+  Vector3,
 } from "three";
 import { GLTFLoader } from "three-stdlib";
 
@@ -52,7 +52,7 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
   const createTiles = useCallback(
     (path: string) => {
       const tiles = new TilesRenderer(
-        `https://plateau.geospatial.jp/main/data/3d-tiles/${path}/tileset.json`
+        `https://plateau.geospatial.jp/main/data/3d-tiles/${path}/tileset.json`,
       );
 
       tiles.manager.addHandler(/\.gltf$/, gltfLoader);
@@ -86,7 +86,7 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
       });
       return tiles;
     },
-    [setCenter]
+    [setCenter],
   );
 
   const [tiles, setTiles] = useState(() => createTiles(path));

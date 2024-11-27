@@ -1,6 +1,10 @@
 "use client";
 
-import { MapControls, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+  MapControls,
+  OrbitControls,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, SSAO } from "@react-three/postprocessing";
 import React, { useRef } from "react";
