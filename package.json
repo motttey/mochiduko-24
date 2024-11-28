@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "ANALYZE=true next build",
+    "build": "ANALYZE=false next build",
     "start": "next dev",
     "lint": "next lint --fix",
     "stylelint": "stylelint 'app/**/*.css' --fix",
