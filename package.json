@@ -44,7 +44,6 @@
   "devDependencies": {
     "@nextui-org/react": "^2.2.10",
     "@storybook/addon-interactions": "^8.4.5",
-    "@storybook/addon-onboarding": "^8.4.5",
     "@storybook/addon-styling-webpack": "^1.0.0",
     "@storybook/blocks": "^8.4.5",
     "@storybook/nextjs": "^8.4.5",
