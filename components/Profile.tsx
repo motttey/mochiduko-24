@@ -18,7 +18,19 @@ import styles from "@/app/page.module.css";
 const Profile: React.FC = () => {
   return (
     <div className={styles.profileContainer} id="profileContainer">
-      <Grid visibleFrom="sm">
+      <Grid>
+        <Grid.Col>
+          <Divider
+            className={styles.topDivider}
+            label={
+              <Box mr={5} ml={5}>
+                <h3>望月田吾作について</h3>
+              </Box>
+            }
+          />
+        </Grid.Col>
+      </Grid>
+      <Grid mb="50" visibleFrom="sm">
         <Grid.Col>
           <Title mr={20} ml={20} order={5} ta="center">
             Tagosaku Mochidhuki is a{" "}
@@ -27,20 +39,6 @@ const Profile: React.FC = () => {
             </Text>{" "}
             in JAPAN
           </Title>
-        </Grid.Col>
-      </Grid>
-      <Grid my="5">
-        <Grid.Col>
-          <Divider
-            className={styles.commonDivider}
-            label={
-              <>
-                <Box mr={5} ml={5}>
-                  <h3>望月田吾作について</h3>
-                </Box>
-              </>
-            }
-          />
         </Grid.Col>
       </Grid>
       <Grid my="5" className={styles.profileGrid}>
@@ -57,7 +55,6 @@ const Profile: React.FC = () => {
             <Card.Section>
               <Image
                 src="dora2024.webp"
-                height={500}
                 fit="cover"
                 alt="Tagosaku Mochiduki Profile Image"
               />

@@ -7,7 +7,12 @@
 }
 
 .commonDivider {
-  margin: 50px auto;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+.topDivider {
+  margin-bottom: 30px;
   max-width: 1000px;
 }
 
@@ -133,13 +138,6 @@
       rgb(var(--background-end-rgb)) 40%
     );
     z-index: 1;
-  }
-}
-
-/* Tablet and Smaller Desktop */
-@media (width >= 701px) and (width <= 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
   }
 }
 
@@ -376,10 +374,18 @@ a.card > div {
   animation-name: fade-in-up;
   animation-duration: 1s;
 
+  height: 500px;
+
   /* プロフィールに表示するボーダー */
   border: 2px solid #22b8cf;
   border-top: none;
   border-right: none;
+}
+
+@media (width <= 48em) {
+  .profileImage {
+    height: 400px;
+  }
 }
 
 .profileDescription {
