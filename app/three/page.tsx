@@ -1,3 +1,4 @@
+/*
 "use client";
 
 import { OrbitControls } from "@react-three/drei";
@@ -51,11 +52,7 @@ function Box(props: any) {
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
     >
-      {/*
-        <boxGeometry args={[0.5, 0.5, 0.5]} />
-      */}
       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-      {/* Add a Sprite */}
       <sprite scale={[scale, scale, 1]} position={[0, 1, 0]}>
         <spriteMaterial
           attach="material"
@@ -121,4 +118,9 @@ export default function Page() {
       </div>
     </main>
   );
+}
+*/
+
+export default function Page() {
+  <>test</>
 }

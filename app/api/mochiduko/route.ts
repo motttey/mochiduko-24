@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { Illust } from "@/types/api";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   // Fetch data from external API
   const res: Response = await fetch(

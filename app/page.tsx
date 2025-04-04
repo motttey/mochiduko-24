@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
 import EgoLink from "@/components/EgoLink";
@@ -8,6 +7,7 @@ import Profile from "@/components/Profile";
 import { Illust } from "@/types/api";
 
 import styles from "./page.module.css";
+import DynamicCanvas from "@/components/DynamicCanvas";
 
 interface PrefetchResponse {
   data: Array<Illust>;
@@ -38,11 +38,6 @@ const SearchBarFallback = () => {
   return <>placeholder</>;
 };
 
-const DynamicComponent = dynamic(
-  () => import("@/components/Canvas"), // コンポーネントのパスを指定
-  { ssr: false }, // サーバーサイドレンダリングを無効にする
-);
-
 export default async function Page() {
   let initialContentsList: Array<Illust> = new Array<Illust>();
 
@@ -61,7 +56,7 @@ export default async function Page() {
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
       </main>
-      <DynamicComponent></DynamicComponent>
+      <DynamicCanvas />
     </>
   );
 }

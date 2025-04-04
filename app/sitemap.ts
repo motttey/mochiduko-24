@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPostUrls: MetadataRoute.Sitemap = [];
   const startDate = new Date(2024, 4, 1);
