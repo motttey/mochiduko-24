@@ -1,4 +1,3 @@
-/*
 "use client";
 
 import { OrbitControls } from "@react-three/drei";
@@ -118,9 +117,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
-*/
-
-export default function Page() {
-  <>test</>
 }

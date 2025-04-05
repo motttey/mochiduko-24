@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import DynamicCanvas from "@/components/DynamicCanvas";
 import EgoLink from "@/components/EgoLink";
 import IllustList from "@/components/IllustList";
 import MyWork from "@/components/MyWork";
@@ -7,7 +8,6 @@ import Profile from "@/components/Profile";
 import { Illust } from "@/types/api";
 
 import styles from "./page.module.css";
-import DynamicCanvas from "@/components/DynamicCanvas";
 
 interface PrefetchResponse {
   data: Array<Illust>;

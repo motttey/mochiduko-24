@@ -8,12 +8,14 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, SSAO } from "@react-three/postprocessing";
 import React, { useRef } from "react";
+import { ColorRepresentation } from "three";
 
 import { PlateauTileset } from "./PlateauTileset";
 import { PlateauTilesetTransform } from "./PlateauTilesetTransform";
 
 const Page: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const color: ColorRepresentation = "blue";
 
   const saveAsPng = () => {
     const canvas = canvasRef.current;
@@ -57,7 +59,7 @@ const Page: React.FC = () => {
         }}
         ref={canvasRef}
       >
-        <fogExp2 attach="fog" color="white" density={0.002} />
+        <fogExp2 attach="fog" color="white" density={0.002} args={[color]} />
         <PerspectiveCamera
           makeDefault
           position={[-1600, 450, -1400]}

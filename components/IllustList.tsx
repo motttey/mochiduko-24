@@ -71,8 +71,8 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
   );
 
   useEffect(() => {
-    const filterdIllusts = ((
-      queryList.length > 0
+    const filterdIllusts = (
+      (queryList.length > 0
         ? fetchedIllust.filter((illust: Illust) =>
             queryList.some(
               (query) =>
@@ -80,8 +80,8 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                 illust.tags.some((tag: Tag) => tag.name === query),
             ),
           )
-        : fetchedIllust
-    ) || []).sort(() => Math.random() - 0.5);
+        : fetchedIllust) || []
+    ).sort(() => Math.random() - 0.5);
     setFilteredIllusts(filterdIllusts);
 
     /*
