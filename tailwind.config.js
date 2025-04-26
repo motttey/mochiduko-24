@@ -1,5 +1,5 @@
 // tailwind.config.js
-import { nextui } from "@nextui-org/react";
+const {heroui} = require("@heroui/react");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -11,7 +11,7 @@ const config = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [heroui()],
 };
 
 export default config;
