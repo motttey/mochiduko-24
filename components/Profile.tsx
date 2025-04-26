@@ -18,7 +18,7 @@ import styles from "@/app/page.module.css";
 const Profile: React.FC = () => {
   return (
     <div className={styles.profileContainer} id="profileContainer">
-      <Grid>
+      <Grid mb="30">
         <Grid.Col>
           <Divider
             className={styles.topDivider}
