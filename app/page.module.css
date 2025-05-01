@@ -353,6 +353,11 @@ a.card > div {
   margin: 0 auto;
 }
 
+.mutualLinkContainer {
+  max-width: 1200px;
+  min-width: 60vw;
+}
+
 .hexContainer {
   width: 80vw;
   height: 100vh !important;
@@ -560,4 +565,8 @@ a.card > div {
   .mainLink > span {
     font-size: 10px;
   }
+}
+
+.bannerImage {
+  text-align: center;
 }

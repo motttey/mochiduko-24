@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import DynamicCanvas from "@/components/DynamicCanvas";
 import EgoLink from "@/components/EgoLink";
 import IllustList from "@/components/IllustList";
+import MutualLink from "@/components/MutualLink";
 import MyWork from "@/components/MyWork";
 import Profile from "@/components/Profile";
 import { Illust } from "@/types/api";
@@ -55,6 +56,7 @@ export default async function Page() {
         <Suspense fallback={<SearchBarFallback />}>
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
+        <MutualLink></MutualLink>
       </main>
       <DynamicCanvas />
     </>

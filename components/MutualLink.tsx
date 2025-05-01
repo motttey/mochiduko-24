@@ -1,6 +1,7 @@
 "use client";
 
-import { Grid, Divider, Box } from "@mantine/core";
+import { Box, Divider, Grid, Text } from "@mantine/core";
+import Image from "next/image";
 import React from "react";
 
 import styles from "@/app/page.module.css";
@@ -29,11 +30,28 @@ const MutualLink: React.FC = () => {
             label={
               <>
                 <Box ml={5}>
-                  <h3>相互リンク</h3>
+                  <h3 id="illustration-heading">相互リンク</h3>
                 </Box>
               </>
             }
           />
+
+          <Text style={{ textAlign: "center" }}>
+            相互リンク募集中です. 各種SNSやメールにて連絡いただけますと幸いです.{" "}
+            <br />
+            バナーが必要な場合は{" "}
+            <Image
+              className={styles.bannerImage}
+              src="mochiduko_banner.jpg"
+              width={200}
+              height={40}
+              style={{ objectFit: "cover" }}
+              alt="モチヅ庫のバナー"
+              unoptimized
+            />{" "}
+            をお使いください.
+            <br />
+          </Text>
         </Grid.Col>
       </Grid>
     </div>
