@@ -354,7 +354,7 @@ a.card > div {
 }
 
 .mutualLinkContainer {
-  max-width: 1200px;
+  width: 80vw;
   min-width: 60vw;
 }
 

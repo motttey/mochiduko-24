@@ -53,10 +53,10 @@ export default async function Page() {
         <Profile></Profile>
         <MyWork></MyWork>
         <EgoLink></EgoLink>
+        <MutualLink></MutualLink>
         <Suspense fallback={<SearchBarFallback />}>
           <IllustList initialContentsList={initialContentsList}></IllustList>
         </Suspense>
-        <MutualLink></MutualLink>
       </main>
       <DynamicCanvas />
     </>
