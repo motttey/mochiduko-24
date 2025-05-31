@@ -54,6 +54,7 @@ const SiteHeader: React.FC = () => {
           <Image
             className={styles.hex}
             h={64}
+            w={64}
             alt="header image of doraemon"
             src="./doraemon-namecard.webp"
             visibleFrom="xs"
