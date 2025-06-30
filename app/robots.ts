@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
-        disallow: ["/", "/dialy"],
+        disallow: ["/", "/dialy", "/memo"],
       },
     ],
     sitemap: "https://motttey.github.io/sitemap.xml",

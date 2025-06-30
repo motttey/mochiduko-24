@@ -57,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: "https://motttey.github.io/dialy/memo/dora-esekai-monogatari",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 
   return [...siteMapUrls, ...blogPostUrls];
