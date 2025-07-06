@@ -29,7 +29,7 @@ export interface MetaTag {
 
 const title = "モチヅ庫'24";
 const description =
-  "望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.";
+  "望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄先生の作品に関する二次創作(イラストや漫画)を掲載するためのサイトです.";
 
 const mochidukoUrl = "https://motttey.github.io";
 const imgUrl = `${mochidukoUrl}/dora2024.webp`;
@@ -48,6 +48,8 @@ export const metadata: Metadata = {
     "藤子・F・不二雄",
     "イラスト",
     "ドラえもん イラスト",
+    "ドラえもんファンアート",
+    "Doraemon Fanart",
   ],
   openGraph: {
     title,
