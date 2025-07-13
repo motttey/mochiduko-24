@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+import { mochidukoUrl } from "./data/constants";
+
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
@@ -20,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/", "/dialy", "/memo"],
       },
     ],
-    sitemap: "https://motttey.github.io/sitemap.xml",
+    sitemap: `${mochidukoUrl}/sitemap.xml`,
   };
 }

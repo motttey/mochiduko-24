@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Anchor, Box, Container, Group, Image, Text } from "@mantine/core";
 import React, { useState } from "react";
 
+import { mochidukoUrl } from "@/app/data/constants";
 import styles from "@/app/page.module.css";
 
 config.autoAddCss = false;
@@ -16,7 +17,7 @@ const linksHref = [
   { link: "#worksContainer", label: "Works", external: false },
   { link: "#egoLinkContainer", label: "Links", external: false },
   { link: "#illustContainer", label: "Illusts", external: false },
-  { link: "https://motttey.github.io/dialy/", label: "Dialy", external: true },
+  { link: `${mochidukoUrl}/dialy/`, label: "Dialy", external: true },
 ];
 const SiteHeader: React.FC = () => {
   const title = "モチヅ庫'24";

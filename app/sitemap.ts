@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+import { mochidukoUrl } from "./data/constants";
+
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const lastModified = new Date(year, month - 1, 30);
 
       blogPostUrls.push({
-        url: `https://motttey.github.io/dialy/posts/${year}-${formattedMonth}`,
+        url: `${mochidukoUrl}/dialy/posts/${year}-${formattedMonth}`,
         lastModified: lastModified,
         changeFrequency: "monthly" as const,
         priority: 0.3,
@@ -34,31 +36,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // siteMapUrls と blogPostUrls を結合して返す
   const siteMapUrls: MetadataRoute.Sitemap = [
     {
-      url: "https://motttey.github.io",
+      url: mochidukoUrl,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: "https://motttey.github.io/dialy",
+      url: `${mochidukoUrl}/dialy`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://motttey.github.io/mochiduko-24",
+      url: `${mochidukoUrl}/mochiduko-24`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: "https://motttey.github.io/c101",
+      url: `${mochidukoUrl}/c101`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: "https://motttey.github.io/dialy/memo/dora-esekai-monogatari",
+      url: `${mochidukoUrl}/dialy/memo/dora-esekai-monogatari`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,

@@ -11,6 +11,7 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
+import { mochidukoUrl } from "./data/constants";
 import "./globals.css";
 
 const NotoSansJP = Noto_Sans_JP({
@@ -31,7 +32,6 @@ const title = "モチヅ庫'24";
 const description =
   "望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄先生の作品に関する二次創作(イラストや漫画)を掲載するためのサイトです.";
 
-const mochidukoUrl = "https://motttey.github.io";
 const imgUrl = `${mochidukoUrl}/dora2024.webp`;
 export const metadata: Metadata = {
   title,
