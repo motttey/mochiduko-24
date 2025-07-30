@@ -18,7 +18,7 @@ import styles from "@/app/page.module.css";
 const Profile: React.FC = () => {
   return (
     <div className={styles.profileContainer} id="profileContainer">
-      <Grid mb="30">
+      <Grid mb="10">
         <Grid.Col>
           <Divider
             className={styles.topDivider}
@@ -43,26 +43,27 @@ const Profile: React.FC = () => {
       </Grid>
       <Grid my="5" className={styles.profileGrid}>
         <Grid.Col
-          span={{ base: 12, md: 8, lg: 6 }}
+          span={{ base: 12, md: 8, lg: 8 }}
           className={styles.profileCol}
         >
           <Card
             shadow="0"
             padding="md"
             radius="0"
-            className={styles.profileImage}
+            className={`${styles.profileImage} ${styles.profileImageClipped}`}
           >
             <Card.Section>
               <Image
-                src="dora2024.webp"
-                fit="cover"
+                src="dora_topbg.webp"
+                height={400}
                 alt="Tagosaku Mochiduki Profile Image"
+                style={{ objectFit: "cover", objectPosition: "left" }}
               />
             </Card.Section>
           </Card>
         </Grid.Col>
         <Grid.Col
-          span={{ base: 12, md: 4, lg: 6 }}
+          span={{ base: 12, md: 4, lg: 4 }}
           className={styles.profileCol}
         >
           <Card p="lg" className={styles.profileDescription}>

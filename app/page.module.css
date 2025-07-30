@@ -374,31 +374,17 @@ a.card > div {
   position: relative;
   margin: 0 auto;
   top: 10px;
-  left: 15%;
+  left: 0;
+  width: 100%;
   transform: translateY(0);
   animation-name: fade-in-up;
   animation-duration: 1s;
-
-  height: 500px;
-
-  /* プロフィールに表示するボーダー */
-  border: 2px solid #22b8cf;
-  border-top: none;
-  border-right: none;
-}
-
-@media (width <= 48em) {
-  .profileImage {
-    height: 400px;
-  }
 }
 
 .profileDescription {
   position: relative;
   max-width: 500px;
   min-width: 300px;
-  margin: -20px 50px;
-  padding: -20px 50px;
   z-index: 2;
   transform: translateY(0);
   animation-name: fade-in-up;
@@ -408,6 +394,20 @@ a.card > div {
   border: 2px solid #22b8cf;
   border-bottom: none;
   border-left: none;
+}
+
+@media (width <= 48em) {
+  .profileImage {
+    overflow: hidden;
+  }
+  .profileImageClipped {
+    clip-path: polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%);
+    object-fit: contain;
+  }
+
+  .profileDescription {
+    margin: -50px 50px;
+  }
 }
 
 /* Middle-width device */
