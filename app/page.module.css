@@ -339,6 +339,31 @@ a.card > div {
   min-width: 60vw;
 }
 
+/* 画面サイズ大の場合は背景イメージ*/
+@media (min-width: 75em) {
+  .profileContainer {
+    width: 100%;
+    background-image: url("/dora_topbg.webp");
+    background-size: cover;
+    background-position: 50% 120px;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .profileImage {
+    display: none;
+  }
+
+  .profileDescription {
+    position: absolute;
+    left: 50%;
+  }
+}
+
 .illustContainer {
   max-width: 100vw;
   min-width: 60vw;
@@ -370,6 +395,10 @@ a.card > div {
   top: 0;
 }
 
+.profileCol {
+  justify-content: center;
+}
+
 .profileImage {
   position: relative;
   margin: 0 auto;
@@ -383,6 +412,8 @@ a.card > div {
 
 .profileDescription {
   position: relative;
+  margin-top: -50px;
+
   max-width: 500px;
   min-width: 300px;
   z-index: 2;

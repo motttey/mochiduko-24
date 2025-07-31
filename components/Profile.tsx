@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
           </Title>
         </Grid.Col>
       </Grid>
-      <Grid my="5" className={styles.profileGrid}>
+      <Grid my="5" className={styles.profileGrid} justify="center">
         <Grid.Col
           span={{ base: 12, md: 8, lg: 8 }}
           className={styles.profileCol}
@@ -62,10 +62,7 @@ const Profile: React.FC = () => {
             </Card.Section>
           </Card>
         </Grid.Col>
-        <Grid.Col
-          span={{ base: 12, md: 4, lg: 4 }}
-          className={styles.profileCol}
-        >
+        <Grid.Col className={styles.profileCol}>
           <Card p="lg" className={styles.profileDescription}>
             <Card.Section my="-1rem" p="1rem">
               <Text my={4}>
