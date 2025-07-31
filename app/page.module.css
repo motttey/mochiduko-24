@@ -355,6 +355,7 @@ a.card > div {
   }
 
   .profileImage {
+    visibility: hidden;
     display: none;
   }
 
