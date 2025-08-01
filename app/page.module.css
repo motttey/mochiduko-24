@@ -342,12 +342,10 @@ a.card > div {
 /* 画面サイズ大の場合は背景イメージ*/
 @media (min-width: 75em) {
   .profileContainer {
-    width: 100%;
+    width: 100vw;
     background-image: url("/dora_topbg.webp");
     background-size: cover;
-    background-position: 50% 120px;
-    background-color: rgba(255, 255, 255, 0.3);
-    background-blend-mode: lighten;
+    background-position: 50% 140px;
     background-repeat: no-repeat;
 
     padding: 2rem;
