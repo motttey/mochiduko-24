@@ -1,6 +1,5 @@
-import { Container, Title, Text, Button, Center } from "@mantine/core";
+import { Container, Title, Text, Center, Anchor } from "@mantine/core";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -11,11 +10,11 @@ export default function NotFound() {
             <Title
               order={1}
               style={{ fontSize: "2.5rem", fontWeight: "bold" }}
-              mb={20}
+              mb={10}
             >
               404
             </Title>
-            <Text size="xl" mt={12}>
+            <Text size="xl" my={12}>
               Page Not Found
             </Text>
             <Image
@@ -31,16 +30,8 @@ export default function NotFound() {
               }}
               unoptimized={true}
             />
-            <Text mt={20}> お探しのページは見つかりませんでした。</Text>
-            <Button
-              component={Link}
-              href="/"
-              variant="outline"
-              size="md"
-              my={10}
-            >
-              ホームに戻る
-            </Button>
+            <Text my={20}> お探しのページは見つかりませんでした。</Text>
+            <Anchor href="/">ホームに戻る</Anchor>
           </div>
         </Container>
       </Center>
