@@ -49,27 +49,27 @@ const SomPage = () => {
       .attr("width", width)
       .attr("height", height);
 
-    svg.selectAll("*").remove(); // Clear previous render
+    svg.selectAll("g").remove();
 
     const g = svg.append("g");
 
     const panel = d3.select(panelRef.current);
     const hoverHint = d3.select(hoverHintRef.current);
 
+    const hexRadius = 40;
     const mappedData = data.map((d) => ({
       ...d,
-      x: d.u * (width - 40) + 20,
-      y: d.v * (height - 40) + 20,
+      x: d.u * (width - hexRadius) + 20,
+      y: d.v * (height - hexRadius) + 20,
     }));
 
-    const hexRadius = 18;
     const hexbin = d3hexbin<any>()
       .x((d) => d.x)
       .y((d) => d.y)
       .radius(hexRadius)
       .extent([
         [0, 0],
-        [width, height],
+        [width - hexRadius, height],
       ]);
 
     const bins = hexbin(mappedData);
@@ -90,15 +90,6 @@ const SomPage = () => {
       .attr("stroke", "#253246")
       .attr("stroke-width", 0.5)
       .attr("opacity", 0.95);
-
-    svg
-      .append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", width)
-      .attr("height", height)
-      .attr("fill", "none")
-      .attr("stroke", "#1d2633");
 
     hex
       .on("mouseenter", (e, d) => {
@@ -155,7 +146,9 @@ const SomPage = () => {
 
   return (
     <div className={styles.wrap}>
-      <svg id="chart" ref={chartRef}></svg>
+      <div id="main" className={styles.main}>
+        <svg id="chart" ref={chartRef}></svg>
+      </div>
       <aside id="side" className={styles.side}>
         <h1>SOM × Hexbin 可視化</h1>
         <div className={styles.tip}>
