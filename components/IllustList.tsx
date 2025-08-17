@@ -6,6 +6,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Virtuoso } from "react-virtuoso";
 import useSWR from "swr";
 
+import { pixivApiUrl } from "@/app/data/constants";
 import styles from "@/app/page.module.css";
 import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
 import { Illust, Tag } from "@/types/api";
@@ -31,7 +32,7 @@ const chunkArray = (array: Array<Illust>) => {
 
 const prefixPath = "";
 const fetchUrl = (id: string) =>
-  `https://embed.pixiv.net/decorate.php?illust_id=${id || ""}&mode=sns-automator`;
+  `${pixivApiUrl}?illust_id=${id || ""}&mode=sns-automator`;
 const fetchPixivLink = (id: string) =>
   `https://www.pixiv.net/artworks/${id || ""}`;
 

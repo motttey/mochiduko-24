@@ -3,6 +3,7 @@
 import { Image, Grid, Divider, Box } from "@mantine/core";
 import React from "react";
 
+import { pixivApiUrl } from "@/app/data/constants";
 import styles from "@/app/page.module.css";
 import { dispatchEventOnCanvas } from "@/app/utils/handleEvent";
 
@@ -13,9 +14,8 @@ interface MyLink {
   flex?: number;
 }
 
-const PIXIV_API_URL: string = "https://embed.pixiv.net/decorate.php";
 const fetchUrl = (id: string) =>
-  `${PIXIV_API_URL}?illust_id=${id || ""}&mode=sns-automator`;
+  `${pixivApiUrl}?illust_id=${id || ""}&mode=sns-automator`;
 
 const myLinks: Array<MyLink> = [
   {

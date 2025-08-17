@@ -4,13 +4,14 @@ import * as d3 from "d3";
 import { hexbin as d3hexbin } from "d3-hexbin";
 import { useEffect, useRef, useState } from "react";
 
+import { pixivApiUrl } from "@/app/data/constants";
+
 import styles from "./Som.module.css";
 
-const PIXIV_API_URL = "https://embed.pixiv.net/decorate.php";
 const fetchUrl = (id: string) =>
-  `${PIXIV_API_URL}?illust_id=${id || ""}&mode=sns-automator`;
+  `${pixivApiUrl}?illust_id=${id || ""}&mode=sns-automator`;
 
-type Illust = {
+type SomIllust = {
   id: number;
   u: number;
   v: number;
@@ -26,7 +27,7 @@ const SomPage = () => {
   const chartRef = useRef(null);
   const panelRef = useRef(null);
   const hoverHintRef = useRef(null);
-  const [data, setData] = useState<Illust[]>([]);
+  const [data, setData] = useState<SomIllust[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -165,7 +166,7 @@ const SomPage = () => {
           <div>濃いほど密度が高い</div>
         </div>
         <div className={styles.hoverHint} ref={hoverHintRef}>
-          Hexをホバーしてください
+          マウスオーバーしてください
         </div>
         <div id="panel" ref={panelRef}></div>
       </aside>
