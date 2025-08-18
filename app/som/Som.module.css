@@ -76,3 +76,7 @@
   font-size: 12px;
   margin-top: 6px;
 }
+
+.hexrep {
+  transition: all 0.2s ease-in-out;
+}

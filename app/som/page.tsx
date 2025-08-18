@@ -52,59 +52,96 @@ const SomPage = () => {
     svg.selectAll("g").remove();
 
     const g = svg.append("g");
+    const defs = svg.append("defs");
 
     const panel = d3.select(panelRef.current);
     const hoverHint = d3.select(hoverHintRef.current);
 
-    const hexRadius = 40;
     const mappedData = data.map((d) => ({
       ...d,
-      x: d.u * (width - hexRadius) + 20,
-      y: d.v * (height - hexRadius) + 20,
+      x: d.u * (width - 40) + 20,
+      y: d.v * (height - 40) + 20,
     }));
 
+    const hexRadius = 45;
     const hexbin = d3hexbin<any>()
       .x((d) => d.x)
       .y((d) => d.y)
       .radius(hexRadius)
       .extent([
         [0, 0],
-        [width - hexRadius, height],
+        [width, height],
       ]);
-
     const bins = hexbin(mappedData);
 
     const maxCount = d3.max(bins, (b) => b.length) ?? 1;
-    const color = d3
-      .scaleSequential(d3.interpolateViridis)
-      .domain([0, maxCount]);
+    const color = d3.scaleSequential(d3.interpolateBlues).domain([0, maxCount]);
 
-    const hex = g
-      .selectAll(".hex")
-      .data(bins)
-      .join("path")
-      .attr("class", styles.hex)
-      .attr("d", hexbin.hexagon())
-      .attr("transform", (d) => `translate(${d.x},${d.y})`)
-      .attr("fill", (d) => color(d.length))
-      .attr("stroke", "#253246")
-      .attr("stroke-width", 0.5)
-      .attr("opacity", 0.95);
+    const hexPath = hexbin.hexagon();
 
-    hex
+    function pickRepresentative(bin: any[]) {
+      return bin
+        .slice()
+        .sort((a, b) => (b.bookmark ?? 0) - (a.bookmark ?? 0))[0];
+    }
+
+    const reps = bins
+      .map((bin) => ({ bin, rep: pickRepresentative(bin) }))
+      .filter((d) => d.rep);
+
+    const repGroups = g
+      .selectAll(".hexrep")
+      .data(reps)
+      .join("g")
+      .attr("class", "hexrep")
+      .attr("transform", (d) => `translate(${d.bin.x},${d.bin.y})`);
+
+    repGroups.each(function (d: any, i) {
+      const id = `hexclip-${i}`;
+      const cp = defs.append("clipPath").attr("id", id);
+      cp.append("path").attr("d", hexPath);
+      d.clipId = id;
+    });
+
+    repGroups
+      .append("path")
+      .attr("d", hexPath)
+      .attr("fill", (d) => color(d.bin.length))
+      .attr("stroke", (d) => color(d.bin.length))
+      .attr("stroke-width", 1);
+
+    const imgW = 2 * hexRadius;
+    const imgH = Math.sqrt(3) * hexRadius;
+
+    const imgX = -imgW / 2;
+    const imgY = -imgH / 2;
+
+    repGroups
+      .append("image")
+      .attr("href", (d) => fetchUrl(d.rep.id.toString()))
+      .attr("x", imgX)
+      .attr("y", imgY)
+      .attr("width", imgW)
+      .attr("height", imgH)
+      .attr("preserveAspectRatio", "xMidYMid slice")
+      .attr("clip-path", (d: any) => `url(#${d.clipId})`)
+      .style("cursor", "pointer")
+      .style("opacity", 0.75)
       .on("mouseenter", (e, d) => {
         hoverHint.style("display", "none");
-        showBin(d);
-        d3.select(e.currentTarget)
+        showBin(d.bin);
+        d3.select(e.currentTarget.previousSibling)
           .attr("stroke", "#b5cdfb")
-          .attr("stroke-width", 1.5);
+          .attr("stroke-width", 2);
       })
-      .on("mouseleave", (e) => {
-        d3.select(e.currentTarget)
-          .attr("stroke", "#253246")
-          .attr("stroke-width", 0.5);
+      .on("mouseleave", (e, d) => {
+        d3.select(e.currentTarget.previousSibling)
+          .attr("stroke", color(d.bin.length))
+          .attr("stroke-width", 1);
       })
-      .on("click", (e, d) => showBin(d));
+      .on("click", (_e, d) =>
+        window.open(d.rep.image ?? d.rep.thumb, "_blank"),
+      );
 
     function showBin(bin: any[]) {
       panel.html("");
@@ -138,7 +175,7 @@ const SomPage = () => {
             .data(d.tags.slice(0, 2))
             .join("span")
             .attr("class", styles.chip)
-            .text((t: any) => t);
+            .text((t) => String(t));
         }
       });
     }
