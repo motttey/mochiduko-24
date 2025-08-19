@@ -4,12 +4,10 @@ import * as d3 from "d3";
 import { hexbin as d3hexbin } from "d3-hexbin";
 import { useEffect, useRef, useState } from "react";
 
-import { pixivApiUrl } from "@/app/data/constants";
-
+import { mochidukoApiUrl } from "../data/constants";
 import styles from "./Som.module.css";
 
-const fetchUrl = (id: string) =>
-  `${pixivApiUrl}?illust_id=${id || ""}&mode=sns-automator`;
+const fetchUrl = (id: string) => `${mochidukoApiUrl}/thumbnails/${id}.jpg`;
 
 type SomIllust = {
   id: number;
