@@ -214,7 +214,7 @@ const SomPage = () => {
           [width - radiusSingle, height - radiusSingle],
         ]);
 
-      const centers = hex.centers().map(([x, y]) => ({ x, y }));
+      const centers = hex.centers().map(([x, y]) => ({ x, y, taken: false }));
 
       const points = data
         .map((d) => ({
