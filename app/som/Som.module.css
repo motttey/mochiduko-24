@@ -21,10 +21,27 @@
   overflow: auto;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .side h1 {
   font-size: 16px;
-  margin: 0 0 8px;
+  margin: 0;
   color: #cbd5e1;
+}
+
+.toggleButton {
+  background: #253246;
+  color: #e6eaf2;
+  border: 1px solid #344155;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .tip {
@@ -38,7 +55,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
-
 .thumbs img {
   width: 100%;
   aspect-ratio: 1 / 1;
