@@ -278,7 +278,7 @@ const SomPage = () => {
         .attr("stroke-width", 0.5);
 
       const imgW = 2 * radiusSingle;
-      const imgH = Math.sqrt(3) * radiusSingle;
+      const imgH = 2 * radiusSingle;
 
       const imgX = -imgW / 2;
       const imgY = -imgH / 2;
@@ -350,21 +350,26 @@ const SomPage = () => {
       </div>
       <aside id="side" className={styles.side}>
         <div className={styles.header}>
-          <h1>
-            {isBinningMode ? "SOM × Hexbin" : "SOM | 全件スナップショット"}
-          </h1>
-          <button
-            className={styles.toggleButton}
-            onClick={() => setIsBinningMode(!isBinningMode)}
-          >
-            {isBinningMode ? "全件表示" : "密度表示"}
-          </button>
+          <div>
+            <h1>
+              {`SOM (Self-Organizing Maps) | ${isBinningMode ? "Hexbin Illust Collection" : "全件スナップショット"}`}
+            </h1>
+          </div>
+          <div>
+            <button
+              className={styles.toggleButton}
+              onClick={() => setIsBinningMode(!isBinningMode)}
+            >
+              {isBinningMode ? "全件表示" : "密度表示"}
+            </button>
+          </div>
         </div>
         <div className={styles.tip}>
           {isBinningMode
-            ? "SOMで2次元に配置した画像点を、六角ビンで密度表示します。"
-            : "SOMで2次元に配置した画像点を、最寄りの空き六角セルにスナップさせて一覧表示します。"}
+            ? "SOMで2次元に配置したイラストを、六角ビンで密度表示します。"
+            : "SOMで2次元に配置したイラストを、同じビンに含まれるものが近接するように一覧表示します。"}
         </div>
+        {/*
         <div
           className={styles.legend}
           style={{ display: isBinningMode ? "flex" : "none" }}
@@ -372,6 +377,7 @@ const SomPage = () => {
           <div className={styles.box}></div>
           <div>濃いほど密度が高い</div>
         </div>
+        */}
         <div className={styles.hoverHint} ref={hoverHintRef}>
           マウスオーバーしてください
         </div>
