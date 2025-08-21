@@ -8,6 +8,8 @@ import { mochidukoApiUrl } from "../data/constants";
 import styles from "./Som.module.css";
 
 const fetchUrl = (id: string) => `${mochidukoApiUrl}/thumbnails/${id}.jpg`;
+const fetchPixivLink = (id: string) =>
+  `https://www.pixiv.net/artworks/${id || ""}`;
 
 type SomIllust = {
   id: number;
@@ -154,8 +156,11 @@ const SomPage = () => {
             .attr("stroke", color(d.bin.length))
             .attr("stroke-width", 1);
         })
-        .on("click", (e: any, d: any) =>
-          window.open(d.rep.image ?? d.rep.thumb, "_blank"),
+        .on("click", (_e: any, d: any) =>
+          window.open(
+            fetchPixivLink(d.rep.id.toString()) ?? d.rep.thumb,
+            "_blank",
+          ),
         );
 
       function showBin(bin: any[]) {
@@ -305,7 +310,9 @@ const SomPage = () => {
             .attr("stroke", "#253246")
             .attr("stroke-width", 0.5);
         })
-        .on("click", (_e: any, d: any) => window.open(d.url, "_blank"));
+        .on("click", (_e: any, d: any) =>
+          window.open(fetchPixivLink(d.id.toString()), "_blank"),
+        );
 
       function showItem(item: any) {
         panel.html("");
