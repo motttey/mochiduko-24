@@ -1,20 +1,20 @@
 "use client";
 
 import * as d3 from "d3";
-import { hexbin as d3hexbin } from "d3-hexbin";
+import { hexbin as d3hexbin, type HexbinBin } from "d3-hexbin";
 import { useEffect, useRef, useState } from "react";
 
 import { mochidukoApiUrl } from "../data/constants";
 import styles from "./Som.module.css";
 
-const fetchUrl = (id: string) => `${mochidukoApiUrl}/thumbnails/${id}.jpg`;
-const fetchPixivLink = (id: string) =>
-  `https://www.pixiv.net/artworks/${id || ""}`;
+const MARGIN = 20;
+const BIN_RADIUS = 40;
+const SINGLE_RADIUS = 28;
 
-type SomIllust = {
+export type SomIllust = {
   id: number;
-  u: number;
-  v: number;
+  u: number; // 0..1
+  v: number; // 0..1
   url: string;
   thumb: string;
   title: string;
@@ -23,333 +23,349 @@ type SomIllust = {
   bookmark: number;
 };
 
+const fetchUrl = (id: string) => `${mochidukoApiUrl}/thumbnails/${id}.jpg`;
+const fetchPixivLink = (id: string) =>
+  `https://www.pixiv.net/artworks/${id || ""}`;
+
+const toPixel = (d: SomIllust, w: number, h: number) => ({
+  ...d,
+  x: d.u * (w - 2 * MARGIN) + MARGIN,
+  y: d.v * (h - 2 * MARGIN) + MARGIN,
+});
+
+const buildSvg = (svgEl: SVGSVGElement, width: number, height: number) => {
+  const svg = d3.select(svgEl).attr("width", width).attr("height", height);
+  svg.selectAll("*").remove();
+  const g = svg.append("g");
+  const defs = svg.append("defs");
+  return { svg, g, defs };
+};
+
+const makeHexbin = (radius: number, width: number, height: number) =>
+  d3hexbin<SomIllust & { x: number; y: number }>()
+    .x((d) => d.x)
+    .y((d) => d.y)
+    .radius(radius)
+    .extent([
+      [radius, radius],
+      [width - radius, height - radius],
+    ]);
+
+const pickRepresentative = (
+  bin: HexbinBin<SomIllust & { x: number; y: number }>,
+) => bin.slice().sort((a, b) => (b.bookmark ?? 0) - (a.bookmark ?? 0))[0];
+
+const renderBinPanel = (
+  panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  bin: HexbinBin<SomIllust & { x: number; y: number }>,
+) => {
+  panel.html("");
+  const head = panel.append("div");
+  head
+    .append("div")
+    .style("font-size", "14px")
+    .style("margin-bottom", "6px")
+    .text(`Images: ${bin.length}`);
+
+  const avgBookmark = d3.mean(bin, (d) => d.bookmark ?? 0) ?? 0;
+  head
+    .append("div")
+    .attr("class", styles.tip)
+    .text(`Avg. bookmark: ${avgBookmark.toFixed(1)}`);
+
+  const thumbs = panel.append("div").attr("class", styles.thumbs);
+  bin.slice(0, 24).forEach((d) => {
+    const wrap = thumbs
+      .append("a")
+      .attr("href", d.url)
+      .attr("target", "_blank")
+      .attr("title", `${d.title} (${d.date})`);
+
+    wrap.append("img").attr("src", fetchUrl(d.id.toString()));
+
+    if (d.tags?.length) {
+      wrap
+        .append("div")
+        .selectAll("span")
+        .data(d.tags.slice(0, 2))
+        .join("span")
+        .attr("class", styles.chip)
+        .text((t) => String(t));
+    }
+  });
+};
+
+const renderItemPanel = (
+  panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  item: SomIllust,
+) => {
+  panel.html("");
+  const head = panel.append("div");
+  head
+    .append("div")
+    .style("font-size", "14px")
+    .style("margin-bottom", "6px")
+    .text(item.title);
+
+  head
+    .append("div")
+    .attr("class", styles.tip)
+    .text(`Bookmark: ${item.bookmark}`);
+
+  const thumbs = panel.append("div").attr("class", styles.thumbs);
+  const wrap = thumbs
+    .append("a")
+    .attr("href", item.url)
+    .attr("target", "_blank")
+    .attr("title", `${item.title} (${item.date})`);
+
+  wrap.append("img").attr("src", fetchUrl(item.id.toString()));
+
+  if (item.tags?.length) {
+    wrap
+      .append("div")
+      .selectAll("span")
+      .data(item.tags.slice(0, 4))
+      .join("span")
+      .attr("class", styles.chip)
+      .text((t) => String(t));
+  }
+};
+
+function renderBinned(
+  g: d3.Selection<SVGGElement, unknown, null, undefined>,
+  defs: d3.Selection<SVGDefsElement, unknown, null, undefined>,
+  panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  hoverHint: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  width: number,
+  height: number,
+  data: SomIllust[],
+) {
+  const mapped = data.map((d) => toPixel(d, width, height));
+
+  const hexbin = makeHexbin(BIN_RADIUS, width, height);
+  const bins = hexbin(mapped);
+
+  const maxCount = d3.max(bins, (b) => b.length) ?? 1;
+  const color = d3.scaleSequential(d3.interpolateOrRd).domain([0, maxCount]);
+
+  const hexPath = hexbin.hexagon();
+
+  const reps = bins
+    .map((bin) => ({ bin, rep: pickRepresentative(bin) }))
+    .filter(
+      (
+        d,
+      ): d is {
+        bin: (typeof bins)[number];
+        rep: SomIllust & { x: number; y: number };
+      } => Boolean(d.rep),
+    );
+
+  const repGroups = g
+    .selectAll<
+      SVGGElement,
+      { bin: (typeof bins)[number]; rep: SomIllust & { x: number; y: number } }
+    >(".hexrep")
+    .data(reps)
+    .join("g")
+    .attr("class", "hexrep")
+    .attr("transform", (d) => `translate(${d.bin.x},${d.bin.y})`);
+
+  // Clip paths per group
+  repGroups.each(function (_d, i) {
+    const id = `hexclip-${i}`;
+    const cp = defs.append("clipPath").attr("id", id);
+    cp.append("path").attr("d", hexPath);
+    d3.select(this).attr("data-clip-id", id);
+  });
+
+  repGroups
+    .append("path")
+    .attr("d", hexPath)
+    .attr("fill", "white")
+    .attr("stroke", (d) => color(d.bin.length))
+    .attr("stroke-width", 1);
+
+  const imgW = 2 * BIN_RADIUS;
+  const imgH = Math.sqrt(3) * BIN_RADIUS;
+  const imgX = -imgW / 2;
+  const imgY = -imgH / 2;
+
+  repGroups
+    .append("image")
+    .attr("href", (d) => fetchUrl(d.rep.id.toString()))
+    .attr("x", imgX)
+    .attr("y", imgY)
+    .attr("width", imgW)
+    .attr("height", imgH)
+    .attr("preserveAspectRatio", "xMidYMid slice")
+    .attr("clip-path", function () {
+      const id = d3.select(this.parentNode as SVGGElement).attr("data-clip-id");
+      return `url(#${id})`;
+    })
+    .style("cursor", "pointer")
+    .style("opacity", (d) => Math.max(Math.sqrt(d.bin.length / maxCount), 0.5))
+    .on("mouseenter", function (_e, d) {
+      hoverHint.style("display", "none");
+      renderBinPanel(panel, d.bin);
+      const path = (this.previousSibling as SVGPathElement) || null;
+      if (path)
+        d3.select(path).attr("stroke", "#b5cdfb").attr("stroke-width", 2);
+    })
+    .on("mouseleave", function (_e, d) {
+      const path = (this.previousSibling as SVGPathElement) || null;
+      if (path)
+        d3.select(path)
+          .attr("stroke", color(d.bin.length))
+          .attr("stroke-width", 1);
+    })
+    .on("click", (_e, d) => {
+      window.open(fetchPixivLink(d.rep.id.toString()) ?? d.rep.thumb, "_blank");
+    });
+}
+
+function renderSingles(
+  g: d3.Selection<SVGGElement, unknown, null, undefined>,
+  defs: d3.Selection<SVGDefsElement, unknown, null, undefined>,
+  panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  hoverHint: d3.Selection<HTMLDivElement, unknown, null, undefined>,
+  width: number,
+  height: number,
+  data: SomIllust[],
+) {
+  const hex = makeHexbin(SINGLE_RADIUS, width, height);
+  const centers = hex.centers().map(([x, y]) => ({ x, y, taken: false }));
+
+  const points = data
+    .map((d) => toPixel(d, width, height))
+    .sort((a, b) => (b.bookmark ?? 0) - (a.bookmark ?? 0));
+
+  const assignToNearest = (
+    pts: (SomIllust & { x: number; y: number })[],
+    slots: { x: number; y: number; taken: boolean }[],
+  ) => {
+    const placed: (SomIllust & { x: number; y: number; clipId?: string })[] =
+      [];
+    for (const p of pts) {
+      let bestIdx = -1;
+      let bestDist = Infinity;
+      for (let i = 0; i < slots.length; i++) {
+        const c = slots[i];
+        if (c.taken) continue;
+        const dx = c.x - p.x;
+        const dy = c.y - p.y;
+        const dist = dx * dx + dy * dy;
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = i;
+        }
+      }
+      if (bestIdx >= 0) {
+        const c = slots[bestIdx];
+        c.taken = true;
+        placed.push({ ...p, x: c.x, y: c.y });
+      }
+    }
+    return placed;
+  };
+
+  const singles = assignToNearest(points, centers);
+  const hexPath = hex.hexagon();
+
+  const singleGroups = g
+    .selectAll<
+      SVGGElement,
+      SomIllust & { x: number; y: number; clipId?: string }
+    >(".hexsingle")
+    .data(singles)
+    .join("g")
+    .attr("class", "hexsingle")
+    .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+  // Clip paths per group
+  singleGroups.each(function (_d, i) {
+    const id = `hexclip-${i}`;
+    const cp = defs.append("clipPath").attr("id", id);
+    cp.append("path").attr("d", hexPath);
+    d3.select(this).attr("data-clip-id", id);
+  });
+
+  singleGroups
+    .append("path")
+    .attr("d", hexPath)
+    .attr("fill", "#1e2a3a")
+    .attr("stroke", "#253246")
+    .attr("stroke-width", 0.5);
+
+  const imgW = 2 * SINGLE_RADIUS;
+  const imgH = 2 * SINGLE_RADIUS;
+  const imgX = -imgW / 2;
+  const imgY = -imgH / 2;
+
+  singleGroups
+    .append("image")
+    .attr("href", (d) => fetchUrl(d.id.toString()))
+    .attr("x", imgX)
+    .attr("y", imgY)
+    .attr("width", imgW)
+    .attr("height", imgH)
+    .attr("preserveAspectRatio", "xMidYMid slice")
+    .attr("clip-path", function () {
+      const id = d3.select(this.parentNode as SVGGElement).attr("data-clip-id");
+      return `url(#${id})`;
+    })
+    .style("cursor", "pointer")
+    .on("mouseenter", function (_e, d) {
+      hoverHint.style("display", "none");
+      renderItemPanel(panel, d);
+      const path = (this.previousSibling as SVGPathElement) || null;
+      if (path)
+        d3.select(path).attr("stroke", "#b5cdfb").attr("stroke-width", 1.5);
+    })
+    .on("mouseleave", function () {
+      const path = (this.previousSibling as SVGPathElement) || null;
+      if (path)
+        d3.select(path).attr("stroke", "#253246").attr("stroke-width", 0.5);
+    })
+    .on("click", (_e, d) => {
+      window.open(fetchPixivLink(d.id.toString()), "_blank");
+    });
+}
+
 const SomPage = () => {
-  const chartRef = useRef(null);
-  const panelRef = useRef(null);
-  const hoverHintRef = useRef(null);
+  const chartRef = useRef<SVGSVGElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const hoverHintRef = useRef<HTMLDivElement | null>(null);
+
   const [data, setData] = useState<SomIllust[]>([]);
   const [isBinningMode, setIsBinningMode] = useState(true);
 
+  // 初回読み込み
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       const res = await fetch("/api/som");
       const json = await res.json();
-      setData(json.illusts);
-    };
-    fetchData();
+      setData(json.illusts as SomIllust[]);
+    })();
   }, []);
 
+  // Render
   useEffect(() => {
-    if (data.length === 0 || !chartRef.current) return;
+    if (!chartRef.current || !panelRef.current || !hoverHintRef.current) return;
+    if (data.length === 0) return;
 
     const width = Math.max(600, window.innerWidth - 340);
     const height = Math.max(450, window.innerHeight);
 
-    const svg = d3
-      .select(chartRef.current)
-      .attr("width", width)
-      .attr("height", height);
-
-    svg.selectAll("*").remove();
-
-    const g = svg.append("g");
-    const defs = svg.append("defs");
-
+    const { g, defs } = buildSvg(chartRef.current, width, height);
     const panel = d3.select(panelRef.current);
     const hoverHint = d3.select(hoverHintRef.current);
 
     if (isBinningMode) {
-      renderBinned(g, defs, panel, hoverHint, width, height);
+      renderBinned(g, defs, panel, hoverHint, width, height, data);
     } else {
-      renderSingles(g, defs, panel, hoverHint, width, height);
-    }
-
-    function renderBinned(
-      g: any,
-      defs: any,
-      panel: any,
-      hoverHint: any,
-      width: number,
-      height: number,
-    ) {
-      const mappedData = data.map((d) => ({
-        ...d,
-        x: d.u * (width - 40) + 20,
-        y: d.v * (height - 40) + 20,
-      }));
-
-      const hexRadius = 40;
-      const hexbin = d3hexbin<any>()
-        .x((d) => d.x)
-        .y((d) => d.y)
-        .radius(hexRadius)
-        .extent([
-          [0, 0],
-          [width, height],
-        ]);
-      const bins = hexbin(mappedData);
-
-      const maxCount = d3.max(bins, (b) => b.length) ?? 1;
-      const color = d3
-        .scaleSequential(d3.interpolateOrRd)
-        .domain([0, maxCount]);
-
-      const hexPath = hexbin.hexagon();
-
-      function pickRepresentative(bin: any[]) {
-        return bin
-          .slice()
-          .sort((a, b) => (b.bookmark ?? 0) - (a.bookmark ?? 0))[0];
-      }
-
-      const reps = bins
-        .map((bin) => ({ bin, rep: pickRepresentative(bin) }))
-        .filter((d) => d.rep);
-
-      const repGroups = g
-        .selectAll(".hexrep")
-        .data(reps)
-        .join("g")
-        .attr("class", "hexrep")
-        .attr("transform", (d: any) => `translate(${d.bin.x},${d.bin.y})`);
-
-      repGroups.each((d: any, i: number) => {
-        const id = `hexclip-${i}`;
-        const cp = defs.append("clipPath").attr("id", id);
-        cp.append("path").attr("d", hexPath);
-        d.clipId = id;
-      });
-
-      repGroups
-        .append("path")
-        .attr("d", hexPath)
-        .attr("fill", "white")
-        .attr("stroke", (d: any) => color(d.bin.length))
-        .attr("stroke-width", 1);
-
-      const imgW = 2 * hexRadius;
-      const imgH = Math.sqrt(3) * hexRadius;
-
-      const imgX = -imgW / 2;
-      const imgY = -imgH / 2;
-
-      repGroups
-        .append("image")
-        .attr("href", (d: any) => fetchUrl(d.rep.id.toString()))
-        .attr("x", imgX)
-        .attr("y", imgY)
-        .attr("width", imgW)
-        .attr("height", imgH)
-        .attr("preserveAspectRatio", "xMidYMid slice")
-        .attr("clip-path", (d: any) => `url(#${d.clipId})`)
-        .style("cursor", "pointer")
-        // 要素数が多い順に色付け
-        .style("opacity", (d: any) => {
-          return Math.max(Math.sqrt(d.bin.length/maxCount), 0.5)
-        })
-        .on("mouseenter", (_e: any, d: any) => {
-          hoverHint.style("display", "none");
-          showBin(d.bin);
-          d3.select(d.previousSibling)
-            .attr("stroke", "#b5cdfb")
-            .attr("stroke-width", 2);
-        })
-        .on("mouseleave", (_e: any, d: any) => {
-          d3.select(d.previousSibling)
-            .attr("stroke", color(d.bin.length))
-            .attr("stroke-width", 1);
-        })
-        .on("click", (_e: any, d: any) =>
-          window.open(
-            fetchPixivLink(d.rep.id.toString()) ?? d.rep.thumb,
-            "_blank",
-          ),
-        );
-
-      function showBin(bin: any[]) {
-        panel.html("");
-        const head = panel.append("div");
-        head
-          .append("div")
-          .style("font-size", "14px")
-          .style("margin-bottom", "6px")
-          .text(`Images: ${bin.length}`);
-
-        const avgBookmark = d3.mean(bin, (d) => d.bookmark ?? 0) ?? 0;
-        head
-          .append("div")
-          .attr("class", styles.tip)
-          .text(`Avg. bookmark: ${avgBookmark.toFixed(1)}`);
-
-        const thumbs = panel.append("div").attr("class", styles.thumbs);
-        bin.slice(0, 24).forEach((d) => {
-          const wrap = thumbs
-            .append("a")
-            .attr("href", d.url)
-            .attr("target", "_blank")
-            .attr("title", `${d.title} (${d.date})`);
-
-          wrap.append("img").attr("src", fetchUrl(d.id.toString()));
-
-          if (d.tags?.length) {
-            wrap
-              .append("div")
-              .selectAll("span")
-              .data(d.tags.slice(0, 2))
-              .join("span")
-              .attr("class", styles.chip)
-              .text((t: any) => String(t));
-          }
-        });
-      }
-    }
-
-    function renderSingles(
-      g: any,
-      defs: any,
-      panel: any,
-      hoverHint: any,
-      width: number,
-      height: number,
-    ) {
-      const radiusSingle = 28;
-      const hex = d3hexbin<any>()
-        .x((d) => d.x)
-        .y((d) => d.y)
-        .radius(radiusSingle)
-        .extent([
-          [radiusSingle, radiusSingle],
-          [width - radiusSingle, height - radiusSingle],
-        ]);
-
-      const centers = hex.centers().map(([x, y]) => ({ x, y, taken: false }));
-
-      const points = data
-        .map((d) => ({
-          ...d,
-          x: d.u * (width - 40) + 20,
-          y: d.v * (height - 40) + 20,
-        }))
-        .sort((a, b) => (b.bookmark ?? 0) - (a.bookmark ?? 0));
-
-      function assign(
-        points: any[],
-        centers: { x: number; y: number; taken: boolean }[],
-      ) {
-        const placed = [];
-        for (const p of points) {
-          let best = null,
-            bestDist = Infinity,
-            bestIdx = -1;
-          for (let i = 0; i < centers.length; i++) {
-            const c = centers[i];
-            if (c.taken) continue;
-            const dx = c.x - p.x,
-              dy = c.y - p.y;
-            const dist = dx * dx + dy * dy;
-            if (dist < bestDist) {
-              bestDist = dist;
-              best = c;
-              bestIdx = i;
-            }
-          }
-          if (best) {
-            centers[bestIdx].taken = true;
-            placed.push({ ...p, x: best.x, y: best.y });
-          }
-        }
-        return placed;
-      }
-      const singles = assign(points, centers);
-
-      const hexPath = hex.hexagon();
-
-      const singleGroups = g
-        .selectAll(".hexsingle")
-        .data(singles)
-        .join("g")
-        .attr("class", "hexsingle")
-        .attr("transform", (d: any) => `translate(${d.x},${d.y})`);
-
-      singleGroups.each((d: any, i: number) => {
-        const id = `hexclip-${i}`;
-        const cp = defs.append("clipPath").attr("id", id);
-        cp.append("path").attr("d", hexPath);
-        d.clipId = id;
-      });
-
-      singleGroups
-        .append("path")
-        .attr("d", hexPath)
-        .attr("fill", "#1e2a3a")
-        .attr("stroke", "#253246")
-        .attr("stroke-width", 0.5);
-
-      const imgW = 2 * radiusSingle;
-      const imgH = 2 * radiusSingle;
-
-      const imgX = -imgW / 2;
-      const imgY = -imgH / 2;
-
-      singleGroups
-        .append("image")
-        .attr("href", (d: any) => fetchUrl(d.id.toString()))
-        .attr("x", imgX)
-        .attr("y", imgY)
-        .attr("width", imgW)
-        .attr("height", imgH)
-        .attr("preserveAspectRatio", "xMidYMid slice")
-        .attr("clip-path", (d: any) => `url(#${d.clipId})`)
-        .style("cursor", "pointer")
-        .on("mouseenter", (e: any, d: any) => {
-          hoverHint.style("display", "none");
-          showItem(d);
-          d3.select(e.currentTarget.previousSibling)
-            .attr("stroke", "#b5cdfb")
-            .attr("stroke-width", 1.5);
-        })
-        .on("mouseleave", (e: any) => {
-          d3.select(e.currentTarget.previousSibling)
-            .attr("stroke", "#253246")
-            .attr("stroke-width", 0.5);
-        })
-        .on("click", (_e: any, d: any) =>
-          window.open(fetchPixivLink(d.id.toString()), "_blank"),
-        );
-
-      function showItem(item: any) {
-        panel.html("");
-        const head = panel.append("div");
-        head
-          .append("div")
-          .style("font-size", "14px")
-          .style("margin-bottom", "6px")
-          .text(item.title);
-
-        head
-          .append("div")
-          .attr("class", styles.tip)
-          .text(`Bookmark: ${item.bookmark}`);
-
-        const thumbs = panel.append("div").attr("class", styles.thumbs);
-        const wrap = thumbs
-          .append("a")
-          .attr("href", item.url)
-          .attr("target", "_blank")
-          .attr("title", `${item.title} (${item.date})`);
-
-        wrap.append("img").attr("src", fetchUrl(item.id.toString()));
-
-        if (item.tags?.length) {
-          wrap
-            .append("div")
-            .selectAll("span")
-            .data(item.tags.slice(0, 4))
-            .join("span")
-            .attr("class", styles.chip)
-            .text((t: any) => String(t));
-        }
-      }
+      renderSingles(g, defs, panel, hoverHint, width, height, data);
     }
   }, [data, isBinningMode]);
 
@@ -368,7 +384,7 @@ const SomPage = () => {
           <div>
             <button
               className={styles.toggleButton}
-              onClick={() => setIsBinningMode(!isBinningMode)}
+              onClick={() => setIsBinningMode((m) => !m)}
             >
               {isBinningMode ? "全件表示" : "密度表示"}
             </button>
@@ -379,15 +395,6 @@ const SomPage = () => {
             ? "SOMで2次元に配置したイラストを、六角ビンで密度表示します。"
             : "SOMで2次元に配置したイラストを、同じビンに含まれるものが近接するように一覧表示します。"}
         </div>
-        {/*
-        <div
-          className={styles.legend}
-          style={{ display: isBinningMode ? "flex" : "none" }}
-        >
-          <div className={styles.box}></div>
-          <div>濃いほど密度が高い</div>
-        </div>
-        */}
         <div className={styles.hoverHint} ref={hoverHintRef}>
           マウスオーバーしてください
         </div>
