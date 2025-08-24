@@ -91,7 +91,7 @@ const SomPage = () => {
 
       const maxCount = d3.max(bins, (b) => b.length) ?? 1;
       const color = d3
-        .scaleSequential(d3.interpolateBlues)
+        .scaleSequential(d3.interpolateOrRd)
         .domain([0, maxCount]);
 
       const hexPath = hexbin.hexagon();
@@ -113,7 +113,7 @@ const SomPage = () => {
         .attr("class", "hexrep")
         .attr("transform", (d: any) => `translate(${d.bin.x},${d.bin.y})`);
 
-      repGroups.each(function (d: any, i: number) {
+      repGroups.each((d: any, i: number) => {
         const id = `hexclip-${i}`;
         const cp = defs.append("clipPath").attr("id", id);
         cp.append("path").attr("d", hexPath);
@@ -123,7 +123,7 @@ const SomPage = () => {
       repGroups
         .append("path")
         .attr("d", hexPath)
-        .attr("fill", (d: any) => color(d.bin.length))
+        .attr("fill", "white")
         .attr("stroke", (d: any) => color(d.bin.length))
         .attr("stroke-width", 1);
 
@@ -143,16 +143,19 @@ const SomPage = () => {
         .attr("preserveAspectRatio", "xMidYMid slice")
         .attr("clip-path", (d: any) => `url(#${d.clipId})`)
         .style("cursor", "pointer")
-        .style("opacity", 0.75)
-        .on("mouseenter", function (this: any, e: any, d: any) {
+        // 要素数が多い順に色付け
+        .style("opacity", (d: any) => {
+          return Math.max(Math.sqrt(d.bin.length/maxCount), 0.5)
+        })
+        .on("mouseenter", (_e: any, d: any) => {
           hoverHint.style("display", "none");
           showBin(d.bin);
-          d3.select(this.previousSibling)
+          d3.select(d.previousSibling)
             .attr("stroke", "#b5cdfb")
             .attr("stroke-width", 2);
         })
-        .on("mouseleave", function (this: any, e: any, d: any) {
-          d3.select(this.previousSibling)
+        .on("mouseleave", (_e: any, d: any) => {
+          d3.select(d.previousSibling)
             .attr("stroke", color(d.bin.length))
             .attr("stroke-width", 1);
         })
@@ -268,7 +271,7 @@ const SomPage = () => {
         .attr("class", "hexsingle")
         .attr("transform", (d: any) => `translate(${d.x},${d.y})`);
 
-      singleGroups.each(function (d: any, i: number) {
+      singleGroups.each((d: any, i: number) => {
         const id = `hexclip-${i}`;
         const cp = defs.append("clipPath").attr("id", id);
         cp.append("path").attr("d", hexPath);
