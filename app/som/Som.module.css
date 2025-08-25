@@ -87,12 +87,6 @@
   border-radius: 2px;
 }
 
-.hoverHint {
-  color: #7ea2ff;
-  font-size: 12px;
-  margin-top: 6px;
-}
-
 .hexrep {
   transition: all 0.2s ease-in-out;
 }

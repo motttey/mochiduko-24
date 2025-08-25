@@ -136,7 +136,6 @@ function renderBinned(
   g: d3.Selection<SVGGElement, unknown, null, undefined>,
   defs: d3.Selection<SVGDefsElement, unknown, null, undefined>,
   panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
-  hoverHint: d3.Selection<HTMLDivElement, unknown, null, undefined>,
   width: number,
   height: number,
   data: SomIllust[],
@@ -205,9 +204,8 @@ function renderBinned(
       return `url(#${id})`;
     })
     .style("cursor", "pointer")
-    .style("opacity", (d) => Math.max(Math.sqrt(d.bin.length / maxCount), 0.5))
+    .style("opacity", (d) => Math.max(Math.min(d.bin.length, 10) / 10, 0.5))
     .on("mouseenter", function (_e, d) {
-      hoverHint.style("display", "none");
       renderBinPanel(panel, d.bin);
       const path = (this.previousSibling as SVGPathElement) || null;
       if (path)
@@ -229,7 +227,6 @@ function renderSingles(
   g: d3.Selection<SVGGElement, unknown, null, undefined>,
   defs: d3.Selection<SVGDefsElement, unknown, null, undefined>,
   panel: d3.Selection<HTMLDivElement, unknown, null, undefined>,
-  hoverHint: d3.Selection<HTMLDivElement, unknown, null, undefined>,
   width: number,
   height: number,
   data: SomIllust[],
@@ -317,7 +314,6 @@ function renderSingles(
     })
     .style("cursor", "pointer")
     .on("mouseenter", function (_e, d) {
-      hoverHint.style("display", "none");
       renderItemPanel(panel, d);
       const path = (this.previousSibling as SVGPathElement) || null;
       if (path)
@@ -336,7 +332,6 @@ function renderSingles(
 const SomPage = () => {
   const chartRef = useRef<SVGSVGElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
-  const hoverHintRef = useRef<HTMLDivElement | null>(null);
 
   const [data, setData] = useState<SomIllust[]>([]);
   const [isBinningMode, setIsBinningMode] = useState(true);
@@ -352,7 +347,7 @@ const SomPage = () => {
 
   // Render
   useEffect(() => {
-    if (!chartRef.current || !panelRef.current || !hoverHintRef.current) return;
+    if (!chartRef.current || !panelRef.current) return;
     if (data.length === 0) return;
 
     const width = Math.max(600, window.innerWidth - 340);
@@ -360,12 +355,11 @@ const SomPage = () => {
 
     const { g, defs } = buildSvg(chartRef.current, width, height);
     const panel = d3.select(panelRef.current);
-    const hoverHint = d3.select(hoverHintRef.current);
 
     if (isBinningMode) {
-      renderBinned(g, defs, panel, hoverHint, width, height, data);
+      renderBinned(g, defs, panel, width, height, data);
     } else {
-      renderSingles(g, defs, panel, hoverHint, width, height, data);
+      renderSingles(g, defs, panel, width, height, data);
     }
   }, [data, isBinningMode]);
 
@@ -394,9 +388,6 @@ const SomPage = () => {
           {isBinningMode
             ? "SOMで2次元に配置したイラストを、六角ビンで密度表示します。"
             : "SOMで2次元に配置したイラストを、同じビンに含まれるものが近接するように一覧表示します。"}
-        </div>
-        <div className={styles.hoverHint} ref={hoverHintRef}>
-          マウスオーバーしてください
         </div>
         <div id="panel" ref={panelRef}></div>
       </aside>
