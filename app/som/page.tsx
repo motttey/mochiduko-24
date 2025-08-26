@@ -371,9 +371,8 @@ const SomPage = () => {
       <aside id="side" className={styles.side}>
         <div className={styles.header}>
           <div>
-            <h1>
-              {`SOM (Self-Organizing Maps) | ${isBinningMode ? "Hexbin Illust Collection" : "全件スナップショット"}`}
-            </h1>
+            <h1>{`SOM (Self-Organizing Maps)`}</h1>
+            <h2>{`${isBinningMode ? "Hexbin Illust Collection" : "全件スナップショット"}`}</h2>
           </div>
           <div>
             <button
