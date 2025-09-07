@@ -45,7 +45,7 @@
   color: #e6eaf2;
   border: 1px solid #344155;
   border-radius: 6px;
-  margin: 2px 0px;
+  margin: 2px 4px;
   padding: 4px 10px;
   font-size: 12px;
   cursor: pointer;
@@ -96,4 +96,45 @@
 
 .hexrep {
   transition: all 0.2s ease-in-out;
+}
+
+.mobileMenuButton {
+  display: none;
+  margin: 2px 4px;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    margin-top: 60px;
+  }
+
+  .side {
+    position: fixed;
+    top: 60px;
+    right: -320px;
+    width: 320px;
+    height: calc(100% - 60px);
+    transition: right 0.3s ease-in-out;
+    z-index: 10;
+  }
+
+  .menuOpen .side {
+    right: 0;
+  }
+
+  .mobileMenuButton {
+    display: block;
+    position: fixed;
+    top: 72px;
+    right: 16px;
+    z-index: 20;
+    background: #253246;
+    color: #e6eaf2;
+    border: 1px solid #344155;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
 }

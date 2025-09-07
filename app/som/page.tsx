@@ -335,6 +335,7 @@ const SomPage = () => {
 
   const [data, setData] = useState<SomIllust[]>([]);
   const [isBinningMode, setIsBinningMode] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // 初回読み込み
   useEffect(() => {
@@ -364,10 +365,16 @@ const SomPage = () => {
   }, [data, isBinningMode]);
 
   return (
-    <div className={styles.wrap}>
+    <div className={`${styles.wrap} ${isMenuOpen ? styles.menuOpen : ""}`}>
       <div id="main" className={styles.main}>
         <svg id="chart" ref={chartRef}></svg>
       </div>
+      <button
+        className={styles.mobileMenuButton}
+        onClick={() => setIsMenuOpen((o) => !o)}
+      >
+        {isMenuOpen ? "Close" : "Menu"}
+      </button>
       <aside id="side" className={styles.side}>
         <div className={styles.header}>
           <div>
