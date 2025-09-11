@@ -334,7 +334,7 @@ const SomPage = () => {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   const [data, setData] = useState<SomIllust[]>([]);
-  const [isBinningMode, setIsBinningMode] = useState(true);
+  const [isBinningMode, setIsBinningMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // 初回読み込み
@@ -351,8 +351,8 @@ const SomPage = () => {
     if (!chartRef.current || !panelRef.current) return;
     if (data.length === 0) return;
 
-    const width = Math.max(600, window.innerWidth - 340);
-    const height = Math.max(450, window.innerHeight);
+    const width = Math.max(300, window.innerWidth - 340);
+    const height = Math.max(1000, window.innerHeight);
 
     const { g, defs } = buildSvg(chartRef.current, width, height);
     const panel = d3.select(panelRef.current);

@@ -100,7 +100,7 @@
 
 .mobileMenuButton {
   display: none;
-  margin: 2px 4px;
+  margin: 2px 4px ;
 }
 
 @media (max-width: 768px) {
@@ -126,12 +126,12 @@
   .mobileMenuButton {
     display: block;
     position: fixed;
-    top: 72px;
+    top: 110px;
     right: 16px;
     z-index: 20;
-    background: #253246;
-    color: #e6eaf2;
-    border: 1px solid #344155;
+    background: #fff;
+    color: #1ea7fd;
+    border: 1px solid #1ea7fd;
     border-radius: 6px;
     padding: 4px 10px;
     font-size: 12px;
