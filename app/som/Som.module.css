@@ -100,7 +100,7 @@
 
 .mobileMenuButton {
   display: none;
-  margin: 2px 4px ;
+  margin: 2px 4px;
 }
 
 @media (max-width: 768px) {

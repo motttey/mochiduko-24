@@ -352,7 +352,9 @@ const SomPage = () => {
     if (data.length === 0) return;
 
     const width = Math.max(300, window.innerWidth - 340);
-    const height = Math.max(1000, window.innerHeight);
+    const height =
+      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
+      SINGLE_RADIUS;
 
     const { g, defs } = buildSvg(chartRef.current, width, height);
     const panel = d3.select(panelRef.current);
