@@ -48,7 +48,7 @@ const makeHexbin = (radius: number, width: number, height: number) =>
     .radius(radius)
     .extent([
       [radius, radius],
-      [width - radius, height - radius],
+      [width - radius * 2, height - radius],
     ]);
 
 const pickRepresentative = (
