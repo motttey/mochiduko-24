@@ -336,6 +336,8 @@ const SomPage = () => {
   const [data, setData] = useState<SomIllust[]>([]);
   const [isBinningMode, setIsBinningMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   // 初回読み込み
   useEffect(() => {
@@ -346,15 +348,29 @@ const SomPage = () => {
     })();
   }, []);
 
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(Math.min(Math.max(350, window.innerWidth - 320), 900));
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Calculate height when data or width changes
+  useEffect(() => {
+    if (data.length === 0 || width === 0) return;
+    const newHeight =
+      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
+      SINGLE_RADIUS;
+    setHeight(newHeight);
+  }, [data, width]);
+
   // Render
   useEffect(() => {
     if (!chartRef.current || !panelRef.current) return;
-    if (data.length === 0) return;
-
-    const width = Math.max(300, window.innerWidth - 340);
-    const height =
-      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
-      SINGLE_RADIUS;
+    if (data.length === 0 || width === 0 || height === 0) return;
 
     const { g, defs } = buildSvg(chartRef.current, width, height);
     const panel = d3.select(panelRef.current);
@@ -364,7 +380,7 @@ const SomPage = () => {
     } else {
       renderSingles(g, defs, panel, width, height, data);
     }
-  }, [data, isBinningMode]);
+  }, [data, isBinningMode, width, height]);
 
   return (
     <div className={`${styles.wrap} ${isMenuOpen ? styles.menuOpen : ""}`}>
