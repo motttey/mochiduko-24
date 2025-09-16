@@ -63,8 +63,7 @@ const renderBinPanel = (
   const head = panel.append("div");
   head
     .append("div")
-    .style("font-size", "14px")
-    .style("margin-bottom", "6px")
+    .attr("class", styles.imageHeader)
     .text(`Images: ${bin.length}`);
 
   const avgBookmark = d3.mean(bin, (d) => d.bookmark ?? 0) ?? 0;
@@ -101,11 +100,7 @@ const renderItemPanel = (
 ) => {
   panel.html("");
   const head = panel.append("div");
-  head
-    .append("div")
-    .style("font-size", "14px")
-    .style("margin-bottom", "6px")
-    .text(item.title);
+  head.append("div").attr("class", styles.imageHeader).text(item.title);
 
   head
     .append("div")
@@ -339,7 +334,6 @@ const SomPage = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  // 初回読み込み
   useEffect(() => {
     (async () => {
       const res = await fetch("/api/som");
@@ -348,7 +342,6 @@ const SomPage = () => {
     })();
   }, []);
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setWidth(Math.min(Math.max(350, window.innerWidth - 320), 900));
@@ -358,7 +351,7 @@ const SomPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Calculate height when data or width changes
+  // 高さを計算
   useEffect(() => {
     if (data.length === 0 || width === 0) return;
     const newHeight =
@@ -367,7 +360,6 @@ const SomPage = () => {
     setHeight(newHeight);
   }, [data, width]);
 
-  // Render
   useEffect(() => {
     if (!chartRef.current || !panelRef.current) return;
     if (data.length === 0 || width === 0 || height === 0) return;

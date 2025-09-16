@@ -52,6 +52,11 @@
   cursor: pointer;
 }
 
+.imageHeader {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
 .tip {
   font-size: 12px;
   color: #9aa7b1;
