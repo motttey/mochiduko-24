@@ -16,7 +16,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = withPWA({
   output: "export",
   images: {
-    domains: ["embed.pixiv.net"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "embed.pixiv.net",
+        pathname: "**"
+      }
+    ]
   },
   // デプロイ先が /mochiduko-24などになる場合はprefixPathをいじる
   assetPrefix: "",
