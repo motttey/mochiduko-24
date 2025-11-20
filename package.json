@@ -37,7 +37,7 @@
     "react-dom": "^19.0.0",
     "react-virtuoso": "^4.6.2",
     "swr": "^2.3.3",
-    "three": "^0.166.1",
+    "three": "^0.181.2",
     "typescript": "^5.4.0",
     "webgl-fluid": "^0.3.9",
     "webgl-fluid-enhanced": "^0.6.1"
