@@ -14,9 +14,9 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "embed.pixiv.net",
-        pathname: "**"
-      }
-    ]
+        pathname: "**",
+      },
+    ],
   },
   // デプロイ先が /mochiduko-24などになる場合はprefixPathをいじる
   assetPrefix: "",

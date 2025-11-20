@@ -1,6 +1,7 @@
 "use client";
 
 import { Grid, Image, Alert, TagsInput, Divider, Box } from "@mantine/core";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useMemo } from "react";
 import { Virtuoso } from "react-virtuoso";
@@ -183,6 +184,9 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                       className={styles.card}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        sendGTMEvent({ event: "goToPixiv", value: illust.id })
+                      }
                       key={`${index}_${illust.id.toString()}`}
                       aria-label={`イラスト ${illust.title}`}
                     >
