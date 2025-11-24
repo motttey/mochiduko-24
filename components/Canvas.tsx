@@ -12,7 +12,7 @@ const Canvas: React.FC = () => {
 
   useEffect(() => {
     const currentCanvas = canvas.current; // canvas.currentを変数にコピー
-    if (currentCanvas) {
+    if (currentCanvas && canvas.current) {
       webGLFluidEnhanced.simulation(canvas.current, {
         SIM_RESOLUTION: 256,
         HOVER: false,
