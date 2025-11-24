@@ -21,7 +21,6 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "moduleResolution": "node"
   },
   "include": [
     "next-env.d.ts",
