@@ -48,13 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${mochidukoUrl}/mochiduko-24`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.3,
-    },
-    {
-      url: `${mochidukoUrl}/c101`,
+      url: `${mochidukoUrl}/c101/`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
