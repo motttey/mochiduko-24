@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPostUrls: MetadataRoute.Sitemap = [];
   const startDate = new Date(2024, 4, 1);
-  const endDate = new Date(2025, 6, 1);
+  const endDate = new Date(2025, 12, 1);
 
   // ブログの開始/終了時刻からsitemapを作成
   for (
