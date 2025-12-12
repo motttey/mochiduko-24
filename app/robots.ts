@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         // 全てのクローラ（Googlebot以外含む）に対して特定階層を許可
         userAgent: "*",
-        allow: ["/", "/dialy"],
+        allow: "/",
       },
       {
         // Googlebotに対して全てのパスを許可
