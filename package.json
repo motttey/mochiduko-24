@@ -45,7 +45,7 @@
   "devDependencies": {
     "@heroui/react": "^2.7.6",
     "@storybook/addon-docs": "^9.0.15",
-    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-styling-webpack": "^2.0.0",
     "@storybook/addon-themes": "^9.0.15",
     "@storybook/nextjs": "^9.0.15",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
