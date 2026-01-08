@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "ANALYZE=false next build --turbopack",
-    "start": "next dev --turbopack",
+    "dev": "next dev",
+    "build": "ANALYZE=false next build",
+    "start": "next dev",
     "lint": "eslint --fix .",
     "stylelint": "stylelint 'app/**/*.css' --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
