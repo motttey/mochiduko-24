@@ -17,6 +17,8 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    // キャッシュ期間を伸ばす
+    minimumCacheTTL: 14400,
   },
   // デプロイ先が /mochiduko-24などになる場合はprefixPathをいじる
   assetPrefix: "",
