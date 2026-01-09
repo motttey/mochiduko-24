@@ -21,7 +21,7 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
   },
   "include": [
     "next-env.d.ts",

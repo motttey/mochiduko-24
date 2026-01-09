@@ -17,5 +17,4 @@ export default defineConfig([
     ...compat.extends("plugin:react/recommended"),
     ...compat.extends("next"),
     ...compat.extends("next/core-web-vitals"),
-    ...compat.extends("plugin:storybook/recommended")
 ]);

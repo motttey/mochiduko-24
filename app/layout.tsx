@@ -12,7 +12,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 import { mochidukoUrl } from "./data/constants";
-import "./globals.css";
 
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
