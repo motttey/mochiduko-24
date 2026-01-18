@@ -28,16 +28,14 @@ const MutualLink: React.FC = () => {
           <Divider
             className={styles.commonDivider}
             label={
-              <>
-                <Box ml={5}>
-                  <h3 id="illustration-heading">相互リンク</h3>
-                </Box>
-              </>
+              <Box ml={5}>
+                <h3 id="illustration-heading">相互リンク</h3>
+              </Box>
             }
           />
 
           <Text style={{ textAlign: "center" }}>
-            相互リンク募集中です. 各種SNSやメールにて連絡いただけますと幸いです.{" "}
+            相互リンク募集中です。 各種SNSやメールにて連絡いただけますと幸いです。
             <br />
             バナーが必要な場合は{" "}
             <Image
@@ -49,7 +47,7 @@ const MutualLink: React.FC = () => {
               alt="モチヅ庫のバナー"
               unoptimized
             />{" "}
-            をお使いください.
+            をお使いください。
             <br />
           </Text>
         </Grid.Col>

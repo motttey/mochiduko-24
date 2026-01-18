@@ -128,11 +128,9 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
           <Divider
             className={styles.commonDivider}
             label={
-              <>
-                <Box ml={5}>
-                  <h3 id="illustration-heading">望月田吾作のイラスト</h3>
-                </Box>
-              </>
+              <Box ml={5}>
+                <h3 id="illustration-heading">望月田吾作のイラスト</h3>
+              </Box>
             }
             aria-labelledby="illustration-heading"
           />
@@ -153,9 +151,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
               margin: "0 auto",
             }}
             label={
-              <>
-                <span id="search-results-heading">検索結果</span>
-              </>
+              <span id="search-results-heading">検索結果</span>
             }
             aria-labelledby="search-results-heading"
           />
