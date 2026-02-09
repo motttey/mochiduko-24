@@ -2,7 +2,7 @@
 
 import * as d3 from "d3";
 import { hexbin as d3hexbin, type HexbinBin } from "d3-hexbin";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { mochidukoApiUrl } from "../data/constants";
 import styles from "./Som.module.css";
@@ -332,7 +332,15 @@ const SomPage = () => {
   const [isBinningMode, setIsBinningMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+
+  // height は width/data から導出できるので state ではなく memo にする
+  const height = useMemo(() => {
+    if (data.length === 0 || width === 0) return 0;
+    return (
+      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
+      SINGLE_RADIUS
+    );
+  }, [data.length, width]);
 
   useEffect(() => {
     (async () => {
@@ -350,15 +358,6 @@ const SomPage = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // 高さを計算
-  useEffect(() => {
-    if (data.length === 0 || width === 0) return;
-    const newHeight =
-      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
-      SINGLE_RADIUS;
-    setHeight(newHeight);
-  }, [data, width]);
 
   useEffect(() => {
     if (!chartRef.current || !panelRef.current) return;

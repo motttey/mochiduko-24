@@ -50,9 +50,6 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
   });
 
   const [filterdIllusts, setFilteredIllusts] = useState([] as Array<Illust>);
-  const [groupedIllusts, setGroupedIllusts] = useState(
-    [] as Array<Array<Illust>>,
-  );
 
   const searchParams = useSearchParams();
   /*
@@ -84,6 +81,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
           )
         : fetchedIllust) || []
     ).sort(() => Math.random() - 0.5);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFilteredIllusts(filterdIllusts);
 
     /*
@@ -97,10 +95,10 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
     */
   }, [queryList, fetchedIllust]);
 
-  useMemo(() => {
-    const groupedIllusts = chunkArray(filterdIllusts);
-    setGroupedIllusts(groupedIllusts);
-  }, [filterdIllusts]);
+  const groupedIllusts = useMemo(
+    () => chunkArray(filterdIllusts),
+    [filterdIllusts],
+  );
 
   if (error)
     return (
@@ -150,9 +148,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
               width: "80%",
               margin: "0 auto",
             }}
-            label={
-              <span id="search-results-heading">検索結果</span>
-            }
+            label={<span id="search-results-heading">検索結果</span>}
             aria-labelledby="search-results-heading"
           />
         </Grid.Col>

@@ -35,7 +35,8 @@ const MutualLink: React.FC = () => {
           />
 
           <Text style={{ textAlign: "center" }}>
-            相互リンク募集中です。 各種SNSやメールにて連絡いただけますと幸いです。
+            相互リンク募集中です。
+            各種SNSやメールにて連絡いただけますと幸いです。
             <br />
             バナーが必要な場合は{" "}
             <Image

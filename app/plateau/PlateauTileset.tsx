@@ -2,13 +2,7 @@
 
 import { TilesRenderer } from "3d-tiles-renderer";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   Box3,
   EdgesGeometry,
@@ -17,6 +11,7 @@ import {
   Matrix4,
   Mesh,
   MeshStandardMaterial,
+  Object3D,
   Vector3,
 } from "three";
 import { GLTFLoader } from "three-stdlib";
@@ -46,11 +41,9 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
   center = false,
 }) => {
   const { setCenter } = useContext(PlateauTilesetTransformContext);
-  const centerRef = useRef(center);
-  centerRef.current = center;
 
   const createTiles = useCallback(
-    (path: string) => {
+    (path: string, shouldCenter: boolean) => {
       const tiles = new TilesRenderer(
         `https://plateau.geospatial.jp/main/data/3d-tiles/${path}/tileset.json`,
       );
@@ -58,7 +51,7 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
       tiles.manager.addHandler(/\.gltf$/, gltfLoader);
 
       tiles.addEventListener("load-tile-set", () => {
-        if (centerRef.current) {
+        if (shouldCenter) {
           const box = new Box3();
           const matrix = new Matrix4();
           tiles.getOrientedBoundingBox(box, matrix);
@@ -70,9 +63,9 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
         }
       });
 
-      tiles.addEventListener("load-model", (event: any) => {
-        const { scene } = event;
-        scene.traverse((object: any) => {
+      tiles.addEventListener("load-model", (event: unknown) => {
+        const { scene } = event as { scene: Object3D };
+        scene.traverse((object) => {
           object.castShadow = true;
           object.receiveShadow = true;
           if (object instanceof Mesh) {
@@ -89,36 +82,38 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
     [setCenter],
   );
 
-  const [tiles, setTiles] = useState(() => createTiles(path));
-
-  const pathRef = useRef(path);
-  useEffect(() => {
-    if (path !== pathRef.current) {
-      pathRef.current = path;
-      setTiles(createTiles(path));
-    }
-  }, [path, createTiles]);
+  // TilesRenderer 생성은副作用なので render 外(useEffect)で行う
+  const [tiles, setTiles] = useState<TilesRenderer | null>(null);
 
   useEffect(() => {
+    const t = createTiles(path, center);
+    // Creating TilesRenderer is an external-side-effect, and we intentionally
+    // store it in state so we can render it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTiles(t);
     return () => {
-      tiles.dispose();
+      t.dispose();
     };
-  }, [tiles]);
+  }, [path, center, createTiles]);
 
   const camera = useThree(({ camera }) => camera);
   const gl = useThree(({ gl }) => gl);
 
   useEffect(() => {
+    if (!tiles) return;
     tiles.setCamera(camera);
   }, [tiles, camera]);
 
   useEffect(() => {
+    if (!tiles) return;
     tiles.setResolutionFromRenderer(camera, gl);
   }, [tiles, camera, gl]);
 
   useFrame(() => {
-    tiles.update();
+    tiles?.update();
   });
+
+  if (!tiles) return null;
 
   return <primitive object={tiles.group} />;
 };

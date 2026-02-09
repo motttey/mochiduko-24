@@ -1,20 +1,38 @@
-import { defineConfig } from "eslint/config";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { defineConfig, globalIgnores } from "eslint/config";
 import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import tseslint from 'typescript-eslint';
+import tsParser from "@typescript-eslint/parser";
 
 export default defineConfig([
-    ...compat.extends("eslint:recommended"),
-    ...compat.extends("plugin:react/recommended"),
-    ...compat.extends("next"),
-    ...compat.extends("next/core-web-vitals"),
+    ...nextVitals,
+    js.configs.recommended,
+    ...tseslint.configs.recommended,
+    globalIgnores([
+        'node_modules/**',
+        '.next/**',
+        'public/**',
+        'out/**',
+        'next-env.d.ts',
+        'tailwind.config.js',
+        'postcss.config.cjs',
+        '.lintstagedrc.js'
+    ]),
+    {
+        files: ["**/*.{ts,tsx}"],
+        languageOptions: {
+        parser: tsParser,
+        parserOptions: {
+            ecmaVersion: "latest",
+            sourceType: "module",
+        },
+        },
+    },
+    {
+        rules: {
+            'react/react-in-jsx-scope': 'off',
+            'react/no-unknown-property': 'off',
+            '@typescript-eslint/no-explicit-any': 'warn'
+        }
+    },
 ]);

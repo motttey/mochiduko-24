@@ -1,6 +1,8 @@
 // mjsだと動かないらしい
 // https://github.com/actions/upload-pages-artifact/issues/74
 
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 /** @type {import('next').NextConfig} */
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
