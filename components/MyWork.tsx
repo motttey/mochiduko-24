@@ -29,7 +29,7 @@ const worksArray: Array<MyWorks> = [
     title: "フジコ・スピリット",
     year: 2022,
     src: "fujikospirits.jpg",
-    url: "https://motttey.github.io/c101/",
+    url: "https://fujiko-spirit.pages.dev/",
     description:
       "藤子不二雄作品が好きな11名による一次創作合同誌 表紙イラストを担当",
     flex: 6,
