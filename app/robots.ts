@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
-        disallow: ["/", "/dialy", "/memo"],
+        disallow: ["/", "/diary", "/memo"],
       },
     ],
     sitemap: `${mochidukoUrl}/sitemap.xml`,

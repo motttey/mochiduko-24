@@ -17,7 +17,7 @@ const linksHref = [
   { link: "#worksContainer", label: "Works", external: false },
   { link: "#egoLinkContainer", label: "Links", external: false },
   { link: "#illustContainer", label: "Illusts", external: false },
-  { link: `${mochidukoUrl}/dialy/`, label: "Dialy", external: true },
+  { link: `${mochidukoUrl}/diary/`, label: "Diary", external: true },
 ];
 const SiteHeader: React.FC = () => {
   const title = "モチヅ庫'24";

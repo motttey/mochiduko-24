@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const lastModified = new Date(year, month - 1, 30);
 
       blogPostUrls.push({
-        url: `${mochidukoUrl}/dialy/posts/${year}-${formattedMonth}`,
+        url: `${mochidukoUrl}/diary/posts/${year}-${formattedMonth}`,
         lastModified: lastModified,
         changeFrequency: "monthly" as const,
         priority: 0.3,
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${mochidukoUrl}/dialy`,
+      url: `${mochidukoUrl}/diary`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
@@ -54,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${mochidukoUrl}/dialy/memo/dora-esekai-monogatari`,
+      url: `${mochidukoUrl}/diary/memo/dora-esekai-monogatari`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
