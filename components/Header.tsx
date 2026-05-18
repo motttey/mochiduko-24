@@ -56,13 +56,13 @@ const SiteHeader: React.FC = () => {
             className={styles.hex}
             h={64}
             w={64}
-            alt="header image of doraemon"
+            alt="header image"
             src="./doraemon-namecard.webp"
             visibleFrom="xs"
           />
           <Box className={styles.links}>
             <Group justify="flex-end">
-              <Text c="cyan" fw={700} size="lg" span>
+              <Text c="#22b8cf" fw={700} size="lg" span>
                 {title}
               </Text>
             </Group>
