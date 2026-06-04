@@ -140,3 +140,5 @@ public/workbox-*.js
 
 # google search console file
 public/google*.html
+
+/docs
