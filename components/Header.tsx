@@ -22,7 +22,7 @@ const linksHref = [
 const SiteHeader: React.FC = () => {
   const title = "モチヅ庫'24";
   const [active, setActive] = useState(0);
-  const iconStyle: React.CSSProperties = { marginLeft: 4, fontSize: 12 };
+  const iconStyle = { marginLeft: 4, fontSize: 12 };
 
   const mainItems = linksHref.map((item, index) => (
     <Anchor<"a">
