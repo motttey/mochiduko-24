@@ -10,6 +10,8 @@ import styles from "./Som.module.css";
 const MARGIN = 20;
 const BIN_RADIUS = 40;
 const SINGLE_RADIUS = 28;
+const HEX_COLUMN_WIDTH = Math.sqrt(3) * SINGLE_RADIUS;
+const HEX_ROW_HEIGHT = 1.5 * SINGLE_RADIUS;
 
 export type SomIllust = {
   id: number;
@@ -336,10 +338,15 @@ const SomPage = () => {
   // height は width/data から導出できるので state ではなく memo にする
   const height = useMemo(() => {
     if (data.length === 0 || width === 0) return 0;
-    return (
-      Math.ceil(data.length / Math.floor(width / (SINGLE_RADIUS * 2))) *
-      SINGLE_RADIUS
+
+    // d3-hexbin の六角形は横幅が √3 * radius、行間が 1.5 * radius。
+    // 最終行の六角形全体を収める分の余白も高さに含める。
+    const columns = Math.max(
+      1,
+      Math.ceil((width - 3 * SINGLE_RADIUS) / HEX_COLUMN_WIDTH),
     );
+    const rows = Math.ceil(data.length / columns);
+    return Math.ceil(2 * SINGLE_RADIUS + (rows - 1) * HEX_ROW_HEIGHT);
   }, [data.length, width]);
 
   useEffect(() => {
@@ -352,7 +359,12 @@ const SomPage = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWidth(Math.min(Math.max(350, window.innerWidth - 320), 900));
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const sideWidth = Math.min(Math.max(window.innerWidth * 0.3, 320), 400);
+      const availableWidth = isMobile
+        ? window.innerWidth
+        : window.innerWidth - sideWidth;
+      setWidth(Math.min(Math.max(350, availableWidth), 900));
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -401,8 +413,8 @@ const SomPage = () => {
         </div>
         <div className={styles.tip}>
           {isBinningMode
-            ? "SOMで2次元に配置したイラストを、六角ビンで密度表示します。"
-            : "SOMで2次元に配置したイラストを、同じビンに含まれるものが近接するように一覧表示します。"}
+            ? "SOMで類似するものが近くなるように2次元に配置したイラストを、六角ビンで密度表示します。"
+            : "SOMで類似するものが近くなるように22次元に配置したイラストを、グループに分けて表示します。"}
         </div>
         <div id="panel" ref={panelRef}></div>
       </aside>

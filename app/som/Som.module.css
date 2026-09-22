@@ -1,6 +1,6 @@
 .wrap {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: minmax(0, 1fr) clamp(320px, 30vw, 400px);
   height: 100vh;
   overflow-y: scroll;
   margin-top: 100px;
@@ -65,7 +65,7 @@
 
 .thumbs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 .thumbs img {
