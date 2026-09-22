@@ -13,10 +13,10 @@ import styles from "@/app/page.module.css";
 config.autoAddCss = false;
 
 const linksHref = [
-  { link: "#profileContainer", label: "Profile", external: false },
-  { link: "#worksContainer", label: "Works", external: false },
-  { link: "#egoLinkContainer", label: "Links", external: false },
-  { link: "#illustContainer", label: "Illusts", external: false },
+  { link: "/#profileContainer", label: "Profile", external: false },
+  { link: "/#worksContainer", label: "Works", external: false },
+  { link: "/#egoLinkContainer", label: "Links", external: false },
+  { link: "/#illustContainer", label: "Illusts", external: false },
   { link: `${mochidukoUrl}/diary/`, label: "Diary", external: true },
 ];
 const SiteHeader: React.FC = () => {
