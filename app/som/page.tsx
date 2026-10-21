@@ -17,7 +17,6 @@ export type SomIllust = {
   id: number;
   u: number; // 0..1
   v: number; // 0..1
-  url: string;
   thumb: string;
   title: string;
   date: string;
@@ -78,8 +77,9 @@ const renderBinPanel = (
   bin.slice(0, 24).forEach((d) => {
     const wrap = thumbs
       .append("a")
-      .attr("href", d.url)
+      .attr("href", fetchPixivLink(d.id.toString()))
       .attr("target", "_blank")
+      .attr("rel", "noopener noreferrer")
       .attr("title", `${d.title} (${d.date})`);
 
     wrap.append("img").attr("src", fetchUrl(d.id.toString()));
@@ -112,8 +112,9 @@ const renderItemPanel = (
   const thumbs = panel.append("div").attr("class", styles.thumbs);
   const wrap = thumbs
     .append("a")
-    .attr("href", item.url)
+    .attr("href", fetchPixivLink(item.id.toString()))
     .attr("target", "_blank")
+    .attr("rel", "noopener noreferrer")
     .attr("title", `${item.title} (${item.date})`);
 
   wrap.append("img").attr("src", fetchUrl(item.id.toString()));
