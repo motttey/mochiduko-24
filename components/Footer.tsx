@@ -7,6 +7,8 @@ import React from "react";
 import styles from "@/app/page.module.css";
 
 const SiteFooter: React.FC = () => {
+  // Keep the copyright year current when this component re-renders.
+  // eslint-disable-next-line @eslint-react/purity
   const title = `© ${new Date().getFullYear()} Tagosaku Mochiduki`;
   return (
     <footer

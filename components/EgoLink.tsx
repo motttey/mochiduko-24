@@ -135,12 +135,12 @@ const EgoLink: React.FC = () => {
                   ? styles.diamondRowEven
                   : styles.diamondRowOdd
               }`}
-              key={groupIdx}
+              key={group[0].url}
             >
-              {group.map((link, index) => (
+              {group.map((link) => (
                 <div
                   className={styles.diamond}
-                  key={index.toString() + "_" + link.title}
+                  key={link.url}
                 >
                   <a
                     href={link.url}

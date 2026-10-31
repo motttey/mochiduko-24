@@ -4,16 +4,16 @@ import React, { useEffect, useRef } from "react";
 import webGLFluidEnhanced from "webgl-fluid-enhanced";
 
 const Canvas: React.FC = () => {
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleClick = () => {
     webGLFluidEnhanced.splats();
   };
 
   useEffect(() => {
-    const currentCanvas = canvas.current; // canvas.currentを変数にコピー
-    if (currentCanvas && canvas.current) {
-      webGLFluidEnhanced.simulation(canvas.current, {
+    const currentCanvas = canvasRef.current; // canvasRef.currentを変数にコピー
+    if (currentCanvas) {
+      webGLFluidEnhanced.simulation(currentCanvas, {
         SIM_RESOLUTION: 256,
         HOVER: false,
         BLOOM: false,
@@ -58,7 +58,7 @@ const Canvas: React.FC = () => {
     >
       <canvas
         id="fluidCanvas"
-        ref={canvas}
+        ref={canvasRef}
         style={{
           position: "fixed",
           width: "100vw",

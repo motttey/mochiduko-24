@@ -49,7 +49,7 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
     refreshInterval: 0,
   });
 
-  const [filterdIllusts, setFilteredIllusts] = useState([] as Array<Illust>);
+  const [filteredIllusts, setFilteredIllusts] = useState([] as Array<Illust>);
 
   const searchParams = useSearchParams();
   /*
@@ -81,7 +81,8 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
           )
         : fetchedIllust) || []
     ).sort(() => Math.random() - 0.5);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // Keep the existing shuffle timing when data or filters change.
+    // eslint-disable-next-line @eslint-react/set-state-in-effect, react-hooks/set-state-in-effect
     setFilteredIllusts(filterdIllusts);
 
     /*
@@ -96,8 +97,8 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
   }, [queryList, fetchedIllust]);
 
   const groupedIllusts = useMemo(
-    () => chunkArray(filterdIllusts),
-    [filterdIllusts],
+    () => chunkArray(filteredIllusts),
+    [filteredIllusts],
   );
 
   if (error)
@@ -166,10 +167,10 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                 }`}
                 key={groupIdx}
               >
-                {group.map((illust, index) => (
+                {group.map((illust) => (
                   <div
                     className={styles.hex}
-                    key={index.toString() + "_" + illust.id}
+                    key={illust.id}
                   >
                     <a
                       href={fetchPixivLink(illust.id.toString())}
@@ -179,7 +180,6 @@ const IllustList: React.FC<{ initialContentsList: Array<Illust> }> = (props: {
                       onClick={() =>
                         sendGTMEvent({ event: "goToPixiv", value: illust.id })
                       }
-                      key={`${index}_${illust.id.toString()}`}
                       aria-label={`イラスト ${illust.title}`}
                     >
                       <div className="relative aspect-square">

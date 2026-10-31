@@ -13,7 +13,7 @@ export interface PlateauTilesetTransformProps {
 export const PlateauTilesetTransform: React.FC<
   PlateauTilesetTransformProps
 > = ({ children }) => {
-  const [{ offset, rotation }, setState] = useState<{
+  const [transform, setTransform] = useState<{
     offset?: Vector3;
     rotation?: Quaternion;
   }>({});
@@ -23,7 +23,7 @@ export const PlateauTilesetTransform: React.FC<
     const up = new Vector3(0, 1, 0);
     const rotation = new Quaternion();
     rotation.setFromUnitVectors(direction, up);
-    setState({
+    setTransform({
       offset: new Vector3(0, -center.length(), 0),
       rotation,
     });
@@ -32,10 +32,10 @@ export const PlateauTilesetTransform: React.FC<
   const context = useMemo(() => ({ setCenter }), [setCenter]);
 
   return (
-    <PlateauTilesetTransformContext.Provider value={context}>
-      <group position={offset} quaternion={rotation}>
+    <PlateauTilesetTransformContext value={context}>
+      <group position={transform.offset} quaternion={transform.rotation}>
         {children}
       </group>
-    </PlateauTilesetTransformContext.Provider>
+    </PlateauTilesetTransformContext>
   );
 };

@@ -2,7 +2,7 @@
 
 import { TilesRenderer } from "3d-tiles-renderer";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { use, useCallback, useEffect, useState } from "react";
 import {
   Box3,
   EdgesGeometry,
@@ -40,7 +40,7 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
   path,
   center = false,
 }) => {
-  const { setCenter } = useContext(PlateauTilesetTransformContext);
+  const { setCenter } = use(PlateauTilesetTransformContext);
 
   const createTiles = useCallback(
     (path: string, shouldCenter: boolean) => {
@@ -87,9 +87,8 @@ export const PlateauTileset: React.FC<PlateauTilesetProps> = ({
 
   useEffect(() => {
     const t = createTiles(path, center);
-    // Creating TilesRenderer is an external-side-effect, and we intentionally
-    // store it in state so we can render it.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // The renderer must be created after mount and stored to render its group.
+    // eslint-disable-next-line @eslint-react/set-state-in-effect, react-hooks/set-state-in-effect
     setTiles(t);
     return () => {
       t.dispose();

@@ -365,6 +365,8 @@ const SomPage = () => {
       const availableWidth = isMobile
         ? window.innerWidth
         : window.innerWidth - sideWidth;
+      // Measure after mount so server and client share the same initial render.
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setWidth(Math.min(Math.max(350, availableWidth), 900));
     };
     handleResize();
